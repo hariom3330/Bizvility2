@@ -1,0 +1,104 @@
+/*
+ Theme Name:   Listingpro Child
+ Theme URI:    http://studio.cridio.com/listingpro/
+ Description:  Listingpro Child Theme
+ Author:       cridio team
+ Author URI:   http://cridio.com/
+ Template:     listingpro
+ Version:      1.0.0
+ Tags:         listingpro, directory, listing, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  listingpro
+*/
+
+
+  @media (max-width: 767px) {
+        .lp-purchase-adons-container {
+          display: none !important;
+        }
+      }
+
+
+
+.lp-purchase-adons-container {
+            width: 100%;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #262626;
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 999999999;
+        }
+        .lp-purchase-adons-container img {
+            display: block;
+            max-height: 50px;
+            object-fit: scale-down;
+        }
+        .lp-purchase-adons-container button {
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            padding: 5px 20px;
+            line-height: 1.5;
+            background-color: #82b440;
+            box-shadow: 0 2px 0 #6f9a37;
+            position: relative;
+        }
+        .lp-purchase-adons-container button:hover {
+            background-color: #7aa93c;
+        }
+        .lp-purchase-adons-container button:active {
+            top: 1px;
+            box-shadow: 0 1px 0 #6f9a37;
+        }
+
+        .lp-instantdemo button {
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            padding: 5px 20px;
+            line-height: 1.5;
+            background-color: #5E17EB;
+            box-shadow: 0 2px 0 #3d138e;
+            position: relative;
+        }
+        .lp-instantdemo button:hover {
+            background-color: #4B13BB;
+        }
+        .lp-instantdemo button:active {
+            top: 1px;
+            box-shadow: 0 1px 0 #4B13BB;
+        }
+        
+        
+        
+        .buynow_new button{
+            margin: 0;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            padding: 5px 20px;
+            line-height: 1.5;
+            background-color: #82b440;
+            box-shadow: 0 2px 0 #6f9a37;
+            position: relative;
+        }
+        .buynow_new button:hover {
+            background-color: #7aa93c;
+        }

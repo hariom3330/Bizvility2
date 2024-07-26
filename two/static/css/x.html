@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Line Example</title>
+    <style>
+        .hover-line {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px; /* Adjust space between text and line */
+        }
+
+        .hover-line::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px; /* Adjust the thickness of the line */
+            background-color: transparent; /* Line is initially invisible */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .hover-line:hover::after {
+            background-color: black; /* Change to the desired color */
+        }
+    </style>
+</head>
+<body>
+    <div class="hover-line">Hover over me!</div>
+</body>
+</html>

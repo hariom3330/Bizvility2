@@ -1,0 +1,503 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.header{
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(0, 123, 255);
+    display: flex;
+    height: 70px;
+    
+    
+}
+
+.img{
+    padding: 20px;
+    height: 50%;
+    align-content: center;
+}
+
+#img{
+    width: 100px ;
+    height: 30px;
+    border-radius: 10px;
+    /* border: 2px solid rgb(0, 0, 0); */
+}
+
+#img:hover {
+    transform: scale(1.2);
+}
+
+
+.food{
+    padding: 20px 5px 20px 5px;
+    align-content: center;
+    width: 500px;
+    
+}
+
+#food{
+    width: 470px;
+    height: 30px;
+    border-radius: 7px;
+    border: none;
+}
+
+#food:hover{
+    transform: scale(1.05);
+}
+
+
+
+
+.city{
+    padding:20px 0px 20px 5px;
+    align-content: center;
+    width: 500px;
+}
+
+#city{
+    width: 470px;
+    height: 30px;
+    border-radius: 7px;
+    border: none;
+}
+
+#city:hover{
+    transform: scale(1.05);
+    
+}
+
+
+
+.btn{
+    padding: 20px 10px 20px 2px;
+    align-content: center;
+    width: 80px;
+}
+#btn{
+    
+    border-radius: 7px;
+    width: 50px;
+    height: 30px;
+    border: none;
+}
+
+#btn:hover{
+    background-color: rgb(169, 239, 227);
+    transform: scale(1.05);
+}
+
+
+.listing{
+    padding: 20px 2px 20px 40px;
+    align-content: center;
+}
+
+#listing{
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    color: rgb(0, 123, 255);
+    
+}
+
+#listing:hover{
+    background-color: rgb(169, 239, 227);
+    transform: scale(1.05);
+}
+
+
+.lbtn{
+    padding: 20px 3px 20px 4px;
+    align-content: center;
+    /* float: right; */
+   
+}
+
+
+#lbtn{
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    transition: background-color 0.3s;
+    color: rgb(0, 123, 255);
+
+}
+
+#lbtn:hover{
+    background-color: rgb(169, 239, 227);
+    transform: scale(1.05);
+}
+
+
+
+
+@media (max-width: 600px){
+   
+    .header{
+        padding: 0;
+        margin: 0;
+        background-color: rgb(0, 123, 255);
+        display: flex;
+        height: 70px;
+        width: 600px;
+        
+    }
+    
+    .img{
+        padding: 5px;
+        align-content: center;
+    }
+    
+    #img{
+        width: 30px ;
+        height: 20px;
+        border-radius: 10px;
+    }
+    
+    .food{
+        padding: 20px 0px 20px 1px;
+        align-content: center;
+        width: 60px;
+    }
+    
+    #food{
+        width: 50px;
+        height: 20px;
+        border-radius: 7px;
+    }
+    
+    .city{
+        padding:20px 0px 20px 1px;
+        align-content: center;
+        width: 60px;
+    }
+    
+    #city{
+        width: 50px;
+        height: 20px;
+        border-radius: 7px;
+    }
+    
+    .btn{
+        padding: 20px 10px 20px 1px;
+        align-content: center;
+        width: 40px;
+    }
+    #btn{
+        
+        border-radius: 7px;
+      
+        height: 20px;
+    }
+    #imglink{
+        width: 40px ;
+        height: 15px;
+    }
+    
+    .listing{
+        padding: 20px 1px 20px 25px;
+        align-content: center;
+    }
+    
+    #listing{
+        height: 30px;
+        border-radius: 7px;
+        
+    }
+    
+    .lbtn{
+        padding: 20px 1px 20px 1px;
+        align-content: center;
+    }
+    
+    #lbtn{
+        height: 30px;
+        border-radius: 7px;
+    }
+
+
+
+    #img:hover {
+        transform: scale(1.2);
+    }
+
+    #food:hover{
+        transform: scale(1.05);
+    }
+
+    #city:hover{
+        transform: scale(1.05);
+        
+    }
+
+    #btn:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+
+    #listing:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+    
+    #lbtn:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+
+
+}
+
+
+@media (max-width: 900px) {
+    
+    .header{
+        padding: 0;
+        margin: 0;
+        background-color: rgb(0, 123, 255);
+        display: flex;
+        height: 70px;
+        width: 900px;
+        
+    }
+    
+    .img{
+        padding: 5px;
+        align-content: center;
+    }
+    
+    #img{
+        width: 60px ;
+        height: 20px;
+    }
+    
+    .food{
+        padding: 20px 0px 20px 2px;
+        align-content: center;
+        width: 250px;
+    }
+    
+    #food{
+        width: 230px;
+        height: 20px;
+        border-radius: 7px;
+    }
+    
+    .city{
+        padding:20px 0px 20px 0px;
+        align-content: center;
+        width: 250px;
+    }
+    
+    #city{
+        width: 240px;
+        height: 20px;
+        border-radius: 7px;
+    }
+    
+    .btn{
+        padding: 20px 10px 20px 0px;
+        align-content: center;
+        width: 90px;
+    }
+    #btn{
+        
+        border-radius: 7px;
+        width: 80px ;
+        height: 25px;
+    }
+    #imglink{
+        width: 40px ;
+        height: 15px;
+    }
+    
+    .listing{
+        padding: 20px 1px 20px 25px;
+        align-content: center;
+    }
+    
+    #listing{
+        height: 30px;
+        border-radius: 7px;
+        
+    }
+    
+    .lbtn{
+        padding: 20px 1px 20px 1px;
+        align-content: center;
+    }
+    
+    #lbtn{
+        height: 30px;
+        border-radius: 7px;
+    }
+
+
+    
+    #img:hover {
+        transform: scale(1.2);
+    }
+
+    #food:hover{
+        transform: scale(1.05);
+    }
+
+    #city:hover{
+        transform: scale(1.05);
+        
+    }
+
+    #btn:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+
+    #listing:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+    
+    #lbtn:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+
+
+  }
+
+
+  @media (max-width:1460px){
+
+
+    .header{
+        padding: 0;
+        margin: 0;
+        background-color: rgb(0, 123, 255);
+        display: flex;
+        height: 70px;
+        width: 1460px;
+        
+    }
+    
+    .img{
+        padding: 5px;
+        align-content: center;
+    }
+    
+    #img{
+        width: 90px ;
+        height: 20px;
+    }
+    
+    .food{
+        padding: 20px 0px 20px 2px;
+        align-content: center;
+        width: 400px;
+    }
+    
+    #food{
+        width: 370px;
+        height: 20px;
+        border-radius: 7px;
+    }
+    
+    .city{
+        padding:20px 0px 20px 0px;
+        align-content: center;
+        width: 400px;
+    }
+    
+    #city{
+        width: 370px;
+        height: 20px;
+        border-radius: 7px;
+    }
+    
+    .btn{
+        padding: 20px 10px 20px 0px;
+        align-content: center;
+        width: 100px;
+    }
+    #btn{
+        
+        border-radius: 7px;
+        width: 80px ;
+        height: 25px;
+    }
+    #imglink{
+        width: 40px ;
+        height: 15px;
+    }
+    
+    .listing{
+        padding: 20px 1px 20px 25px;
+        align-content: center;
+    }
+    
+    #listing{
+        height: 30px;
+        border-radius: 7px;
+        
+    }
+    
+    .lbtn{
+        padding: 20px 1px 20px 1px;
+        align-content: center;
+    }
+    
+    #lbtn{
+        height: 30px;
+        border-radius: 7px;
+    }
+
+    
+    #img:hover {
+        transform: scale(1.2);
+    }
+
+    #food:hover{
+        transform: scale(1.05);
+    }
+
+    #city:hover{
+        transform: scale(1.05);
+        
+    }
+
+    #btn:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+
+    #listing:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+    
+    #lbtn:hover{
+        background-color: rgb(169, 239, 227);
+        transform: scale(1.05);
+    }
+
+
+
+  }
+
+
+  /* @media (min-width: 1400px) {
+
+  } */
+
+  .right{
+    display: flex;
+     position: fixed;
+    right: 20px;
+  }

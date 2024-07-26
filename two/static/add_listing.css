@@ -1,0 +1,89 @@
+.bg-brown {
+    background-color: #eaeaea;
+    box-shadow: 2px 2px 2px #888888;
+}
+.paddingTB20 {
+    padding-top : 20px;
+    padding-bottom:20px;
+}
+.marginT20 {
+    margin-top : 20px;
+}
+textarea.form-control  {
+    background-color: #fff;
+    color:#b2b1b0;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    border: 1px solid #e9e6e0;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+   
+}
+input.form-control {
+    height: 38px;
+   
+    background-color: #fff;
+    color:#000;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    border: 1px solid #e9e6e0;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+}
+form-control::-webkit-input-placeholder { color: black; }
+.form-control:-moz-placeholder { color: black; }
+.form-control::-moz-placeholder { color: black; }
+.form-control:-ms-input-placeholder { color: black; }
+.form-control:focus{border-color: #f2a446;  box-shadow: none; -webkit-box-shadow: none;} 
+
+
+
+/* upload button css */
+.upload-box .btn-file {
+        background-color: #adaba9;
+}
+.upload-box .btn-file:hover {
+        background-color: #686563;
+}
+.upload-box .hold {
+    float: left;
+    width: 100%;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 3px;
+}
+.upload-box .hold a {
+    font: 400 14px/36px 'Roboto',sans-serif;
+    color: #666;
+    text-decoration: none;
+}
+
+.upload-box .btn-file {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    padding: 12px 9px;
+    font: 300 14px/14px 'Roboto',sans-serif;
+    color: #fff;
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.upload-box .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    opacity: 0;
+    outline: none;
+    background: #fd0707;
+    cursor: inherit;
+    display: block;
+}
