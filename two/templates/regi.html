@@ -1,0 +1,195 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+Registration
+{% endblock title %}
+
+{% block links %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-7c3IFV8UbvW+dpj2Hgh0Rvv+HC0jXJj9viK5tH0HHo3zvHvoqia8qqwNUcU4y1dSx3Hx/3RZqtfP3QfZ4d0dZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock links %}
+
+{% block style %}
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4070f4;
+}
+.wrapper{
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.wrapper h2{
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+.wrapper h2::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 28px;
+  border-radius: 12px;
+  background: #4070f4;
+}
+.wrapper form{
+  margin-top: 30px;
+}
+.wrapper form .input-box{
+  height: 52px;
+  margin: 18px 0;
+}
+form .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.input-box input:focus,
+.input-box input:valid{
+  border-color: #4070f4;
+}
+form .policy{
+  display: flex;
+  align-items: center;
+}
+form h3{
+  color: #707070;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.input-box.button input{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: #4070f4;
+  cursor: pointer;
+}
+.input-box.button input:hover{
+  background: #0e4bf1;
+}
+form .text h3{
+ color: #333;
+ width: 100%;
+ text-align: center;
+}
+form .text h3 a{
+  color: #4070f4;
+  text-decoration: none;
+}
+form .text h3 a:hover{
+  text-decoration: underline;
+}
+
+ the option buttons 
+.btn-user-type {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.btn-user-type i {
+  margin-right: 5px;
+}
+
+.btn-user-type.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.input-box {
+  margin-bottom: 10px;
+}
+
+.policy {
+  margin-top: 20px;
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
+  .text-center.text-lg-start {
+      text-align: center;
+  }
+}
+</style>
+{% endblock style %}
+
+
+
+{% block content %}
+<div class="wrapper">
+    <h2>Registration</h2>
+    {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">        
+          {{message}}
+        </div>
+        {% endfor %}        
+    {% endif %}
+    <form action="" method="POST" >
+      {% csrf_token %} 
+      <!-- {{form.as_p}} -->
+      <!-- the obtions -->
+      {% comment %} <div class="user-type-selection">
+        <button type="button" class="btn btn-user-type" data-type="guest"><i class="fas fa-user"></i> Guest</button>
+        <button type="button" class="btn btn-user-type" data-type="seller"><i class="fas fa-store"></i> Seller</button>
+      </div> {% endcomment %}
+
+      <input type="radio" name="user_type" value="guest" checked> Guest
+      <input type="radio" name="user_type" value="admin"> Admin
+      <!-- registration form -->
+      <div class="input-box">
+        <input type="text" class="form-control" placeholder="Enter your Full Name" name="username"  required>
+      </div>
+      <div class="input-box">
+        <input type="email" placeholder="Enter your email" name="email" required>
+      </div>
+      <div class="input-box">
+        <input type="password" placeholder="Create password" name="password1" required>
+      </div>
+      <div class="input-box">
+        <input type="password" placeholder="Confirm password" name="password2" required>
+      </div> 
+      <div class="policy">
+        <input type="checkbox" required>
+        <h3>I accept all terms & condition</h3>
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="Register Now">
+      </div>
+
+      <div class="text-center text-lg-start mt-4 pt-2">
+        <a href="{% url 'login' %}"><p class="small fw-bold mt-2 pt-1 mb-0">Already have an account?</a>
+      </div>
+      </form> 
+{% endblock content %}

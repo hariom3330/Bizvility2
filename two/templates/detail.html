@@ -1,0 +1,474 @@
+{% include 'new2.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Colorlib">
+    <meta name="description" content="#">
+    <meta name="keywords" content="#">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="#">
+    <!-- Page Title -->
+    <title>Listing &amp; Directory Website Template</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Simple line Icon -->
+    <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'head.css' %}">
+    <!-- Themify Icon -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <!-- Hover Effects -->
+    <link rel="stylesheet" href="{% static 'css/set1.css' %}">
+    <link rel='stylesheet' id='redux-extendify-styles-css' href="{% static 'wp-content/plugins/redux-framework/redux-core/assets/css/extendify-utilities4235.css' %}" type='text/css' media='all' />
+
+<link rel='stylesheet' id='cubewp-dashboard-leads-css' href="{% static 'wp-content/plugins/cubewp-forms/cube/assets/css/cubewp-dashboard-leads4b68.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='cwp-alert-ui-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/frontend/css/cubewp-alertsc5c9.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='cwp-styles-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/frontend/css/cubewp-stylesc5c9.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='loop-style-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/frontend/css/loopc5c9.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='listingpr-parent-style-css' href="{% static 'wp-content/themes/listingpro/stylee63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css' href="{% static 'wp-content/themes/listingpro/assets/lib/bootstrap/css/bootstrap.mine63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='Magnific-Popup-css' href="{% static 'wp-content/themes/listingpro/assets/lib/Magnific-Popup-master/magnific-popupe63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='popup-component-css' href="{% static 'wp-content/themes/listingpro/assets/lib/popup/css/componente63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Font-awesome-css' href="{% static 'wp-content/themes/listingpro/assets/lib/font-awesome/css/font-awesome.mine63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Mmenu-css' href="{% static 'wp-content/themes/listingpro/assets/lib/jquerym.menu/css/jquery.mmenu.alle63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='MapBox-css' href="{% static 'wp-content/themes/listingpro/assets/css/mapboxe63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='Chosen-css' href="{% static 'wp-content/themes/listingpro/assets/lib/chosen/chosene63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-datetimepicker-css-css' href="{% static 'wp-content/themes/listingpro/assets/css/bootstrap-datetimepicker.mine63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Slick-css-css' href="{% static 'wp-content/themes/listingpro/assets/lib/slick/slicke63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Slick-theme-css' href="{% static 'wp-content/themes/listingpro/assets/lib/slick/slick-themee63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='css-prettyphoto-css' href="{% static 'wp-content/themes/listingpro/assets/css/prettyphotoe63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-css' href="{% static 'wp-content/themes/listingpro/assets/css/jquery-uie63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='icon8-css' href="{% static 'wp-content/themes/listingpro/assets/lib/icon8/styles.mine63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='Color-css' href="{% static 'wp-content/themes/listingpro/assets/css/colorse63c.css'%}"type='text/css' media='all' />
+<link rel='stylesheet' id='custom-font-css' href="{% static 'wp-content/themes/listingpro/assets/css/fonte63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='fontawesome-all-css' href="{% static 'wp-content/themes/listingpro/assets/lib/fontawesome/css/alle63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Main-css' href="{% static 'wp-content/themes/listingpro/assets/css/maine63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Responsive-css' href="{% static 'wp-content/themes/listingpro/assets/css/responsivee63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='select2-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/lib/select2/select2.minc5c9.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='dynamiclocation-css' href="{% static 'wp-content/themes/listingpro/assets/css/city-autocompletee63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='lp-body-overlay-css' href="{% static 'wp-content/themes/listingpro/assets/css/common.loadinge63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrapslider-css' href="{% static 'wp-content/themes/listingpro/assets/lib/bootstrap/css/bootstrap-slidere63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='mourisjs-css' href="{% static 'wp-cont   ent/themes/listingpro/assets/css/morrise63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='listingpro-css' href="{% static 'wp-content/themes/listingpro-child/stylee63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='font-rock-salt-css' href='https://fonts.googleapis.com/css?family=Rock+Salt&amp;ver=6.5.2' type='text/css' media='all' />
+<link rel='stylesheet' id='font-quicksand-css' href='https://fonts.googleapis.com/css?family=Quicksand&amp;ver=6.5.2' type='text/css' media='all' />
+<link rel='stylesheet' id='version2-countdown-css' href="{% static 'wp-content/themes/listingpro/assets/lib/countdown/flipclocke63c.css' %}"type='text/css' media='all' />
+<link rel='stylesheet' id='version2-styles-css' href="{% static 'wp-content/themes/listingpro/assets/css/main-newe63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='version2-colors-css' href="{% static 'wp-content/themes/listingpro/assets/css/colors-newe63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='LP_dynamic_php_css-css' href="{% static 'wp-content/themes/listingpro/assets/css/dynamic-csse63c.css'%}" type='text/css' media='all' />
+<style>
+    /* Styles.css */
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans"); 
+
+* { 
+	margin: 0; 
+	padding: 0; 
+	box-sizing: border-box; 
+	outline: none; 
+	font-family: "Josefin Sans", 
+		sans-serif; 
+} 
+
+
+.wrapper { 
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 399px;
+    width: 100%;
+    background: #fff;
+    padding: -15px;
+    border-radius: 5px;
+	 
+} 
+
+.wrapper h2 { 
+	text-align: center; 
+	margin-bottom: 20px; 
+	text-transform: uppercase; 
+	letter-spacing: 3px; 
+	color: #332902; 
+} 
+
+.wrapper .input_field { 
+	margin-bottom: 10px; 
+} 
+
+.wrapper 
+	.input_field 
+	input[type="text"], 
+.wrapper textarea { 
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #f0f1fb94;
+} 
+
+.wrapper textarea { 
+	resize: none; 
+	height: 80px; 
+} 
+
+.wrapper .btn input[type="submit"] { 
+	border: 0px; 
+	margin-top: 15px; 
+	padding: 10px; 
+	text-align: center; 
+	width: 100%; 
+	background: blue; 
+	color: #fcfbf7; 
+	text-transform: uppercase; 
+	letter-spacing: 5px; 
+	font-weight: bold; 
+	border-radius: 25px; 
+	cursor: pointer; 
+} 
+
+#error_message { 
+	margin-bottom: 20px; 
+	background: #fe8b8e; 
+	padding: 0px; 
+	text-align: center; 
+	font-size: 14px; 
+	transition: all 0.5s ease; 
+}
+
+</style>
+    <!-- Swipper Slider -->
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!--============================= HEADER =============================-->
+    <!-- <div class="header">
+        <img src="{% static 'wp-content/uploads/2023/08/Logo.png '%}" alt="ListingPro Logo">
+        <div class="search-container">
+            <input type="text" placeholder="Ex: food, service, barber, hotel">
+            <input type="text" placeholder="Your City....">
+            <button>🔍</button>
+        </div>
+        <div class="header-buttons">
+            <button>Add Listing</button>
+            <button>Sign In</button>
+        </div>
+    </div> -->
+    <!--//END HEADER -->
+    <!--============================= BOOKING =============================-->
+    <div>
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a style="width: 100%; height: 421px;" href="{{Listing.img1.url}}"class="grid image-link">
+                        <img src="{{Listing.img1.url}}" class="img-fluid2" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="{{Listing.img2.url}}"class="grid image-link">
+                        <img src="{{Listing.img2.url}}" class="img-fluid2" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="{{Listing.img3.url}}" class="grid image-link">
+                        <img src="{{Listing.img3.url}}"class="img-fluid2" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="{{Listing.img4.url}}"class="grid image-link">
+                        <img src="{{Listing.img4.url}}" class="img-fluid2" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="{{Listing.img5.url}}" class="grid image-link">
+                        <img src="{{Listing.img5.url}}" class="img-fluid2" alt="#">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="{{Listing.img1.url}}" class="grid image-link">
+                        <img src="{{Listing.img1.url}}"class="img-fluid2" alt="#">
+                    </a>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+    </div>
+    <!--//END BOOKING -->
+    <!--============================= RESERVE A SEAT =============================-->
+    <section class="reserve-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>{{Listing.name_service}}</h5>
+                    <p><span>$$$</span>$$</p>
+                    <p class="reserve-description">{{Listing.name_service}}</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="reserve-seat-block">
+                        <div class="reserve-rating">
+                            <span>9.5</span>
+                        </div>
+                        <div class="review-btn">
+                            <a href="#" class="btn btn-outline-danger">WRITE A REVIEW</a>
+                            <span>34 reviews</span>
+                        </div>
+                        <div class="reserve-btn">
+                            <div class="featured-btn-wrap">
+                                <a href="#" class="btn btn-danger">RESERVE A SEAT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//END RESERVE A SEAT -->
+    <!--============================= BOOKING DETAILS =============================-->
+    <section class="light-bg booking-details_wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 responsive-wrap">
+                    <div class="booking-checkbox_wrap">
+                        <div class="booking-checkbox">
+                            <p>{{Listing.about_business}}</p>
+                           
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                        <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                        <span class="custom-control-description">Bike Parking</span>
+                      </label> </div>
+                            <div class="col-md-4">
+                                <i class="fa fa-wifi" aria-hidden="true"></i>
+                  
+                       <span class="custom-control-description">Wireless Internet  </span>
+                     </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                     <span class="custom-control-description">Shoping </span>
+                   </label> </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                     <i class="fa fa-car" aria-hidden="true"></i>
+                    <span class="custom-control-description">Street Parking</span>
+                  </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                   <span class="ti-check-box"></span>
+                   <span class="custom-control-description">Special</span>
+                 </label> </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                                    <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                  <span class="custom-control-description">Accepts Credit cards</span>
+                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-checkbox_wrap mt-4">
+                        <h5>34 Reviews</h5>
+                        <hr>
+                        <div class="customer-review_wrap">
+                            <div class="customer-img">
+                                <img src="{% static 'images/customer-img1.jpg' %}" class="img-fluid" alt="#">
+                                <p>Amanda G</p>
+                                <span>35 Reviews</span>
+                            </div>
+                            <div class="customer-content-wrap">
+                                <div class="customer-content">
+                                    <div class="customer-review">
+                                        <h6>Best noodles in the Newyork city</h6>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span class="round-icon-blank"></span>
+                                        <p>Reviewed 2 days ago</p>
+                                    </div>
+                                    <div class="customer-rating">8.0</div>
+                                </div>
+                                <p class="customer-text">I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the
+                                    hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great
+                                    dipped in their chili sauce.
+                                </p>
+                                <p class="customer-text">I love how you can see into the kitchen and watch them make the noodles and you can definitely tell that this is a family run establishment. The prices are are great with one dish maybe being $9. You just have to remember
+                                    to bring cash.
+                                </p>
+                                <ul>
+                                    <li><img src="images/review-img1.jpg" class="img-fluid" alt="#"></li>
+                                    <li><img src="images/review-img2.jpg" class="img-fluid" alt="#"></li>
+                                    <li><img src="images/review-img3.jpg" class="img-fluid" alt="#"></li>
+                                </ul>
+                                <span>28 people marked this review as helpful</span>
+                                <a href="#"><span class="icon-like"></span>Helpful</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="customer-review_wrap">
+                            <div class="customer-img">
+                                <img src="images/customer-img2.jpg" class="img-fluid" alt="#">
+                                <p>Kevin W</p>
+                                <span>17 Reviews</span>
+                            </div>
+                            <div class="customer-content-wrap">
+                                <div class="customer-content">
+                                    <div class="customer-review">
+                                        <h6>A hole-in-the-wall old school shop.</h6>
+                                        <span class="customer-rating-red"></span>
+                                        <span class="round-icon-blank"></span>
+                                        <span class="round-icon-blank"></span>
+                                        <span class="round-icon-blank"></span>
+                                        <span class="round-icon-blank"></span>
+                                        <p>Reviewed 3 months ago</p>
+                                    </div>
+                                    <div class="customer-rating customer-rating-red">2.0</div>
+                                </div>
+                                <p class="customer-text">The dumplings were so greasy...the pan-fried shrimp noodles were the same. So much oil and grease it was difficult to eat. The shrimp noodles only come with 3 shrimp (luckily the dish itself is cheap) </p>
+                                <p class="customer-text">The beef noodle soup was okay. I added black vinegar into the broth to give it some extra flavor. The soup has bok choy which I liked - it's a nice textural element. The shop itself is really unclean (which is the case
+                                    in many restaurants in Chinatown) They don't wipe down the tables after customers have eaten. If you peak into the kitchen many of their supplies are on the ground which is unsettling... </p>
+                                <span>10 people marked this review as helpful</span>
+                                <a href="#"><span class="icon-like"></span>Helpful</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 responsive-wrap">
+                    <div class="contact-info">
+                       
+                        <iframe class="img-fluid" src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d14193.60338001798!2d77.95704320503081!3d27.206562073568556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d27.204298599999998!2d77.962443!4m5!1s0x3974775995746b5d%3A0x12a7f28958f443f!2sacculizeintech!3m2!1d27.210123199999998!2d77.97280889999999!5e0!3m2!1sen!2sin!4v1718535732349!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="address">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <p> Doyers St<br> New York, NY 10013<br> b/t Division St & St James Pl <br> Chinatown, Civic Center</p>
+                        </div>
+                        <div class="address">
+                            <span class="icon-screen-smartphone"></span>
+                            <p> +44 20 7336 8898</p>
+                        </div>
+                        <div class="address">
+                            <span class="icon-link"></span>
+                            <p>https://burgerandlobster.com</p>
+                        </div>
+                        <div class="address">
+                            <span class="icon-clock"></span>
+                            <p>Mon - Sun 09:30 am - 05:30 pm <br>
+                                <span class="open-now">OPEN NOW</span></p>
+                        </div>
+                       
+                    </div>
+                    <div class="wrapper"> 
+                         
+                        <div id="error_message"> 
+                  
+                        </div> 
+                        <form action="" 
+                              id="myform" 
+                              onsubmit="return validate();"> 
+                            <div class="input_field"> 
+                                <input type="text" 
+                                       placeholder="Name" 
+                                       id="name"> 
+                            </div> 
+                            <div class="input_field"> 
+                                <input type="text" 
+                                       placeholder="Subject" 
+                                       id="subject"> 
+                            </div> 
+                            <div class="input_field"> 
+                                <input type="text" 
+                                       placeholder="Phone" 
+                                       id="phone"> 
+                            </div> 
+                            <div class="input_field"> 
+                                <input type="text" 
+                                       placeholder="Email" 
+                                       id="email"> 
+                            </div> 
+                            <div class="input_field"> 
+                                <textarea placeholder="Message" 
+                                          id="message"> 
+                                </textarea> 
+                            </div> 
+                            <div class="btn"> 
+                                <input type="submit"> 
+                            </div> 
+                        </form> 
+                    </div> 
+    </section>
+    <!--//END BOOKING DETAILS -->
+    <!--============================= FOOTER =============================-->
+   
+    {% include 'footer.html'%}
+    <!--//END FOOTER -->
+
+
+
+
+    <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Magnific popup JS -->
+    <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+    <!-- Swipper Slider JS -->
+    <script src="{% static 'js/swiper.min.js' %}"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+    <script>
+        if ($('.image-link').length) {
+            $('.image-link').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+        if ($('.image-link2').length) {
+            $('.image-link2').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

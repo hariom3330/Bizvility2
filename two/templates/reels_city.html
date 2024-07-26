@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/reels_city_style.css' %}">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <title>shorts scroller</title>
+</head>
+
+<body>
+    <header class="header">
+        <img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo">
+
+
+        <div class="sidebar">
+            <li onclick=hideSidebar() style="list-style: none;"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                        height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
+        </div>
+
+        <div class="nav_container">
+            <div class="search-bar">
+                <input type="text" placeholder="What: food, service, barber, hotel" class="input1">
+                <input type="text" placeholder="Where: Your City" class="input1">
+                <button type="button" id="ser_btn"><i class='bx bx-search-alt-2' id="searchicon"></i></button>
+            </div>
+            <div class="actions">
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
+                {%endif%}
+                <button class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</button>
+                {% else %}
+                <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
+                <button class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</button>
+                {%endif%}
+            </div>
+            <li onclick=showSidebar() style="list-style: none; margin-right: 11px;" class="toggle"><a href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" height="4rem" viewBox="0 -960 960 960" width="24px"
+                        fill="#e8eaed">
+                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                    </svg></a></li>
+        </div>
+    </header>
+
+    {% for video_data in videos %}
+    <div class="container">
+        <div class="cont">
+            <div class="box" style="margin: 10px 0px;">
+                <video class="responsive-video" width="100%" height="auto">
+                    <source src="{{video_data.video.Video.url}}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="icons">
+            <div class="like-container">
+                <div class="like">
+                    <button onclick="like_button({{video_data.video.video_id}})"
+                        style="border: none; font-size: 1rem; cursor: pointer;">
+                        <i id="thumbs_up{{video_data.video.video_id}}" class="fa fa-thumbs-up fa-2x"
+                            aria-hidden="true"></i>
+                    </button>
+                </div>
+                <span class="count" data-id="like{{video_data.video.video_id}}">{{video_data.likes_count}}</span>
+            </div>
+            <div class="like-container">
+                <div class="like">
+                    <button onclick="dislike_button({{video_data.video.video_id}})"
+                        style="border: none; font-size: 1rem; cursor: pointer;">
+                        <i id="thumbs_down{{video_data.video.video_id}}" class="fa fa-thumbs-down fa-2x"
+                            aria-hidden="true"></i>
+                    </button>
+                </div>
+                <span class="count" data-id="dislike{{video_data.video.video_id}}">{{video_data.dislikes_count}}</span>
+            </div>
+            <div class="like-container">
+                <div class="like">
+                    <button onclick="comment_button({{video_data.video.video_id}})"
+                        style="border: none; background-color: transparent; font-size: 1rem; cursor: pointer;">
+                        <i class="fa fa-commenting fa-2x" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="like-container">
+                <div class="like">
+                    <button onclick="showShare()"
+                        style="border: none; background-color: transparent; font-size: 1rem; cursor: pointer;">
+                        <i class="fa fa-share fa-2x" aria-hidden="true"></i>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="comments-section" style="display: none;" id="comments{{video_data.video.video_id}}">
+            <h2>Comments <span id="length{{video_data.video.video_id}}"></span> </h2>
+
+            <div class="comments-list{{video_data.video.video_id}}">
+                <div id="newcomment"></div>
+            </div>
+
+            <div class="comment-form">
+                <textarea id="comment_textarea" placeholder="Add a comment..."></textarea>
+                <div>
+                    <button class="submit-comment" onclick="addComment(event,{{video_data.video.video_id}})"
+                        style="cursor: pointer;">Submit</button>
+                    <div id="emptyerror"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="share-container" style="display: none;">
+        <div class="share-header">
+            <span>Share</span>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="share-options">
+            <div class="share-option">
+                <img src="whatsapp-icon.png" alt="">
+                <span>WhatsApp</span>
+            </div>
+            <div class="share-option">
+                <img src="pinterest-icon.png" alt="">
+                <span>Pinterest</span>
+            </div>
+            <div class="share-option">
+                <img src="facebook-icon.png" alt="">
+                <span>Facebook</span>
+            </div>
+            <div class="share-option">
+                <img src="x-icon.png" alt="">
+                <span>X</span>
+            </div>
+        </div>
+        <div class="share-link">
+            <input type="text" value="https://youtube.com/shorts/X9DugSavAk9a=bvUgFj6Oz" readonly>
+            <button class="copy-btn">Copy</button>
+        </div>
+    </div>
+
+    <script src="{% static 'js/reels_city.js' %}"></script>
+
+</body>
+
+</html>

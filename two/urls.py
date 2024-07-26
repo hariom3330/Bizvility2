@@ -1,0 +1,35 @@
+
+from django.contrib import admin
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
+from two.views import *
+from two import views
+
+urlpatterns = [
+    path('',index,name='index'),
+    path('regi',regi,name='regi'),
+    path('login',login,name='login'),    
+    path('user_logout/',user_logout, name="user_logout"),
+    path('admin/',user_logout, name="user_logout"),
+    path('profile/',profile, name="profile"),
+    path('add/',add, name="add"),
+    path('Listing_form/',Listing_form, name="Listing_form"),
+    path('listing/',listing, name="listing"),
+    path('reels/',reels, name="reels"),
+    path('index2/',index2,name='index2'),
+
+    
+    path('forget/',forget, name="forget"),
+    path('change-password/<token>/',ChangePassword,name='change_password'),
+    path('profile/update/', update_profile, name='update_profile'),
+    path('result/', result, name='result'),
+    # path('detail/', detail, name='detail'),
+    path('result/', result, name='result'),
+    path('add_listing/', add_listing, name='add_listing'),
+    path('productdetail/<int:pk>', views.ProductDetailView.as_view(), name="productdetail"),
+  
+  
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

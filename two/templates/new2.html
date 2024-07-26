@@ -1,0 +1,463 @@
+{% csrf_token %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+
+<link rel='stylesheet' id='redux-extendify-styles-css' href="{% static 'wp-content/plugins/redux-framework/redux-core/assets/css/extendify-utilities4235.css' %}" type='text/css' media='all' />
+
+ <link rel='stylesheet' id='cubewp-dashboard-leads-css' href="{% static 'wp-content/plugins/cubewp-forms/cube/assets/css/cubewp-dashboard-leads4b68.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='cwp-alert-ui-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/frontend/css/cubewp-alertsc5c9.css' %}" type='text/css' media='all' /> 
+ <link rel='stylesheet' id='cwp-styles-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/frontend/css/cubewp-stylesc5c9.css' %}" type='text/css' media='all' /> 
+ <link rel='stylesheet' id='loop-style-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/frontend/css/loopc5c9.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='listingpr-parent-style-css' href="{% static 'wp-content/themes/listingpro/stylee63c.css' %}" type='text/css' media='all' />
+<!-- <link rel='stylesheet' id='bootstrap-css' href="{% static 'wp-content/themes/listingpro/assets/lib/bootstrap/css/bootstrap.mine63c.css' %} "type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='Magnific-Popup-css' href="{% static 'wp-content/themes/listingpro/assets/lib/Magnific-Popup-master/magnific-popupe63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='popup-component-css' href="{% static 'wp-content/themes/listingpro/assets/lib/popup/css/componente63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Font-awesome-css' href="{% static 'wp-content/themes/listingpro/assets/lib/font-awesome/css/font-awesome.mine63c.css' %}" type='text/css' media='all' /> 
+<link rel='stylesheet' id='Mmenu-css' href="{% static 'wp-content/themes/listingpro/assets/lib/jquerym.menu/css/jquery.mmenu.alle63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='MapBox-css' href="{% static 'wp-content/themes/listingpro/assets/css/mapboxe63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='Chosen-css' href="{% static 'wp-content/themes/listingpro/assets/lib/chosen/chosene63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-datetimepicker-css-css' href="{% static 'wp-content/themes/listingpro/assets/css/bootstrap-datetimepicker.mine63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Slick-css-css' href="{% static 'wp-content/themes/listingpro/assets/lib/slick/slicke63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='Slick-theme-css' href="{% static 'wp-content/themes/listingpro/assets/lib/slick/slick-themee63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='css-prettyphoto-css' href="{% static 'wp-content/themes/listingpro/assets/css/prettyphotoe63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-css' href="{% static 'wp-content/themes/listingpro/assets/css/jquery-uie63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='icon8-css' href="{% static 'wp-content/themes/listingpro/assets/lib/icon8/styles.mine63c.css' %} "type='text/css' media='all' />
+<link rel='stylesheet' id='Color-css' href="{% static 'wp-content/themes/listingpro/assets/css/colorse63c.css'%}"type='text/css' media='all' />
+<link rel='stylesheet' id='custom-font-css' href="{% static 'wp-content/themes/listingpro/assets/css/fonte63c.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='fontawesome-all-css' href="{% static 'wp-content/themes/listingpro/assets/lib/fontawesome/css/alle63c.css' %}" type='text/css' media='all' /> -->
+<link rel='stylesheet' id='Main-css' href="{% static 'wp-content/themes/listingpro/assets/css/maine63c.css' %}" type='text/css' media='all' />
+<!-- <link rel='stylesheet' id='Responsive-css' href="{% static 'wp-content/themes/listingpro/assets/css/responsivee63c.css' %}" type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='select2-css' href="{% static 'wp-content/plugins/cubewp-framework/cube/assets/lib/select2/select2.minc5c9.css' %}" type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='dynamiclocation-css' href="{% static 'wp-content/themes/listingpro/assets/css/city-autocompletee63c.css' %}" type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='lp-body-overlay-css' href="{% static 'wp-content/themes/listingpro/assets/css/common.loadinge63c.css' %}" type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='bootstrapslider-css' href="{% static 'wp-content/themes/listingpro/assets/lib/bootstrap/css/bootstrap-slidere63c.css' %}" type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='mourisjs-css' href="{% static 'wp-cont   ent/themes/listingpro/assets/css/morrise63c.css' %} "type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='listingpro-css' href="{% static 'wp-content/themes/listingpro-child/stylee63c.css' %}" type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='font-rock-salt-css' href='https://fonts.googleapis.com/css?family=Rock+Salt&amp;ver=6.5.2' type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='font-quicksand-css' href='https://fonts.googleapis.com/css?family=Quicksand&amp;ver=6.5.2' type='text/css' media='all' /> -->
+ <!-- <link rel='stylesheet' id='version2-countdown-css' href="{% static 'wp-content/themes/listingpro/assets/lib/countdown/flipclocke63c.css' %}"type='text/css' media='all' />  -->
+ <!-- <link rel='stylesheet' id='version2-styles-css' href="{% static 'wp-content/themes/listingpro/assets/css/main-newe63c.css' %}" type='text/css' media='all' /> -->
+ <!-- <link rel='stylesheet' id='version2-colors-css' href="{% static 'wp-content/themes/listingpro/assets/css/colors-newe63c.css' %}" type='text/css' media='all' /> -->
+<!-- <link rel='stylesheet' id='LP_dynamic_php_css-css' href="{% static 'wp-content/themes/listingpro/assets/css/dynamic-csse63c.css'%}" type='text/css' media='all' />  -->
+ <!-- <link rel="stylesheet" href="{% static 'head.css' %}">  -->
+<style>
+
+    .reelsmain{
+        background-color: aquamarine;
+        gap: 10px; 
+        height: 80vh;
+        width: 40vh;
+        margin-top: 4em;
+        display: flex;
+        overflow: auto;
+        gap: 10px;
+        display: grid;
+       flex-direction: column;
+       scroll-snap-type: y proximity; 
+    }
+    .reelsmain::-webkit-scrollbar{
+        display: none;
+    }
+    .reels{
+        min-height: 75vh;
+        min-width: 25vw;
+        background-color: aquamarine;
+        scroll-snap-align: start;
+       
+    } 
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    height: 100px;
+    background-color: #0066cc;
+    padding: 10px 0;
+    display: flex;
+}
+
+.container {
+
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+}
+
+.logo
+{
+    margin: 15px 30px;
+    width: 130px;
+}
+
+.nav_container{
+    width: 86.5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.search-bar {
+    margin-top: 20px;
+    margin-left: 5rem;
+}
+
+.search-bar input {
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.input1{
+    width: 25vh;
+}
+
+.search-bar button {
+    width: 40px;
+    height: 35px;
+    background-color: rgb(255, 255, 255);
+    font-size: 21px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    top:7%;
+}
+#searchicon{
+
+    color: #0066cc;
+}
+
+
+/* .searchbtn{
+    top: 3.3%;
+    position: fixed;
+    left: 53%;
+} */
+
+.actions{
+    margin-right: 17px;
+    margin-top: 17px;
+}
+
+
+.toggle{
+    display: none;
+    /* margin-left: 5rem; */
+}
+
+.actions button {
+    
+    padding: 10px 20px; 
+    color: white;
+    border: 2px solid white;
+    background-color:#0066cc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions1 button{
+    margin-top: 30px;
+    padding: 10px 20px; 
+    color: white;
+    border: 2px solid white;
+    background-color:#0066cc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 2rem;
+
+}
+#user1{
+    margin: 2px 3px;
+}
+#user2{
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.sidebar li{
+    text-decoration: none;
+}
+
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 350px;
+    z-index: 999;
+    background-color: rgba(240, 248, 255, 0.315);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0  10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.sidebar li{
+    width: 100%;
+}
+
+.sidebar a{
+    width: 100%;
+}
+@media (max-width: 1055px){
+    
+    .logo{
+        width: 10%;
+        height: 40%;
+    }
+    .search-bar {
+        gap: 8px;
+        justify-content: center;
+        flex-direction: row;
+        margin: 10px 0;
+
+
+    }
+    .input1{
+        width: 25vh;
+    }
+    
+
+    .search-bar input {
+        margin: 5px 0;
+    }
+
+    
+
+    .actions {
+        display: none;
+        flex-direction: column;
+    }
+
+    .actions button {
+        margin: 5px 0;
+    }
+
+    .toggle{
+        display: block;
+        /* margin-left: 11rem; */
+    }
+
+}
+
+@media (max-width:450px){
+    
+    .nav_container{
+        width: 30%;
+    }
+    .logo{
+        /* margin-top: 10%;
+        width: 11%;
+        height: 10%; */
+        position: fixed;
+        width: 22%;
+        height: 5%;
+        left: 65%;
+
+    }
+    
+    .search-bar{
+        margin-left: 15%;
+        margin-top: 50%;
+    }
+    .header{
+        width: 100%;
+        height: 25%;
+    }
+    .input1{
+        /* width: 300px; */
+        width: 392px;
+    }
+    #ser_btn{
+        margin-top: 5px;
+        width: 100%;
+    }
+    .toggle{
+        position: fixed;
+        top: 2%;
+        left: 4%;
+        
+    }
+}
+
+@media (max-width:411px){
+    .input1{
+        width:344px
+    }
+}
+
+@media (max-width:366px)
+{
+    .input1{
+        width: 290px;
+    }
+}
+
+@media (max-width:310px) and (min-width:240px)
+{
+    .logo{
+        top: -1px;
+        left: 58%;
+    }
+
+    .toggle{
+        top: 2px;
+    }
+
+    .input1{
+        width: 200px;
+    }
+}
+/* @media(max-width:420px)and(min-width:320px){ */
+    /* (min-width:320px) and */
+    /* .input1{ */
+        /* position: fixed; */
+        /* width: 300px; */
+        /* width: 25px
+    }
+} */
+/* @media (min-width:425px) and (max-width:446){
+   .input1{
+    width: 388px;
+   }
+} */
+    
+    </style>
+
+
+
+</style>
+</style>
+<!-- <link rel="stylesheet" href="{% static 'add_listing.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+Google Fonts -->
+<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> -->
+<!-- Simple line Icon -->
+<!-- <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}"> -->
+<!-- Themify Icon -->
+<!-- <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}"> -->
+<!-- Hover Effects -->
+<!-- <link rel="stylesheet" href="{% static 'css/set1.css' %}"> -->
+<!-- Main CSS -->
+<!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+<!-- <link rel="stylesheet" href="{% static 'style2.css' %}"> -->
+<!-- <link rel="shortcut icon" href="#"> -->
+<!-- Page Title -->
+
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> -->
+<!-- Google Fonts -->
+<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> -->
+<!-- Simple line Icon -->
+<!-- <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}"> -->
+<!-- Themify Icon -->
+<!-- <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}"> -->
+<!-- Hover Effects -->
+<!-- <link rel="stylesheet" href="{% static 'css/set1.css' %}"> -->
+<!-- Swipper Slider -->
+<!-- <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}"> -->
+<!-- Magnific Popup CSS -->
+<!-- <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}"> -->
+<!-- Main CSS -->
+<!-- <link rel="stylesheet" href="{% static 'css/style.css' %}">  -->
+
+
+<!-- efefeffefef -->
+
+
+    <!-- jQuery, Bootstrap JS. -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    
+</head>
+
+<body>
+
+    <header class="header">
+        <img src="{% static 'images/cridio_studio.png' %}" alt="ListingPro Logo" class="logo">
+
+
+        <div class="sidebar">
+            <li onclick=hideSidebar() style="list-style: none;"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                        height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
+        </div>
+
+        <div class="nav_container">
+            <div class="search-bar">
+                <input type="text" placeholder="What: food, service, barber, hotel" class="input1">
+                <input type="text" placeholder="Where: Your City" class="input1">
+                <button type="button" id="ser_btn"><i class='bx bx-search-alt-2' id="searchicon"></i></button>
+            </div>
+            <div class="actions">
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
+                {%endif%}
+                <button class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</button>
+                {% else %}
+                <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
+                <button class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</button>
+                {%endif%}
+            </div>
+            <li onclick=showSidebar() style="list-style: none; margin-right: 11px;" class="toggle"><a href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" height="4rem" viewBox="0 -960 960 960" width="24px"
+                        fill="#e8eaed">
+                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                    </svg></a></li>
+        </div>
+    </header>
+
+  
+          
+       
+      
+<script>
+    function showSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'flex'
+}
+
+function hideSidebar(){
+     const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'none'
+}
+
+
+</script>
+</div>
+</body>
+</html>
+
+{% endblock %}

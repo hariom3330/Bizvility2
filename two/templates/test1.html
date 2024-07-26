@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curved Chart with Multiple Lines</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.chart-container {
+    width: 80%;
+    max-width: 600px;
+}
+
+.chart {
+    width: 100%;
+    height: auto;
+}
+
+.curve {
+    fill: none;
+    stroke-width: 2;
+}
+
+.curve1 {
+    stroke: #007BFF;
+}
+
+.curve2 {
+    stroke: #28A745;
+}
+
+.curve3 {
+    stroke: #FFC107;
+}
+
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <svg viewBox="0 0 100 50" class="chart">
+            <path d="M0,40 Q25,10 50,40 T100,40" class="curve curve1"></path>
+            <path d="M0,45 Q25,15 50,45 T100,45" class="curve curve2"></path>
+            <path d="M0,50 Q25,20 50,50 T100,50" class="curve curve3"></path>
+        </svg>
+    </div>
+</body>
+</html>

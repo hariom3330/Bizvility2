@@ -1,0 +1,120 @@
+{% include 'new2.html'%}
+{% csrf_token %}
+{% load static %}
+<!------ Include the above in your HEAD tag ---------->
+
+<div class ="container paddingTB40 ">
+   
+    <div class="col-md-9 bg-brown" style="width: 106%;
+    margin-left: 116px;">
+        <form class="form-horizontal marginT20">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Add Listing</legend>
+
+<!-- Name of business input-->
+<div class="form-group">
+   <div class="col-md-12">
+  <input id="name" name="name" placeholder="Name of your Service" class="form-control" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Description -->
+<div class="form-group">
+  
+  <div class="col-md-12">                     
+    <textarea class="form-control" id="about" name="about">Write about your business</textarea>
+  </div>
+</div>
+
+<!-- Contact Info-->
+<div class="form-group">
+  
+  <div class="col-md-6">
+  <input id="" name="" placeholder="Business Phone No." class="form-control" required="" type="text">
+    
+  </div>
+  <div class="col-md-6">  
+  <input id="" name="" placeholder="Email" class  ="form-control" required="" type="text">
+    
+  </div>
+</div>
+<!-- Address  input-->
+<div class="form-group">
+ 
+  <div class="col-md-6">
+  <input id="" name="" placeholder="Street Address" class="form-control" required="" type="text">
+    
+  </div>
+  <div class="col-md-6">
+  <input id="address2" name="address2" placeholder="Street Address2 (Optional)" class="form-control" type="text">
+    
+  </div>
+  <div class="col-md-6">
+  <input id="State" name="State" placeholder="State" class="form-control" required="" type="text">
+    
+  </div>
+  <div class="col-md-6">
+  <input id="City" name="City" placeholder="City" class="form-control" required="" type="text">
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Text input-->
+<div class="form-group">
+ 
+  <div class="col-md-6">
+  <input id="pincode" name="pincode" placeholder="Pincode" class="form-control" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+ 
+  <div class="col-md-6">
+  <input id="contactperson" name="contactperson" placeholder="Contact Person Name" class="form-control" required="" type="text">
+    
+  </div>
+  <div class="col-md-6">
+  <input id="" name="" placeholder="Contact Person Phone No." class="form-control" required="" type="text">
+    
+  </div>
+  
+</div>
+
+<!-- File Button --> 
+
+<div class="form-group">
+  <div class="col-md-12">
+    <div class="upload-box">
+<div class="hold"><a href="#">Maximum file size 20 MB</a> <span class="btn-file"> Upload Photos
+<input type="file">
+</span> </div>
+</div>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <div class="col-md-4">
+    <button id="listing-button" name="listing-button" class="btn btn-warning">Add my Business</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+    </div>
+</div>
+
+{% include 'footer.html'%}
+</body>
+</html>

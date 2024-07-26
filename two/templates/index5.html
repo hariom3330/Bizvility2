@@ -1,0 +1,57 @@
+{% include 'new2.html'%}
+{% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Search Result</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+</head>
+<body>
+	{% for b in all %}
+        
+                <div class="col-md-4 featured-responsive">
+                    <div class="featured-place-wrap">
+                        <a href="{% url 'productdetail' b.id %}">
+                            <img style="width: 100%;height: 300px;" src="{{b.main_img.url}}"   class="img-fluid" alt="#">
+                            <!-- <span class="featured-rating-green">9.5</span> -->
+                            <div class="featured-title-box">
+                                <h6>{{b.name_service}}</h6>
+                                <p>{{b.name_service}}</p> <span>• </span>
+                                <p>3 Reviews</p> <span> • </span>
+                                <p><span>$$$</span>$$</p>
+                                <ul>
+                                    <li><span class="icon-location-pin"></span>
+                                        <p>{{b.business_address}}</p>
+                                    </li>
+                                    <li><span class="icon-screen-smartphone"></span>
+                                        <p>{{b.Business_number}}</p>
+                                    </li>
+                                    <li><span class="icon-link"></span>
+                                        <p>https://burgerandlobster.com</p>
+                                    </li>
+
+                                </ul>
+                                <div class="bottom-icons">
+                                    <div class="closed-now">CLOSED NOW</div>
+                                    <span class="ti-heart"></span>
+                                    <span class="ti-bookmark"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				{% endfor %}
+               
+</div>
+</div>
+
+		
+
+    {% include 'footer.html'%}
+</body>
+</html>

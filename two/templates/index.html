@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Index{% endblock title %}</title>
+    {% block links %}
+    {% endblock links %}
+    <style>
+    {% block style %}
+
+    {% endblock style %}
+    </style>
+</head>
+<body>
+     {% block content %}
+    <h2>Hello</h2>
+    {% if request.user.is_authenticated and request.user.is_active %}
+    <a href="/user_logout/">Logout</a>
+    <a href="/profile/">Profile</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+
+
+    {% endblock content %} 
+    
+{% block js %}
+
+{% endblock js %}
+
+</body>
+</html>

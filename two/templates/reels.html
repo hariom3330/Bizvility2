@@ -1,0 +1,26 @@
+{% include 'new2.html'%}
+{% csrf_token %}
+{% load static %}
+    <div style="display: flex; justify-content: center;">
+    <div class="reelsmain">
+        {% for vide in videos %}
+        <div class="reels">
+
+            <h2>{{ vide.title }}</h2>
+            <video width="320" height="240" controls></video>  
+            <source src="{{ vide.Video.url}}" type="video/mp4">
+        </div>
+        {% endfor %}
+        <!-- <div class="reels">
+            <iframe width="300px" height="100%" src="https://www.youtube.com/embed/qwfAnJJ8UJ8?si=r1Hfoh8Lfd-HwuaK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="reels">
+            <iframe width="300px" height="100%" src="https://www.youtube.com/embed/qwfAnJJ8UJ8?si=r1Hfoh8Lfd-HwuaK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="reels">
+            <iframe width="300px" height="100%" src="https://www.youtube.com/embed/qwfAnJJ8UJ8?si=r1Hfoh8Lfd-HwuaK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div> -->
+     
+
+    </div>
+</div>

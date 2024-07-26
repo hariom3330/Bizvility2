@@ -1,0 +1,392 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bizvility</title>
+    <link rel="stylesheet" href="{% static 'css/home_page.css'%}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- or -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        .logo {
+            margin: 15px 30px;
+            width: 161px;
+            height: 64px;
+            margin-top: 21px;
+        }
+
+        .cards_videos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* .card_videos{
+            width: 500px;
+            height: 500px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <nav>
+            <ul class="sidebar">
+                <li><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></li>
+                <li><a href="#">Explore Categories</a></li>
+                <li><a href="#">Explore Location</a></li>
+                <li><a href="#">Explore Services</a></li>
+                <div class="actions">
+                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
+                    {%endif%}
+                    <button class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</button>
+                    {% else %}
+                    <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
+                    <button class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</button>
+                    {%endif%}
+                </div>
+            </ul>
+
+            <ul>
+                <li><a href="#"><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></a>
+                </li>
+                <li class="hideOnMoblie"><a href="#">Explore Categories</a></li>
+                <li class="hideOnMoblie"><a href="#">Explore Location</a></li>
+                <li class="hideOnMoblie"><a href="#">Explore Services</a></li>
+                <div class="hideOnMoblie listing">
+                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <button onclick="addListing()" class="action_button listing btn-blue"><i class='bx bxs-plus-circle'
+                            id="user1"></i>Add Listing</button>
+                    {%endif%}
+                    <button onclick="profile()" id="signIn" class="action_button"><i class='bx bxs-user'
+                            id="user2"></i>{{user.signup.full_name}}</button>
+                    {% else %}
+                    <button onclick="addListing()" class="action_button btn-blue"><i class='bx bxs-plus-circle'
+                            id="user1"></i> Add Listing</button>
+                    <button onclick="signIn()" class="action_button sign-of"><i class='bx bxs-user' id="user2"></i> Sign
+                        In</button>
+                    {%endif%}
+                </div>
+                <li onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                            viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                        </svg></a></li>
+            </ul>
+
+        </nav>
+
+        <div class="content">
+            <h2>Explore Your City</h2>
+            <p>Let's uncover the best places to eat, drink, and shop nearest to you.</p>
+
+            <div class="search">
+                <i class="fa fa-search"></i>
+                <input type="text" class="form-control" placeholder="Have a question? Ask Now">
+                <button class="btn btn-primary">Search</button>
+            </div>
+
+            <div class="categories">
+
+                <a href="" class="btn btn1"><i class='bx bx-car' id="icons"></i> <b>Automotive</b></a>
+                <a href="" class="btn btn2"><i class='bx bx-spa' id="icons1"></i> <b>Beauty & Spa</b></a>
+                <a href="" class="btn btn3"><i class='bx bxs-school' id="icons"></i> <b>Hotels</b></a>
+                <a href="" class="btn btn4"><i class='bx bxs-pizza' id="icons"></i> <b>Restaurant</b></a>
+                <a href="" class="btn btn5"><i class='bx bx-shopping-bag' id="icons"></i> <b>Shopping</b></a>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'flex'
+        }
+
+        function hideSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+        }
+    </script>
+
+    <main>
+        <section>
+            <div class="element">
+                <h2>Happening Cities</h2>
+                <P>Cities You Must Explore This Summer</P>
+            </div>
+
+            <div class="container">
+                <div class="image">
+                    <img src="{% static 'images/image1.jpg' %}" alt="image 1" class="size">
+                    <b>
+                        <p>Georgla</p>
+                    </b>
+                </div>
+                <div class="image">
+                    <img src="{% static 'images/image2.jpg' %}" alt="image 2" class="size">
+                    <b>
+                        <p>Chicago</p>
+                    </b>
+                </div>
+                <div class="image">
+                    <img src="{% static 'images/image3.jpg' %}" alt="image 3" class="size">
+                    <b>
+                        <p>California</p>
+                    </b>
+                </div>
+                <div class="image">
+                    <img src="{% static 'images/image4.jpg' %}" alt="image 4" class="size">
+                    <b>
+                        <p>New York</p>
+                    </b>
+                </div>
+                <div class="image">
+                    <img src="{% static 'images/image5.jpg' %}" alt="image 5" class="size">
+                    <b>
+                        <p>New York</p>
+                    </b>
+                </div>
+                <div class="image">
+                    <img src="{% static 'images/image6.png' %}" alt="image 6" class="size">
+                    <b>
+                        <p>New York</p>
+                    </b>
+                </div>
+            </div>
+            <div class="cards_videos">
+                {% for video in videos%}
+                <div class="card_videos">
+                    <video width="100%" height="500px" autoplay loop>
+                        <source src="{{video.Video.url}}" type="video/mp4">
+                    </video>
+                    <!-- <div class="card-content">
+                                     <a href="#" class="button">
+                                        Find out more
+                                        <span class="material-symbols-outlined">
+                                            arrow_right_alt
+                                        </span>
+                                    </a> -->
+                </div>
+                {% endfor%}
+                <div class="card_videos">
+                <a href="{% url 'reels'%}" target="_blank" class="card"
+                    >see more</a>
+                </div>
+            </div>
+
+            <div class="counter">
+                <h2>Claim & Get Started Today!</h2>
+                <P>Nearly 80% Of Consumers Turn To Directories With Reviews To Find A Local Business.</P>
+            </div>
+
+            <div class="learnmore">
+                <div class="bar">
+                    <img src="{% static 'images/bar1.png' %}" alt="Bar 1" class="bolat">
+                    <h2>Claim</h2>
+                    <p>Best way to start managing your business lsiting is by claiming it so you can update</p>
+                </div>
+
+                <div class="bar">
+                    <img src="{% static 'images/bar2.png' %}" alt="Bar 1" class="bolat">
+                    <h2>Promote</h2>
+                    <p>Promote your business to target customers who need your services or products.</p>
+                </div>
+
+                <div class="bar">
+                    <img src="{% static 'images/bar3.png' %}" alt="Bar 1" class="bolat">
+                    <h2>Convert</h2>
+                    <p>Promote your business to target customers who need your services or products.</p>
+                </div>
+            </div>
+
+            <div class="popular">
+                <h2>Exclusive & Popular</h2>
+                <P>Popular Exclusive Listing In Our Directory</P>
+            </div>
+
+            <div class="exclusive">
+                <div class="items">
+                    <img src="{% static 'images/popular1.jpg' %}" alt="image 1" class="heroin">
+                    <h2 class="written"><i class='bx bx-shower'></i> The Mark Hotel</h2>
+                    <div class="ratting">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                        <i class='bx bx-star'></i>
+                    </div>
+                    <h6 class="set"><i class='bx bx-bowl-hot'></i> Restaurant</h6>
+                    <h6 class="set"><i class='bx bx-map-pin'></i> New York</h6>
+                    <h6 class="call"><i class='bx bx-phone-call'></i> Call Now</h6>
+                </div>
+                <div class="items">
+                    <img src="{% static 'images/popular2.jpg' %}" alt="image 2" class="heroin">
+                    <h2 class="written"><i class='bx bx-cookie'></i> Sushi Kashiba</h2>
+                    <div class="ratting">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bx-star'></i>
+                    </div>
+                    <h6 class="set"><i class='bx bx-bowl-hot'></i> Restaurant</h6>
+                    <h6 class="set"><i class='bx bx-map-pin'></i> Washington</h6>
+                    <h6 class="call"><i class='bx bx-phone-call'></i> Call Now</h6>
+                </div>
+                <div class="items">
+                    <img src="{% static 'images/popular3.jpg' %}" alt="image 3" class="heroin">
+                    <h2 class="written"><i class='bx bx-hotel'></i> Euro Collision</h2>
+                    <div class="ratting">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                    </div>
+                    <h6 class="set"><i class='bx bx-bowl-hot'></i> Automotive</h6>
+                    <h6 class="set"><i class='bx bx-map-pin'></i> Georgia</h6>
+                    <h6 class="call"><i class='bx bx-phone-call'></i> Call Now</h6>
+                </div>
+            </div>
+
+            <div class="popular">
+                <h2>News & Tips</h2>
+                <P>Checkout Latest News And Articles From Our Blog</P>
+            </div>
+
+            <div class="news">
+                <div class="trip">
+                    <img src="{% static 'images/trip1.jpeg'%}" alt="trip 1" class="road">
+                    <img src="{% static 'images/profile.jpg'%}" alt="trip 1" class="photo">
+                    <h6>John Doe</h6>
+                    <h4>Excited news about arrival fashion.</h4>
+                    <div class="line">
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+
+                        <h5>News</h5>
+                    </div>
+                </div>
+
+                <div class="trip">
+                    <img src="{% static 'images/trip2.jpeg'%}" alt="trip 1" class="road">
+                    <img src="{% static 'images/profile.jpg'%}" alt="trip 1" class="photo">
+                    <h6>John Doe</h6>
+                    <h4>Reduce Unwanted Wrinkles</h4>
+                    <div class="line">
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+
+                        <h5>Coffee</h5>
+                    </div>
+                </div>
+
+                <div class="trip">
+                    <img src="{% static 'images/trip3.jpeg'%}" alt="trip 1" class="road">
+                    <img src="{% static 'images/profile.jpg'%}" alt="trip 1" class="photo">
+                    <h6>John Doe</h6>
+                    <h4>Chemex coffee for two people</h4>
+                    <div class="line">
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+
+                        <h5>Coffee</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="last">
+                <img src="{% static 'images/banner3.png'%}" alt="last image" class="li">
+                <div class="lasttext">
+                    <h1>Are You a Local Business?</h1>
+                    <p>Join the community of hundreds of flourishing local business in your city.</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <footer>
+        <div id="contact">
+            <h2>Contact Us</h2>
+            <h5>Phone: +91-9568855683</h5>
+            <h5>Email: TatashopEasy25@gmailcom</h5>
+        </div>
+
+        <div id="About">
+            <h2>About Us</h2>
+            <p>Pushing boundaries and aiming for better everyday for all our stakeholders. </p>
+        </div>
+
+        <div class="float">
+            <p>&copy; 2024 ShopEasy. All rights reserved.</p>
+            <div class="icon">
+                <i class='bx bxl-facebook-square'></i>
+                <i class='bx bxl-meta'></i>
+                <i class='bx bxl-instagram'></i>
+                <i class='bx bxl-youtube'></i>
+                <i class='bx bxl-twitter'></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function addListing() {
+            window.location.href = '/'
+        }
+        function signIn() {
+            window.location.href = '/login'
+        }
+        function profile() {
+            window.location.href = '/profile'
+        }
+    </script>
+</body>
+
+</html>
