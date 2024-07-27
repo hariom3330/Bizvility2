@@ -69,8 +69,18 @@ class Signup(models.Model):
     
 
 class Listing(models.Model):
+    CATEGORY_CHOICES = [
+        ('Automotive', 'Automotive'),
+        ('Beauty', 'Beauty'),
+        ('Hotels', 'Hotels'),
+        ('Doctors', 'Doctors'),
+        ('Restaurant', 'Restaurant'),
+        ('Shopping', 'Shopping'),
+    ]
+    
     name_service = models.CharField(max_length=250)
     about_business  = models.TextField()
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     Business_number =models.CharField(max_length=12)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     business_address = models.CharField(max_length=250)
@@ -101,7 +111,7 @@ class Video(models.Model):
         return self.title
 
     
-class Comments(models.Model):
+class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -110,3 +120,6 @@ class Comments(models.Model):
 
 
 
+# class PlanPrices(models.Model):
+#     planList = [(1,),(),(),(),(),()]
+#     plan_id = models.IntegerChoices()

@@ -216,9 +216,9 @@ function hideSidebar(){
 
 
 
+const shareContainer = document.querySelector('.share-container').style.display;
 function showShare() {
-    console.log("Share");
-    const shareContainer = document.querySelector('.share-container').style.display;
+    const span = document.getElementById('')
     console.log(shareContainer);
     if (shareContainer == 'none') {
       document.querySelector('.share-container').style.display = 'block';
@@ -226,17 +226,11 @@ function showShare() {
     else {
       document.querySelector('.share-container').style.display = 'none';
     }
-  }
   
-  window.onclick = function (event) {
-    if (!event.target.matches('#share-button')) {
-      const shareContainer = document.querySelector('.share-container').style.display;
-      if (shareContainer == 'block') {
-        document.querySelector('.share-container').style.display = 'none';
-      }
-    }
+ 
   }
-  document.querySelector('.share-container').addEventListener('click', function (event) {
-    // Stop event propagation
-    event.stopPropagation();
-  });
+
+function closeShare(){
+    console.log("slo");
+    document.querySelector('.share-container').style.display = 'none';
+}

@@ -132,21 +132,26 @@ class ProductDetailView(View):
 
 
 def result(request):
-    if request.method == 'POST':
-        print("Result")
-        one = request.POST.get('query')
-        all =Listing.objects.filter(name_service__icontains=one) 
-        param ={'all':all}
-    
-        return render(request,'index5.html',param)  
-    return render(request,'index5.html')  
+    one = request.GET.get('search_value')
+    all =Listing.objects.filter(name_service__icontains=one) 
+    param ={'all':all}
+    return render(request,'index5.html',param)  
 
-
-
+def searchByCategory(request,category):
+    all =Listing.objects.filter(category=category) 
+    param ={'all':all}
+    return render(request,'index5.html',param)
 
 
 def Listing_form(request):
+    if request.method == 'POST':
+        title = request.POST.get('listing-title')
+        return redirect('select_plan')
     return render(request,'Listing_form.html')
+
+def select_plan(request):
+    return render(request,'select_plan.html')
+
 def listing(request):
     return render(request,'listing.html')
 

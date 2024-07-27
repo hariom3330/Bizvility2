@@ -9,7 +9,8 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
     <title>shorts scroller</title>
 </head>
 
@@ -95,7 +96,7 @@
                         style="border: none; background-color: transparent; font-size: 1rem; cursor: pointer;">
                         <i class="fa fa-share fa-2x" aria-hidden="true"></i>
                     </button>
-                    
+
                 </div>
             </div>
         </div>
@@ -120,24 +121,35 @@
     <div class="share-container" style="display: none;">
         <div class="share-header">
             <span>Share</span>
-            <button class="close-btn">&times;</button>
+            <button onclick="closeShare()" class="close-btn">&times;</button>
         </div>
         <div class="share-options">
             <div class="share-option">
-                <img src="whatsapp-icon.png" alt="">
-                <span>WhatsApp</span>
+                <button class="button" data-sharer="whatsapp" data-title="Checkout Sharer.js!"
+                    data-url="https://ellisonleao.github.io/sharer.js/"><i class="fa-brands fa-whatsapp"></i>
+                    <span>Whatsapp</span>
+                </button>
             </div>
             <div class="share-option">
-                <img src="pinterest-icon.png" alt="">
-                <span>Pinterest</span>
+                <button class="button" data-sharer="telegram" data-title="Checkout Sharer.js!"
+                    data-url="https://ellisonleao.github.io/sharer.js/">
+                <i class="fa-brands fa-telegram"></i>
+                <span>Telegram</span>
+            </button>
             </div>
             <div class="share-option">
-                <img src="facebook-icon.png" alt="">
-                <span>Facebook</span>
+                <button class="button" data-sharer="facebook" data-hashtag="hashtag" data-url="https://ellisonleao.github.io/sharer.js/">
+                    <i class="fa-brands fa-facebook"></i>
+                    <!-- <span>Facebook</span> -->
+                    Facebook
+                </button>
             </div>
             <div class="share-option">
-                <img src="x-icon.png" alt="">
-                <span>X</span>
+                <button class="button" data-sharer="x" data-title="Checkout Sharer.js!"
+                    data-hashtags="awesome, sharer.js" data-url="https://ellisonleao.github.io/sharer.js/">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <span>X</span>
+                </button>
             </div>
         </div>
         <div class="share-link">
@@ -147,7 +159,7 @@
     </div>
 
     <script src="{% static 'js/reels_city.js' %}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script>
 </body>
 
 </html>

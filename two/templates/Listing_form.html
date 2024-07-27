@@ -10,11 +10,13 @@
 </head>
 <body>
     <div class="container">
-        <form action="#" method="POST" class="listing-form">
+        <form action="{% url 'Listing_form' %}" method="POST" class="listing-form">
+            {% csrf_token %}
+
             <h1>Primary Listing Details</h1>
             <div class="form-group">
                 <label for="listing-title">Listing Title</label>
-                <input type="text" id="listing-title" name="listing-title" required>
+                <input type="text" id="listing-title" name="listing-title" >
             </div>
             <div class="form-group">
                 <label for="tagline">Does Your Business Have A Tagline?</label>

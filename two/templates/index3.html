@@ -1,5 +1,5 @@
 {% load static %}
-
+{% csrf_token %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
+        a{
+            text-decoration: none;
+        }
         .logo {
             margin: 15px 30px;
             width: 161px;
@@ -39,6 +42,8 @@
     <div class="hero">
         <nav>
             <ul class="sidebar">
+                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+                </svg></a></li>
                 <li><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></li>
                 <li><a href="#">Explore Categories</a></li>
                 <li><a href="#">Explore Location</a></li>
@@ -46,12 +51,12 @@
                 <div class="actions">
                     {% if user.is_authenticated %}
                     {% if user.is_superuser %}
-                    <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
+                    <a class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</a>
                     {%endif%}
-                    <button class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</button>
+                    <a class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</a>
                     {% else %}
-                    <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
-                    <button class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</button>
+                    <a class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</a>
+                    <a class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</a>
                     {%endif%}
                 </div>
             </ul>
@@ -65,16 +70,16 @@
                 <div class="hideOnMoblie listing">
                     {% if user.is_authenticated %}
                     {% if user.is_superuser %}
-                    <button onclick="addListing()" class="action_button listing btn-blue"><i class='bx bxs-plus-circle'
-                            id="user1"></i>Add Listing</button>
+                    <a href="/" class="action_button listing btn-blue"><i class='bx bxs-plus-circle'
+                            id="user1"></i>Add Listing</a>
                     {%endif%}
-                    <button onclick="profile()" id="signIn" class="action_button"><i class='bx bxs-user'
-                            id="user2"></i>{{user.signup.full_name}}</button>
+                    <a href="{% url 'profile' %}" id="signIn" class="action_button"><i class='bx bxs-user'
+                            id="user2"></i>{{user.signup.full_name}}</a>
                     {% else %}
-                    <button onclick="addListing()" class="action_button btn-blue"><i class='bx bxs-plus-circle'
-                            id="user1"></i> Add Listing</button>
-                    <button onclick="signIn()" class="action_button sign-of"><i class='bx bxs-user' id="user2"></i> Sign
-                        In</button>
+                    <a  class="action_button btn-blue"><i class='bx bxs-plus-circle'
+                            id="user1"></i> Add Listing</a>
+                    <a href="{%url 'login' %}" class="action_button sign-of"><i class='bx bxs-user' id="user2"></i> Sign
+                        In</a>
                     {%endif%}
                 </div>
                 <li onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
@@ -91,33 +96,25 @@
 
             <div class="search">
                 <i class="fa fa-search"></i>
-                <input type="text" class="form-control" placeholder="Have a question? Ask Now">
-                <button class="btn btn-primary">Search</button>
+                <form action="{% url 'result' %}" method="GET">
+                <input name="search_value" type="text" class="form-control" placeholder="Have a question? Ask Now">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
             </div>
 
             <div class="categories">
 
-                <a href="" class="btn btn1"><i class='bx bx-car' id="icons"></i> <b>Automotive</b></a>
-                <a href="" class="btn btn2"><i class='bx bx-spa' id="icons1"></i> <b>Beauty & Spa</b></a>
-                <a href="" class="btn btn3"><i class='bx bxs-school' id="icons"></i> <b>Hotels</b></a>
-                <a href="" class="btn btn4"><i class='bx bxs-pizza' id="icons"></i> <b>Restaurant</b></a>
-                <a href="" class="btn btn5"><i class='bx bx-shopping-bag' id="icons"></i> <b>Shopping</b></a>
+                <a href="{% url 'searchByCategory' 'Automotive' %}" class="btn btn1"><i class='bx bx-car' id="icons"></i> <b>Automotive</b></a>
+                <a href="{% url 'searchByCategory' 'Beauty' %}" class="btn btn2"><i class='bx bx-spa' id="icons1"></i> <b>Beauty & Spa</b></a>
+                <a href="{% url 'searchByCategory' 'Hotels' %}" class="btn btn3"><i class='bx bxs-school' id="icons"></i> <b>Hotels</b></a>
+                <a href="{% url 'searchByCategory' 'Restaurant' %}" class="btn btn4"><i class='bx bxs-pizza' id="icons"></i> <b>Restaurant</b></a>
+                <a href="{% url 'searchByCategory' 'Shopping' %}" class="btn btn5"><i class='bx bx-shopping-bag' id="icons"></i> <b>Shopping</b></a>
 
             </div>
         </div>
     </div>
 
-    <script>
-        function showSidebar() {
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'flex'
-        }
-
-        function hideSidebar() {
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'none'
-        }
-    </script>
+    
 
     <main>
         <section>
@@ -170,13 +167,6 @@
                     <video width="100%" height="500px" autoplay loop>
                         <source src="{{video.Video.url}}" type="video/mp4">
                     </video>
-                    <!-- <div class="card-content">
-                                     <a href="#" class="button">
-                                        Find out more
-                                        <span class="material-symbols-outlined">
-                                            arrow_right_alt
-                                        </span>
-                                    </a> -->
                 </div>
                 {% endfor%}
                 <div class="card_videos">
@@ -376,17 +366,7 @@
         </div>
     </footer>
 
-    <script>
-        function addListing() {
-            window.location.href = '/'
-        }
-        function signIn() {
-            window.location.href = '/login'
-        }
-        function profile() {
-            window.location.href = '/profile'
-        }
-    </script>
+    <script src="{% static 'js/home_page.js' %}"></script>
 </body>
 
 </html>
