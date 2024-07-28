@@ -156,7 +156,7 @@ form .text h3 a:hover{
         </div>
         {% endfor %}        
     {% endif %}
-    <form action="" method="POST" >
+    <form action="{% url 'regi' %}" method="POST" >
       {% csrf_token %} 
       <!-- {{form.as_p}} -->
       <!-- the obtions -->

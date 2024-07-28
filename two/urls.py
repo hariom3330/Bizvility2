@@ -14,7 +14,7 @@ urlpatterns = [
     path('user_logout/',user_logout, name="user_logout"),
     path('admin/',user_logout, name="user_logout"),
     path('profile/',profile, name="profile"),
-    path('add/',add, name="add"),
+    # path('add/',add, name="add"),
     path('Listing_form/',Listing_form, name="Listing_form"),
     path('select_plan/',select_plan, name="select_plan"),
     path('listing/',listing, name="listing"),
@@ -29,8 +29,9 @@ urlpatterns = [
     # path('detail/', detail, name='detail'),
     path('add_listing/', add_listing, name='add_listing'),
     path('productdetail/<int:pk>', views.ProductDetailView.as_view(), name="productdetail"),
-    path('searchByCategory/<str:category>',searchByCategory,name='searchByCategory')
+    path('searchByCategory/<str:category>',searchByCategory,name='searchByCategory'),
+    path('listing_details/<int:listing_id>',listing_details,name='listing_details')
   
-  
+    
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

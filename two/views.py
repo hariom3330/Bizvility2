@@ -10,8 +10,7 @@ from django.contrib.auth.decorators import login_required
 from .helpers import send_forget_password_mail
 from django.views import View
 from django.http import JsonResponse
-from django.core.serializers import serialize
-from django.utils.timesince import timesince
+from django.http import HttpResponseForbidden
 from django.utils import timezone
 
 def simplify_timesince(value):
@@ -125,9 +124,6 @@ class ProductDetailView(View):
     def get(self,request,pk):
         listings = Listing.objects.get(id=pk)
         print(listings)
-       
- 
-
         return render(request, 'detail.html', {'Listing':listings}) 
 
 
@@ -138,12 +134,21 @@ def result(request):
     return render(request,'index5.html',param)  
 
 def searchByCategory(request,category):
-    all =Listing.objects.filter(category=category) 
-    param ={'all':all}
-    return render(request,'index5.html',param)
+    listings =Listing.objects.filter(category=category) 
+    print(listings)
+    param ={'listings':listings,'category':category}
+    return render(request,'searchbycategory.html',param)
 
+def listing_details(request,listing_id):
+    listing_detail = Listing.objects.get(pk=listing_id)
+    
+    return render(request,'listing_details.html',{'listing_detail':listing_detail})
 
+@login_required
 def Listing_form(request):
+    if not request.user.is_superuser:
+        return HttpResponseForbidden("You are not authorized to access this page.")
+    
     if request.method == 'POST':
         title = request.POST.get('listing-title')
         return redirect('select_plan')

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from .models import CustomUser,Listing,Video,Comments
+from .models import CustomUser,Listing,Video,Comments, PlanPrices
 
 # class SignupAdmin(admin.ModelAdmin):
 #     list_display = ('id', 'user','email')
@@ -20,4 +20,4 @@ admin.site.register(Listing)
 
 admin.site.register(Video)
 admin.site.register(Comments)
-
+admin.site.register(PlanPrices)

@@ -1,7 +1,7 @@
+<!DOCTYPE html>
 {% include 'new2.html'%}
 {% csrf_token %}
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -70,7 +70,7 @@
     <div class="checkboxes">
         <div class="firstrow">
             <div class="checkbox">
-                <input type="checkbox">
+                <input type="checkbox" id="1">
                 <label for="1"> Accept Credit Cards</label><br>
             </div>
             <div class="checkbox">
@@ -101,26 +101,26 @@
          <div class="card-row">
             {% for listing in listings%}
             <div class="card">
-                <img src="card1.jpg" alt="">
+                <a href="{% url 'listing_details' listing.id %}" target="_blank" ><img src="{{listing.main_img.url}}" alt=""></a>
                 <div class="card-text">
-                    <h3>{{listing.name_service}}</h3>
+                    <a href="{% url 'listing_details' listing.id %}" target="_blank" rel="noopener noreferrer"><h3>{{listing.name_service}}</h3></a>
                      <div class="rating">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
-                        (1)
+                        ({{listing.rating}})
                      </div>
-                     <div class="car"><i class="fa fa-car" aria-hidden="true"></i> Automotive</div>
+                     <div class="car"><i class="fa fa-car" aria-hidden="true"></i> {{category}}</div>
                      <div class="left-right">
-                     <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Georgia</div>
+                     <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{listing.city}}, {{listing.state}}</div>
                      <div id="open">Open Now</div>
                     </div>
                     <div class="white-border"></div>
                     <div class="left-right">
                         <div class="location"><i class="fa fa-phone-square" aria-hidden="true"></i> Call Now</div>
-                        <div><i class="fa-solid fa-diamond-turn-right"></i> Get Direction</div>
+                        <div> <a href="https://www.google.com/maps/place/Agra,+Uttar+Pradesh" target="_blank" style="text-decoration: none;" > <i class="fa-solid fa-diamond-turn-right"></i> Get Direction </a></div>
                        </div>
                 </div>
             </div>

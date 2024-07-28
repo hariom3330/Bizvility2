@@ -11,6 +11,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -31,6 +32,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(email, password, **extra_fields)
+
 
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(unique=True)
@@ -54,6 +56,7 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_superuser
 
+
 class Signup(models.Model):
     user = models.OneToOneField('CustomUser', on_delete=models.CASCADE)
     forget_password_token = models.CharField(max_length=150, null=True, blank=True)
@@ -63,10 +66,9 @@ class Signup(models.Model):
     address = models.CharField(max_length=100, null=True, blank=True)
     dob = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
-
     def __str__(self):
         return self.full_name
-    
+
 
 class Listing(models.Model):
     CATEGORY_CHOICES = [
@@ -77,17 +79,18 @@ class Listing(models.Model):
         ('Restaurant', 'Restaurant'),
         ('Shopping', 'Shopping'),
     ]
-    
+
     name_service = models.CharField(max_length=250)
-    about_business  = models.TextField()
+    about_business = models.TextField()
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
-    Business_number =models.CharField(max_length=12)
+    Business_number = models.CharField(max_length=12)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     business_address = models.CharField(max_length=250)
     state = models.CharField(max_length=250)
     city = models.CharField(max_length=250)
-    business_owner_number = models.IntegerField() 
+    business_owner_number = models.IntegerField()
     pincode = models.IntegerField()
+    rating = models.IntegerField()
     main_img = models.ImageField()
     img1 = models.ImageField()
     img2 = models.ImageField()
@@ -95,23 +98,24 @@ class Listing(models.Model):
     img4 = models.ImageField()
     img5 = models.ImageField()
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
-        return self.name_service 
-    
+        return self.name_service
+
 
 class Video(models.Model):
     video_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256)
     Video = models.FileField(upload_to='video/')
-    likes = models.ManyToManyField(CustomUser,related_name='likes')
-    dislikes = models.ManyToManyField(CustomUser,related_name='dislikes')
+    likes = models.ManyToManyField(CustomUser, related_name='likes')
+    dislikes = models.ManyToManyField(CustomUser, related_name='dislikes')
     created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.title
 
-    
-class Comment(models.Model):
+
+class Comments(models.Model):
     comment_id = models.AutoField(primary_key=True)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -119,7 +123,14 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-
-# class PlanPrices(models.Model):
-#     planList = [(1,),(),(),(),(),()]
-#     plan_id = models.IntegerChoices()
+class PlanPrices(models.Model):
+    PLAN_DATA_LIST = [
+    ("Google business profile, Whatsapp business account, Sub domain website", "99rs"),
+    ("Google business profile, Whatsapp business account, Sub domain website, Current month festive post, Managing google business page", "99rspm"),
+    ("Google business profile, Whatsapp business account, Sub domain website, Current month festive post, Managing google business page, Managing social media handle's, 2 marketing post for facebook instagram and google business page, 1 cover for facebook instagram and google business page", "999rs"),
+    ("Google business profile, Whatsapp business account, Sub domain website, Current month festive post, Managing google business page, Managing social media handle's, 4 marketing post for facebook instagram and google business page, 1 cover for facebook instagram and google business page, 4 social media marketing post boast on facebook or instagram", "9,999rs"),
+    ("Google business profile, Whatsapp business account, Sub domain website, Current month festive post, Managing google business page, Managing social media handle's, 4 marketing post for facebook instagram and google business page, 1 cover for facebook instagram and google business page, 4 social media marketing post boast on facebook or instagram, Website static website, Domain, Hosting, Website maintenance", "14,999rs"),
+    ("Google business profile, Whatsapp business account, Sub domain website, Current month festive post, Managing google business page, Managing social media handle's, 4 marketing post for facebook instagram and google business page, 1 cover for facebook instagram and google business page, 4 social media marketing post boast on facebook or instagram, Website static website, Domain, Hosting, Website maintenance, Website static website, dynamic website, Ecom, Domain, Hosting, Website maintenance, 1 time 10 product listing(in case of ecom), Billing portal, Hrm portal, Inventory portal", "19,999rs")
+]
+    plan_data = models.CharField(max_length=600, choices=PLAN_DATA_LIST)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

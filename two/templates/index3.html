@@ -44,16 +44,16 @@
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
                 </svg></a></li>
-                <li><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></li>
+                <!-- <li><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></li> -->
                 <li><a href="#">Explore Categories</a></li>
                 <li><a href="#">Explore Location</a></li>
                 <li><a href="#">Explore Services</a></li>
                 <div class="actions">
                     {% if user.is_authenticated %}
                     {% if user.is_superuser %}
-                    <a class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</a>
+                    <a href="{% url 'Listing_form' %}" class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</a>
                     {%endif%}
-                    <a class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</a>
+                    <a href="{% url 'profile' %}" class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</a>
                     {% else %}
                     <a class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</a>
                     <a class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</a>
@@ -62,15 +62,14 @@
             </ul>
 
             <ul>
-                <li><a href="#"><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></a>
-                </li>
+                <li><a href="#"><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></a></li>
                 <li class="hideOnMoblie"><a href="#">Explore Categories</a></li>
                 <li class="hideOnMoblie"><a href="#">Explore Location</a></li>
                 <li class="hideOnMoblie"><a href="#">Explore Services</a></li>
                 <div class="hideOnMoblie listing">
                     {% if user.is_authenticated %}
                     {% if user.is_superuser %}
-                    <a href="/" class="action_button listing btn-blue"><i class='bx bxs-plus-circle'
+                    <a href="{% url 'Listing_form' %}" class="action_button listing btn-blue"><i class='bx bxs-plus-circle'
                             id="user1"></i>Add Listing</a>
                     {%endif%}
                     <a href="{% url 'profile' %}" id="signIn" class="action_button"><i class='bx bxs-user'
