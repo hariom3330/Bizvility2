@@ -1,0 +1,58 @@
+{% csrf_token %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<style>
+        
+        footer {       
+        margin-top: 5px;
+        width: auto;
+        background: #f4f4f5;
+        color: black;
+        text-align: center;
+        padding: 15px 0;
+        }
+        
+        footer p {
+        margin: 0;
+        }
+        
+        .footer_icon
+        {
+        margin-top: 20px;
+        margin-bottom: 20px;
+          margin-left: 40.5%;
+        display: flex;
+         font-size: 25px;
+        gap: 40px;
+        }
+        
+        .footer_float{
+            margin-top: 21px;
+            color: #3c3c3c;
+        }
+        
+        
+        .footer_icon a{
+            color: #3c3c3c;
+            text-decoration: none;
+        }
+
+</style>
+<footer>
+
+        <div class="footer_float">
+            <p>Copyright&copy; 2024 Acculizein Tech Pvt Ltd</p>
+            <br>
+            <p>Developed by Acculizein Tech Pvt Ltd</p>
+            <div class="footer_icon">
+                <a href=""><i class='bx bxl-facebook-square'></i></a>
+                <a href=""><i class='bx bxl-meta'></i></a>
+                <a href=""><i class='bx bxl-instagram'></i></a>  
+                <a href=""><i class='bx bxl-youtube'></i></a>
+                <a href=""><i class='bx bxl-twitter'></i></a>
+            </div>
+        </div>
+</footer>
+{% endblock %}

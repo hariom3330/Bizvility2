@@ -1,13 +1,3 @@
-# from django.contrib.auth.models import User
-# # Create your models here.
-# class Signup(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-#     # name = models.CharField(max_length=15,unique=True)
-#     email = models.CharField(max_length=50, null=True,unique=True)
-#     creationdate = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.user.first_name
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -67,7 +57,7 @@ class Signup(models.Model):
     contact = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
     dob = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    image = models.ImageField(upload_to='profile_images/', default='profile_images/defaultpfpsvg.png')
     def __str__(self):
         return self.full_name
 
@@ -155,7 +145,6 @@ class Business(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='businesses')  
     tagline = models.CharField(max_length=50, null=True)
     description = models.TextField()
-    logo = models.ImageField(upload_to='BusinessLogos/')
     thumbnail = models.ImageField(upload_to='BusinessImages/')
     image1 = models.ImageField(upload_to='BusinessImages/')
     image2 = models.ImageField(upload_to='BusinessImages/')
@@ -163,7 +152,7 @@ class Business(models.Model):
     image4 = models.ImageField(upload_to='BusinessImages/')
     image5 = models.ImageField(upload_to='BusinessImages/')
     phone_number = models.CharField(max_length=13)
-    website = models.URLField(max_length=200)
+    website = models.URLField(max_length=200,null=True)
     address = models.CharField(max_length=100)
     state = models.CharField(max_length=20)
     city = models.CharField(max_length=20)
@@ -178,7 +167,6 @@ class Business(models.Model):
 
 
 class Restaurant(Business):
-    user_res = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='restaurant')
     min_price = models.DecimalField(max_digits=10, decimal_places=2)
     max_price = models.DecimalField(max_digits=10, decimal_places=2)
     delivery = models.BooleanField(default=False)
@@ -191,7 +179,6 @@ class Restaurant(Business):
     
 
 class Hotel(Business):
-    user_hotel = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='hotel')
     min_price = models.DecimalField(max_digits=10, decimal_places=2)
     max_price = models.DecimalField(max_digits=10, decimal_places=2)
     room_service = models.BooleanField(default=False)
@@ -203,7 +190,6 @@ class Hotel(Business):
 
 
 class Automotive(Business):
-    user_automotive = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='automotive')
     min_price = models.DecimalField(max_digits=10, decimal_places=2)
     max_price = models.DecimalField(max_digits=10, decimal_places=2)
     repair_services = models.BooleanField(default=False)
@@ -214,7 +200,6 @@ class Automotive(Business):
 
 
 class BeautySpa(Business):
-    user_beauty = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='beautySpa')
     min_price = models.DecimalField(max_digits=10, decimal_places=2)
     max_price = models.DecimalField(max_digits=10, decimal_places=2)
     massage_services = models.BooleanField(default=False)
@@ -226,7 +211,6 @@ class BeautySpa(Business):
 
 
 class Doctor(Business):
-    user_doc = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='doctor')
     specialty = models.CharField(max_length=255)
     consultation_fee = models.DecimalField(max_digits=10, decimal_places=2)
     accepts_insurance = models.BooleanField(default=False)
@@ -235,7 +219,6 @@ class Doctor(Business):
 
 
 class Shopping(Business):
-    user_shopping = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='shopping')
     clothing = models.BooleanField(default=False)
     electronics = models.BooleanField(default=False)
     groceries = models.BooleanField(default=False)

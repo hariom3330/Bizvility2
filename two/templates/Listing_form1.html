@@ -1,0 +1,149 @@
+{% include 'header.html' %}
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Registration</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        textarea.form-control {
+            min-height: calc(3.5em + .75rem + 2px);
+        }
+
+        #thumbnail {
+            margin-bottom: 1rem;
+        }
+
+        #imagesContainer {
+            margin-bottom: 1.5rem;
+        }
+
+        .thumbnail-preview {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thumbnail-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .images-preview {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .images-preview img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        
+        <form id="categoryForm" class="mb-5">
+            <h1 class="mb-4">Business Registration</h1>
+            <div class="mb-3">
+                <label for="title" class="form-label">Business Title</label>
+                <input type="text" class="form-control" id="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="tagline" class="form-label">Business Tagline</label>
+                <input type="text" class="form-control" id="tagline">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Business Category</label>
+                <select class="form-select" id="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Automotive">Automotive</option>
+                    <option value="BeautySpa">Beauty & Spa</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Shopping">Shopping</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Next</button>
+        </form>
+
+        <form id="businessForm" style="display: none;">
+            <h1 id="formTitle" class="mb-4"></h1>
+
+            <div class="mb-3">
+                <label for="website" class="form-label">Website</label>
+                <input type="url" class="form-control" id="website">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" required>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="pincode" class="form-label">Pincode</label>
+                    <input type="text" class="form-control" id="pincode" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="thumbnail" class="form-label">Thumbnail</label>
+                <input type="file" class="form-control" id="thumbnail">
+            </div>
+            <div class="mb-3" id="imagesContainer">
+                <label for="images" class="form-label">Images</label>
+                <input type="file" class="form-control" id="images" multiple>
+                <small class="form-text text-muted">Please upload at least 5 images.</small>
+            </div>
+            <div class="images-preview mt-2" id="images-preview"></div>
+            <div id="categorySpecificFields"></div>
+
+            <div class="mt-3">
+                <button type="button" class="btn btn-secondary" id="backButton">Back</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+        
+    </div>
+    {% include 'footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/listing_form.js' %}"></script>
+
+</body>
+
+</html>

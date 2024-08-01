@@ -1,3 +1,4 @@
+<!-- {% include 'header.html' %} -->
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -346,7 +347,7 @@
                 <div class="card details" style="width: 18rem;">
                     <div class="card-body">
                         <div class="pro">
-                            <img class="profile" src="{{user.customuser.image.url}}" alt="">
+                            <img class="profile" src="{{listing_detail.user.customuser.image.url}}" alt="">
                             <div>
                                 <div class="Name">
                                     <h5 class="card-title" style="margin-left: 10px;margin-bottom: 6px;">
@@ -384,30 +385,10 @@
             </div>
 
         </div>
-        <footer class="f">
-            <div class="home">
-                <a href="#">Home</a>
-                <a href="#">Contact</a>
-                <a href="#">Services</a>
-                <a href="#">About</a>
-            </div>
-
-            <div class="social-media">
-
-                <p>&copy; 2024 ListingProW. All rights reserved.</p>
-                <p>Developed by Harshita Mahajan</p>
-                <div>
-                    <a href="#" class="fab fa-facebook-f"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin-in"></a>
-                    <a href="#" class="fab fa-twitter"></a>
-                </div>
-
-            </div>
-        </footer>
+        
     </div>
 
-
+    {% include 'footer.html' %}
 
 
     <script src="{% static 'js/listing_details.js' %}"></script>

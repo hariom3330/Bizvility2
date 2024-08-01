@@ -39,7 +39,6 @@ def simplify_timesince(value):
 
 def index(request):
     videos = Video.objects.all()[0:4]
-    print(request.user.id)
     return render(request,'index3.html', {'videos':videos  })
 
 def index2(request):
@@ -187,7 +186,7 @@ def Listing_form(request):
     if request.method == 'POST':
         title = request.POST.get('listing-title')
         return redirect('select_plan')
-    return render(request,'Listing_form.html')
+    return render(request,'listing_form1.html')
 
 def select_plan(request):
     return render(request,'select_plan.html')
@@ -260,7 +259,7 @@ def login(request):
                 elif user_type == 'guest' and not user.is_staff:
                     # Redirect regular users to index page
                     print('User login successful')
-                    return redirect('index2')  # Replace 'index' with the URL name of your index page
+                    return redirect('index')  # Replace 'index' with the URL name of your index page
                 else:
                     messages.error(request, "You are not authorized to access this page.")
             else:
@@ -292,7 +291,7 @@ def profile(request,user_id):
     user = request.user
     profile_user = Signup.objects.get(user=user_id)
     listings = Business.objects.filter(user = user_id)
-    print(user,profile_user)
+    print(user.id,profile_user.id)
     return render(request, 'profile.html', {'profile_user': profile_user,'listings':listings})
 
 from django.core.exceptions import ValidationError

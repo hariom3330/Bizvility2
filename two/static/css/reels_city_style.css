@@ -11,12 +11,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.header {
-    height: 100px;
-    background-color: #0066cc;
-    padding: 10px 0;
-    display: flex;
-}
+
 
 .container {
 
@@ -291,11 +286,11 @@ body {
 
 
 
-.btn {
+/* .btn {
     padding: 20px 10px 20px 2px;
     align-content: center;
     width: 80px;
-}
+} */
 
 #btn {
 
@@ -433,7 +428,7 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: 42px;
+    right: 27px;
     /* Adjust this value to position the icons */
     top: 66%;
     transform: translateY(-50%);
@@ -709,9 +704,6 @@ body {
 
 @media (max-width:1410px) {
 
-    .header {
-        width: 1410px;
-    }
 
     .container {
         width: 1410px;
@@ -721,10 +713,7 @@ body {
 
 
 @media (max-width:412px) {
-    .header {
-        width: 430px;
 
-    }
 
     #imglogo {
         width: 30px;

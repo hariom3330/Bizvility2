@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% include 'header.html' %}
 {% load static %}
 
 {% block title %}
@@ -192,4 +193,5 @@ form .text h3 a:hover{
         <a href="{% url 'login' %}"><p class="small fw-bold mt-2 pt-1 mb-0">Already have an account?</a>
       </div>
       </form> 
-{% endblock content %}
+      {% endblock content %}
+      {% include 'footer.html' %} 

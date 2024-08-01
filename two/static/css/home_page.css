@@ -106,15 +106,16 @@ nav li:first-child{
 }
 .content h2{
     font-size: 90px;
-    color: rgb(204, 190, 168);
+    color: white;
     padding-top: -110px;
     font-weight: 600;
+    font-family: 'Poppins' !important;
 }
 .content p{
-    color: rgb(204, 190, 168);
+    color: white;
     font-size: 25px;
     margin-bottom: 20px;
-
+    font-family: 'Poppins' !important;
     animation-duration: 3s;
     animation-name: slidein;
 }

@@ -1,15 +1,11 @@
 body{
     margin:0;
-    padding:30px;
-    margin-right: 32px;
     font-family:"Poppins","sans serif";
-    background-color: rgb(35, 107, 142);
+    background-color: #f4f4f4;
     color: rgb(67, 65, 65);
 }
 
-
-
- .plans{
+.plans{
     padding: 20px;
     display: grid;
    

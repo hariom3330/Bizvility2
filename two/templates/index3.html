@@ -71,7 +71,7 @@
                             id="user1"></i>Add Listing</a>
                     {%endif%}
                     <a href="{% url 'profile' user.id %}" id="signIn" class="action_button"><i class='bx bxs-user'
-                            id="user2"></i>{{user.signup.full_name}}</a>
+                            id="user2"></i>{{user.customuser.full_name}}</a>
                     {% else %}
                     <a  class="action_button btn-blue"><i class='bx bxs-plus-circle'
                             id="user1"></i> Add Listing</a>
@@ -346,32 +346,7 @@
 
         </section>
     </main>
-    <div class="footer-upperbar">
-        <ul class="upper">
-            <li>Home</li>
-            <li>Home</li>
-            <li>Blog</li>
-            <li>Blog</li>
-            <li>Contact</li>
-            <li>Contact</li>
-        </ul>
-    </div>
-    <footer>
-       
-   
-        <div class="float">
-            <p>Copyright&copy; 2024 Acculizein Tech Pvt Ltd</p>
-            <br>
-            <p>Developed by Acculizein Tech Pvt Ltd</p>
-            <div class="icon">
-                <a href=""><i class='bx bxl-facebook-square'></i></a>
-                <a href=""><i class='bx bxl-meta'></i></a>
-                <a href=""><i class='bx bxl-instagram'></i></a>  
-                <a href=""><i class='bx bxl-youtube'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a>
-            </div>
-        </div>
-    </footer>
+  {% include 'footer.html' %}
 
     <script>
         function showSidebar(){

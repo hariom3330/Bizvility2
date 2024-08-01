@@ -423,7 +423,7 @@ Google Fonts -->
                 {% if user.is_superuser %}
                 <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
                 {%endif%}
-                <button class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</button>
+                <button class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.customuser.full_name}}</button>
                 {% else %}
                 <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
                 <button class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</button>

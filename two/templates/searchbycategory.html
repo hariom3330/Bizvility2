@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% include 'new2.html'%}
+{% include 'header.html'%}
 {% csrf_token %}
 {% load static %}
 <html lang="en">
@@ -129,7 +129,7 @@
         </div>
      </div>
     </div>
-
+    {% include 'footer.html' %}
     
     <script src="{% static 'js/searchByCategory.js' %}"></script>
     <script src="https://kit.fontawesome.com/e3ed8c99fd.js" crossorigin="anonymous"></script>

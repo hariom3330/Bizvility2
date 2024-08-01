@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{user.signup.full_name}}</title>
+    <title>{{profile_user.full_name}}</title>
     <link rel="stylesheet" href="{% static 'css/profile.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -15,7 +15,7 @@
 
 <body>
     <header class="header">
-        <img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo">
+        <a href="{% url 'index' %}"><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></a>
 
 
         <div class="sidebar">
@@ -28,9 +28,15 @@
 
         <div class="nav_container">
             <div class="search-bar">
-                <input type="text" placeholder="What: food, service, barber, hotel" class="input1">
-                <input type="text" placeholder="Where: Your City" class="input1">
-                <button type="button" id="ser_btn"><i class='bx bx-search-alt-2' id="searchicon"></i></button>
+                <form id="formHeader" class="d-flex search-form my-2 my-xl-0 form-inline" action="{% url 'result' %}" method="GET" style="display: flex;">
+                    <input class="form-control me-2" type="search" placeholder="What: food, service, bar" name="search_value">
+                    <input class="form-control me-2" type="search" placeholder="Where: Your City" name="city">
+                    <button class="btn btn-outline-light" type="submit" style="color: white;
+                    background-color: transparent;
+                    border-radius: 11px white;
+                    border: 2px solid white;
+                    padding: 7px;">Search</button>
+                </form>
             </div>
             <div class="actions">
                 {% if user.id == profile_user.id %}
@@ -54,15 +60,7 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-header-headshot" style="height: 6em;
-                                width: 6em;
-                                border-radius: 50%;
-                                border: 2px solid #009688;
-                                background-image: url('{{profile_user.image.url}}');
-                                background-size: cover;
-                                background-position: center center;
-                                box-shadow: 1px 3px 3px #3E4142;">
-                                    <!-- <img src="" alt=""> -->
+                                <div class="card-header-headshot" style="background-image: url('{{profile_user.image.url}}');">
                                 </div>
                             </div>
                             <div class="card-content">
@@ -102,117 +100,6 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-8">
-                        <div class="row" style="margin-top: 0%;">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="rating-block">
-                                    <h4>Average user rating</h4>
-                                    <h2 class="m-b-20">4.3 <small>/ 5</small></h2>
-                                    <button type="button" class="btn btn-rating btn-sm" aria-label="Left Align">
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"><i class="fa fa-star"
-                                                aria-hidden="true"></i></span>
-                                    </button>
-                                    <button type="button" class="btn btn-rating btn-sm" aria-label="Left Align">
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"><i class="fa fa-star"
-                                                aria-hidden="true"></i></span>
-                                    </button>
-                                    <button type="button" class="btn btn-rating btn-sm" aria-label="Left Align">
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"><i class="fa fa-star"
-                                                aria-hidden="true"></i></span>
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"><i class="fa fa-star"
-                                                aria-hidden="true"></i></span>
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"><i class="fa fa-star"
-                                                aria-hidden="true"></i></span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <h4 class="m-t-0">Rating breakdown</h4>
-                                <div class="pull-left">
-                                    <div class="review-number">
-                                        <div>5 <span class="glyphicon glyphicon-star"></span><i class="fa fa-star"
-                                                aria-hidden="true"></i></div>
-                                    </div>
-                                    <div class="review-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-danger progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5"
-                                                style="width: 90%">
-                                                <span class="sr-only">90% Complete (danger)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-number">1</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="review-number">
-                                        <div>4 <span class="glyphicon glyphicon-star"><i class="fa fa-star"
-                                                    aria-hidden="true"></i></span></div>
-                                    </div>
-                                    <div class="review-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-primary progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5"
-                                                style="width: 80%">
-                                                <span class="sr-only">80% Complete (danger)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-number">1</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="review-number">
-                                        <div>3 <span class="glyphicon glyphicon-star"><i class="fa fa-star"
-                                                    aria-hidden="true"></i></span></div>
-                                    </div>
-                                    <div class="review-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-info progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5"
-                                                style="width: 70%">
-                                                <span class="sr-only">70% Complete (danger)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-number">0</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="review-number">
-                                        <div>2 <span class="glyphicon glyphicon-star"><i class="fa fa-star"
-                                                    aria-hidden="true"></i></span></div>
-                                    </div>
-                                    <div class="review-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-warning progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5"
-                                                style="width: 60%">
-                                                <span class="sr-only">60% Complete (danger)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-number">0</div>
-                                </div>
-                                <div class="pull-left">
-                                    <div class="review-number">
-                                        <div>1 <span class="glyphicon glyphicon-star"><i class="fa fa-star"
-                                                    aria-hidden="true"></i></span></div>
-                                    </div>
-                                    <div class="review-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-violet progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5"
-                                                style="width: 50%">
-                                                <span class="sr-only">50% Complete (danger)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-number">0</div>
-                                </div>
-                            </div>
-                        </div>
                         {% for listing in listings %}
                         <div class="review-block">
                             <div class="row" style="margin-top: 0;">
@@ -220,7 +107,7 @@
                                     <div class="review-block-img">
                                         <img src="{{listing.thumbnail.url}}" class="img-rounded" alt="">
                                     </div>
-                                    <div class="review-block-name"><a href="#">{{listing.title}}</a></div>
+                                    <div class="review-block-name"><a href="{% url 'listing_details' listing.id %}">{{listing.title}}</a></div>
                                     <div class="review-block-date">{{listing.created_at}}<br>{{ listing.created_at | timesince }}</div>
                                 </div>
                                 <div class="col-sm-9">
@@ -333,14 +220,7 @@
                 </div>
             </section>
         </div>
-        <footer class="main-footer">
-            <strong>
-                Copyright © 2016-2017
-                <a href="#">Thememinister</a>
-                .
-            </strong>
-            All rights reserved.
-        </footer>
+        {% include 'footer.html' %}
     </div>
     <div id="logoutModal" class="modal">
         <div class="modal-content">
