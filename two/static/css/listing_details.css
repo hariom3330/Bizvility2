@@ -80,7 +80,7 @@ body{
 
 
 .Book{
-    width: 100%;
+    /* width: 100%; */
     margin-left: 7px;
     margin-right: 20px;
    
@@ -259,16 +259,24 @@ body{
 
 .container{
     display: flex;
+    justify-content: space-between;
 }
 
 .left {
     margin: 20px;
     margin-top: 0px;
     gap: 20px;
+    width: 70%;
    
 }
 .right {
+
+    width: 30%;
     padding: 20px;
+  
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
     
 }
 
@@ -336,7 +344,7 @@ form input{
     width: 250px;
 }
 .Name button{
-    margin-left: 50px;
+    margin-left: 34px;
     margin-right: 5px;
     padding: 0px;
     border: 0px;

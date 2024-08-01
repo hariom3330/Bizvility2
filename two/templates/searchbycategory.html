@@ -101,9 +101,9 @@
          <div class="card-row">
             {% for listing in listings%}
             <div class="card">
-                <a href="{% url 'listing_details' listing.id %}" target="_blank" ><img src="{{listing.main_img.url}}" alt=""></a>
+                <a href="{% url 'listing_details' listing.id %}" target="_blank" ><img src="{{listing.thumbnail.url}}" alt=""></a>
                 <div class="card-text">
-                    <a href="{% url 'listing_details' listing.id %}" target="_blank" rel="noopener noreferrer"><h3>{{listing.name_service}}</h3></a>
+                    <a href="{% url 'listing_details' listing.id %}" target="_blank" rel="noopener noreferrer"><h3>{{listing.title}}</h3></a>
                      <div class="rating">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>

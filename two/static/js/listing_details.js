@@ -3,27 +3,27 @@ let photos=document.querySelector(".photos")
 console.log("hi");
 console.log(photos);
 
-let leftBtn=document.querySelector(".leftSlider");
+// let leftBtn=document.querySelector(".leftSlider");
 
-let rightBtn=document.querySelector(".rightSlider");
+// let rightBtn=document.querySelector(".rightSlider");
 
 
-photos.addEventListener("wheel",(evt)=>{
-    evt.preventDefault();
-    photos.scrollLeft+=evt.deltaY;
-    photos.style.scrollBehavior="auto";
-})
+// photos.addEventListener("wheel",(evt)=>{
+//     evt.preventDefault();
+//     photos.scrollLeft+=evt.deltaY;
+//     photos.style.scrollBehavior="auto";
+// })
 
-leftBtn.addEventListener("click",()=>{
-    photos.style.scrollBehavior="smooth";
-    photos.scrollLeft-=5000;
-})
+// leftBtn.addEventListener("click",()=>{
+//     photos.style.scrollBehavior="smooth";
+//     photos.scrollLeft-=5000;
+// })
 
-rightBtn.addEventListener("click",()=>{
-    photos.style.scrollBehavior="smooth";
+// rightBtn.addEventListener("click",()=>{
+//     photos.style.scrollBehavior="smooth";
    
-    photos.scrollLeft+=5000;
-})
+//     photos.scrollLeft+=5000;
+// })
 
 let globe=document.getElementById('globeId');
 

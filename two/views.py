@@ -39,6 +39,7 @@ def simplify_timesince(value):
 
 def index(request):
     videos = Video.objects.all()[0:4]
+    print(request.user.id)
     return render(request,'index3.html', {'videos':videos  })
 
 def index2(request):
@@ -129,20 +130,54 @@ class ProductDetailView(View):
 
 def result(request):
     one = request.GET.get('search_value')
-    all =Listing.objects.filter(name_service__icontains=one) 
-    param ={'all':all}
+    all =Business.objects.filter(title__icontains=one) 
+    print(all)
+    param ={'listings':all}
     return render(request,'index5.html',param)  
 
 def searchByCategory(request,category):
-    listings =Listing.objects.filter(category=category) 
+    listings =Business.objects.filter(category__category=category) 
     print(listings)
     param ={'listings':listings,'category':category}
     return render(request,'searchbycategory.html',param)
 
 def listing_details(request,listing_id):
-    listing_detail = Listing.objects.get(pk=listing_id)
-    
-    return render(request,'listing_details.html',{'listing_detail':listing_detail})
+    listing_detail = Business.objects.get(pk=listing_id)
+    faqs = listing_detail.faqs.all()
+    context = {'listing_detail':listing_detail,'faqs':faqs,'listing_id':listing_id}
+    if request.method == 'POST':
+        form_type = request.POST.get('form_type')
+        if form_type == 'form_a':
+            user_review = request.POST.get('review')
+            rating = request.POST.get('rating')
+            review_data = Review.objects.create(
+                user = request.user,
+                rating = rating,
+                comment = user_review,
+                business = listing_detail
+            )
+        elif form_type == 'form_b':
+            name = request.POST.get('name')
+            print(name)
+    if listing_detail.category.category == 'Restaurant':
+        businessDetails = Restaurant.objects.get(title = listing_detail.title)
+        context['restaurant'] = businessDetails
+    elif listing_detail.category.category == 'Automotive':
+        businessDetails = Automotive.objects.get(title = listing_detail.title)
+        context['automotive'] = businessDetails
+    elif listing_detail.category.category == 'Beauty':
+        businessDetails = BeautySpa.objects.get(title = listing_detail.title)
+        context['beauty_spa'] = businessDetails
+    elif listing_detail.category.category == 'Hotel':
+        businessDetails = Hotel.objects.get(title = listing_detail.title)
+        context['hotel'] = businessDetails
+    elif listing_detail.category.category == 'Doctor':
+        businessDetails = Doctor.objects.get(title = listing_detail.title)
+        context['doctor'] = businessDetails
+    elif listing_detail.category.category == 'Shopping':
+        businessDetails = Shopping.objects.get(title = listing_detail.title)
+        context['shopping'] = businessDetails
+    return render(request,'listing_details.html',context)
 
 @login_required
 def Listing_form(request):
@@ -253,10 +288,12 @@ from django.shortcuts import render, get_object_or_404
 #     return render(request, 'profile.html', {'username': full_name, 'email': email})
 
 @login_required
-def profile(request):
+def profile(request,user_id):
     user = request.user
-    listings = Listing.objects.filter(user = user)
-    return render(request, 'profile.html', {'user': user,'listings':listings})
+    profile_user = Signup.objects.get(user=user_id)
+    listings = Business.objects.filter(user = user_id)
+    print(user,profile_user)
+    return render(request, 'profile.html', {'profile_user': profile_user,'listings':listings})
 
 from django.core.exceptions import ValidationError
 import uuid

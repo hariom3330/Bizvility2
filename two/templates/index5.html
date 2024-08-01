@@ -101,9 +101,9 @@
          <div class="card-row">
             {% for listing in listings%}
             <div class="card">
-                <img src="card1.jpg" alt="">
+                <img src="{{listing.thumbnail.url}}" alt="">
                 <div class="card-text">
-                    <h3>{{listing.name_service}}</h3>
+                    <h3>{{listing.title}}</h3>
                      <div class="rating">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -112,7 +112,7 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         (1)
                      </div>
-                     <div class="car"><i class="fa fa-car" aria-hidden="true"></i> Automotive</div>
+                     <div class="car"><i class="fa fa-car" aria-hidden="true"></i> {{listing.category.category}}</div>
                      <div class="left-right">
                      <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Georgia</div>
                      <div id="open">Open Now</div>

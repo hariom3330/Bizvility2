@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First proj</title>
-     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <title>{{listing_detail.title}}</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>  -->
     <link rel="stylesheet" href="{% static 'css/listing_details.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
 
-   <div class="main">
+    <div class="main">
         <!-- <div class="photos">
             <img id="shu" class="photo" src="images/shushi.webp" alt="">
             <img id="nood" class="photo" src="images/noodles.webp" alt="">
@@ -31,111 +34,240 @@
 
         <div class="photos">
             <div class="containerPhoto">
-                <div class="row2" style="background-image: url(https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=1444&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"></div>
-                <div class="col2" style="background-image: url(https://images.unsplash.com/photo-1484980972926-edee96e0960d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"></div>
-                <div class="row2" style="background-image: url(https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=1498&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
-                   
-                </div>
-                <div style="background-image: url(https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"></div>
+                <div class="row2" style="background-image: url('{{listing_detail.image1.url}}');"></div>
+                <div class="col2" style="background-image: url('{{listing_detail.image2.url}}');"></div>
+                <div class="row2" style="background-image: url('{{listing_detail.image3.url}}');"></div>
+                <div style="background-image: url('{{listing_detail.image4.url}}');"></div>
+                <div style="background-image: url('{{listing_detail.image5.url}}');"> </div>
 
-                <div style="background-image: url(https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"> </div>
-               
             </div>
-        </div>
-
-        <div class="slider">
-            <button class="leftSlider"><i class="fa-solid fa-arrow-left "></i>
-            </button> 
-            <button class="rightSlider">
-            <i class="fa-solid fa-arrow-right"></i>
-            </button>
         </div>
 
         <div class="container">
             <div class="left">
-                <p class="headerHome"><b>Home / {{listing_detail.category}} / {{listing_detail.name_service}}</b></p>
+                <p class="headerHome"><b>Home / {{listing_detail.category.category}} / {{listing_detail.title}}</b></p>
                 <h1 style="
                 margin-bottom: 7px;
-            ">{{listing_detail.name_service}}</h1>
+            ">{{listing_detail.title}}</h1>
                 <h5 style="
                 margin-top: 0px;
                 margin-bottom: 7px;
-            ">We exist to reduce the inconvenience</h5>
-              <div class="stars">
-               <i class="fa-regular fa-star"></i>
-               <i class="fa-regular fa-star"></i>
-               <i class="fa-regular fa-star"></i>
-               <i class="fa-regular fa-star"></i>
-               <i class="fa-regular fa-star"></i> (1)
-              </div>
+            ">{{listing_detail.tagline}}</h5>
+                <div class="stars">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i> ({{listing_detail.rating}})
+                </div>
                 <p style="
                 margin-top: 27px;
                  ">
-                    {{listing_detail.about_business}}
-            
-                 </p>
-                 <br>
-                 <div class="icons">
+                    {{listing_detail.description}}
+
+                </p>
+                <br>
+                {% if restaurant %}
+                <div class="icons">
+                    {% if restaurant.delivery %}
                     <div class="icon">
                         <i class="fas fa-credit-card"></i>
-                         Accepts Credit cards
+                        Delivery Available
                     </div>
+                    {% endif %}
+                    {% if restaurant.take_out %}
                     <div class="icon">
-                        <i class="fas fa-car"></i>  Auto Repair
+                        <i class="fas fa-car"></i> Take Out
                     </div>
+                    {% endif %}
+                    {% if restaurant.AirConditioning %}
                     <div class="icon">
-                        <i class="fas fa-car"></i>  Body Shops
+                        <i class="fas fa-car"></i> Air Conditioning
                     </div>
+                    {% endif %}
+                    {% if restaurant.wifi %}
                     <div class="icon">
-                        <i class="fas fa-car"></i>  Car Wash
+                        <i class="fas fa-car"></i> WiFi Available
                     </div>
-        
+                    {% endif %}
+                    {% if restaurant.pureVeg %}
                     <div class="icon">
-                        <i class="fa fa-heart"></i>  Special
+                        <i class="fa-solid fa-salad"></i> Pure Vegetarian
                     </div>
-                  </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if automotive %}
+                <div class="icons">
+                    {% if automotive.repair_services %}
+                    <div class="icon">
+                        <i class="fas fa-tools"></i> Repair Services
+                    </div>
+                    {% endif %}
+                    {% if automotive.parts_sales %}
+                    <div class="icon">
+                        <i class="fas fa-car"></i> Parts Sales
+                    </div>
+                    {% endif %}
+                    {% if automotive.towing_service %}
+                    <div class="icon">
+                        <i class="fas fa-truck"></i> Towing Service
+                    </div>
+                    {% endif %}
+                    {% if automotive.car_wash %}
+                    <div class="icon">
+                        <i class="fas fa-broom"></i> Car Wash
+                    </div>
+                    {% endif %}
+                    {% if automotive.appointment_required %}
+                    <div class="icon">
+                        <i class="fas fa-calendar-alt"></i> Appointment Required
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if beauty_spa %}
+                <div class="icons">
+                    {% if beauty_spa.massage_services %}
+                    <div class="icon">
+                        <i class="fas fa-massage"></i> Massage Services
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.facial_treatments %}
+                    <div class="icon">
+                        <i class="fas fa-spa"></i> Facial Treatments
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.nail_services %}
+                    <div class="icon">
+                        <i class="fas fa-paint-brush"></i> Nail Services
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.hair_styling %}
+                    <div class="icon">
+                        <i class="fas fa-scissors"></i> Hair Styling
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.makeup_services %}
+                    <div class="icon">
+                        <i class="fas fa-makeup"></i> Makeup Services
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.waxing %}
+                    <div class="icon">
+                        <i class="fas fa-waxing"></i> Waxing
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if doctor %}
+                <div class="icons">
+                    {% if doctor.accepts_insurance %}
+                    <div class="icon">
+                        <i class="fas fa-credit-card"></i> Accepts Insurance
+                    </div>
+                    {% endif %}
+                    {% if doctor.emergency_services %}
+                    <div class="icon">
+                        <i class="fas fa-ambulance"></i> Emergency Services
+                    </div>
+                    {% endif %}
+                    {% if doctor.appointment_required %}
+                    <div class="icon">
+                        <i class="fas fa-calendar-alt"></i> Appointment Required
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if shopping %}
+                <div class="icons">
+                    {% if shopping.clothing %}
+                    <div class="icon">
+                        <i class="fas fa-tshirt"></i> Clothing
+                    </div>
+                    {% endif %}
+                    {% if shopping.electronics %}
+                    <div class="icon">
+                        <i class="fas fa-tv"></i> Electronics
+                    </div>
+                    {% endif %}
+                    {% if shopping.groceries %}
+                    <div class="icon">
+                        <i class="fas fa-apple-alt"></i> Groceries
+                    </div>
+                    {% endif %}
+                    {% if shopping.home_goods %}
+                    <div class="icon">
+                        <i class="fas fa-couch"></i> Home Goods
+                    </div>
+                    {% endif %}
+                    {% if shopping.personal_care %}
+                    <div class="icon">
+                        <i class="fas fa-toothbrush"></i> Personal Care
+                    </div>
+                    {% endif %}
+                    {% if shopping.discounts_available %}
+                    <div class="icon">
+                        <i class="fas fa-tags"></i> Discounts Available
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if hotel %}
+                <div class="icons">
+                    {% if hotel.room_service %}
+                    <div class="icon">
+                        <i class="fas fa-concierge-bell"></i> Room Service
+                    </div>
+                    {% endif %} 
+                    {% if hotel.gym %}
+                    <div class="icon">
+                        <i class="fas fa-dumbbell"></i> Gym
+                    </div>
+                    {% endif %}
+                    {% if hotel.pool %}
+                    <div class="icon">
+                        <i class="fas fa-swimmer"></i> Pool
+                    </div>
+                    {% endif %}
+                    {% if hotel.spa %}
+                    <div class="icon">
+                        <i class="fas fa-spa"></i> Spa
+                    </div>
+                    {% endif %}
+                    {% if hotel.pet_friendly %}
+                    <div class="icon">
+                        <i class="fas fa-paw"></i> Pet Friendly
+                    </div>
+                    {% endif %}
+                    {% if hotel.wifi %}
+                    <div class="icon">
+                        <i class="fas fa-wifi"></i> WiFi Available
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
 
-                  <div class="ques">
+
+                <div class="ques">
                     <br><br>
                     <h4>Frequently asked Questions</h4>
+                    {% for faq in faqs %}
                     <div class="faq">
                         <div class="question">
-                    <p class="q" style="
+                            <p class="q" style="
                     margin-bottom: 0px;
-                    ">Q. What are your hours of operation?
-                    <i class="fa fa-chevron-circle-down arrowDown" aria-hidden="true"></i>
-                    </p></div>
-                  
-                    <div class="answer" style="background-color: white;padding: 10px;">
-                        <p>A.If you want to open the link in a new page (or tab), you can use window.open instead of window.location.href. The window.open method allows you to specify the URL to open and the target window or tab.</p>
+                    ">Q.{{faq.question}}?
+                                <i class="fa fa-chevron-circle-down arrowDown" aria-hidden="true"></i>
+                            </p>
+                        </div>
+
+                        <div class="answer" style="background-color: white;padding: 10px;">
+                            <p>A.{{faq.answer}}.</p>
+                        </div>
                     </div>
-                    </div>
-                    <div class="faq">
-                        <div class="question">
-                    <p class="q" style="
-                    margin-bottom: 0px;
-                    ">Q. What are your hours of operation?
-                    <i class="fa fa-chevron-circle-down arrowDown" aria-hidden="true"></i>
-                    </p></div>
-                  
-                    <div class="answer" style="background-color: white;padding: 10px;">
-                        <p>A.If you want to open the link in a new page (or tab), you can use window.open instead of window.location.href. The window.open method allows you to specify the URL to open and the target window or tab.</p>
-                    </div>
-                    </div>
-                    <div class="faq">
-                        <div class="question">
-                    <p class="q" style="
-                    margin-bottom: 0px;
-                    ">Q. What are your hours of operation?
-                    <i class="fa fa-chevron-circle-down arrowDown" aria-hidden="true"></i>
-                    </p></div>
-                  
-                    <div class="answer" style="background-color: white;padding: 10px;">
-                        <p>A.If you want to open the link in a new page (or tab), you can use window.open instead of window.location.href. The window.open method allows you to specify the URL to open and the target window or tab.</p>
-                    </div>
-                    </div>
-                </div>  
-                <br>
+                    {% endfor%}
+                </div>
                 <div class="review">
                     <h4>Reviews</h4>
                     <textarea name="review" id="" style="width: 100%;height: 70px;border: none;"></textarea>
@@ -150,114 +282,135 @@
                         <p style="font-size:15px;">Be the First One To Rate! <br>1Ratings</p>
                     </div>
                     <div class="Book">
-                        
+
                         <button class="b">
                             <div class="icon-container" style="display: inline-block; margin-right: 4px;">
-                            <i class="fas fa-calendar-alt calendar-icon"></i>
-                        </div>Book Now</button>
+                                <i class="fas fa-calendar-alt calendar-icon"></i>
+                            </div>Book Now
+                        </button>
                         <br>
                         <div class="share">
-                            <button class="share1"> <i class="fa fa-share" aria-hidden="true" style="display: inline-block; margin-right: 4px;" ></i>Share</button>
-                            <button class="share1"><i class="fa fa-bookmark" aria-hidden="true"style="display: inline-block; margin-right: 4px;"></i>Save</button>
+                            <button class="share1"> <i class="fa fa-share" aria-hidden="true"
+                                    style="display: inline-block; margin-right: 4px;"></i>Share</button>
+                            <button class="share1"><i class="fa fa-bookmark" aria-hidden="true"
+                                    style="display: inline-block; margin-right: 4px;"></i>Save</button>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="card map" style="width: 18rem;">
-                  <iframe style="width: 287px; height: 170px; border: none;"   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.579055443029!2d77.97018467445363!3d27.210123603412963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974775995746b5d%3A0x12a7f28958f443f!2sAcculizeinTech%20-%20Ethical%20Hacking%20Institute%20In%20Agra%20%2F%20Digital%20Marketing%20Course%20In%20Agra%20%2F%20Graphics%20Designing%20Institute%20In%20Agra!5e0!3m2!1sen!2sin!4v1720259021089!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe style="width: 287px; height: 170px; border: none;"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.579055443029!2d77.97018467445363!3d27.210123603412963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974775995746b5d%3A0x12a7f28958f443f!2sAcculizeinTech%20-%20Ethical%20Hacking%20Institute%20In%20Agra%20%2F%20Digital%20Marketing%20Course%20In%20Agra%20%2F%20Graphics%20Designing%20Institute%20In%20Agra!5e0!3m2!1sen!2sin!4v1720259021089!5m2!1sen!2sin"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <div class="card-body">
-                      <p class="card-text"></p>
-                      <p><i class="fas fa-map-marker-alt location-symbol"></i>{{listing_detail.business_address}}
-                      <br></p>
+                        <p class="card-text"></p>
+                        <p><i class="fas fa-map-marker-alt location-symbol"></i>{{listing_detail.address}},{{listing_detail.city}},{{listing_detail.state}},{{listing_detail.country}}
+                            <br>
+                        </p>
 
-                      <p style="margin-top: 6px;margin-bottom: 6px;"><i class="fas fa-phone-alt call-symbol"></i>{{listing_detail.Business_number}}</p>
-                      <br>
-                      <p id="globeId">
-                      <i class="fas fa-globe-americas globe-symbol"></i>https://www.acculizeintech.com/
-                      </p>
-                      
-                      <div class="sm">
-                        <a href="#" class="fab fa-facebook-f"></a>
-                        <a href="#" class="fab fa-instagram"></a>
-                        <a href="#" class="fab fa-linkedin-in"></a>
-                        <a href="#" class="fab fa-twitter"></a>
+                        <p style="margin-top: 6px;margin-bottom: 6px;"><i
+                                class="fas fa-phone-alt call-symbol"></i>{{listing_detail.phone_number}}</p>
+                        <br>
+                        <p id="globeId">
+                            <i class="fas fa-globe-americas globe-symbol"></i>{{listing_detail.website}}
+                        </p>
 
-                      </div>
-                    
+                        <div class="sm">
+                            <a href="#" class="fab fa-facebook-f"></a>
+                            <a href="#" class="fab fa-instagram"></a>
+                            <a href="#" class="fab fa-linkedin-in"></a>
+                            <a href="#" class="fab fa-twitter"></a>
+
+                        </div>
+
                     </div>
-                  </div>
+                </div>
 
-                  <div class="card" style="width: 18rem;">
+                <!-- <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                      <h4 class="card-title">Additional Details</h4>
-                      <p class="card-text" style="margin-bottom: 30px;">Delivery: NO</p>
-                      <p class="card-text">Take Out: NO</p>
-                      
+                        <h4 class="card-title">Additional Details</h4>
+                        {% if restaurant.delivery %}
+                        <p class="card-text" style="margin-bottom: 30px;">Delivery: YES</p>
+                        {% else %}
+                        <p class="card-text" style="margin-bottom: 30px;">Delivery: NO</p>
+                        {% endif %}
+                        {% if restaurant.take_out %}
+                        <p class="card-text">Take Out: YES</p>
+                        {% else %}
+                        <p class="card-text">Take Out: NO</p>
+                        {% endif %}
                     </div>
-                  </div>
+                </div> -->
 
-                  <div class="card details" style="width: 18rem;">
+                <div class="card details" style="width: 18rem;">
                     <div class="card-body">
                         <div class="pro">
-                          <img class="profile" src="images/profile.webp" alt="">
-                          <div>
-                            <div class="Name">
-                          <h5 class="card-title" style="margin-left: 10px;margin-bottom: 6px;">John Doe </h5>
-                          <button style="height: 30px;margin-top: 11px;">Visit Profile</button>
+                            <img class="profile" src="{{user.customuser.image.url}}" alt="">
+                            <div>
+                                <div class="Name">
+                                    <h5 class="card-title" style="margin-left: 10px;margin-bottom: 6px;">
+                                        {{listing_detail.user.customuser.full_name}} </h5>
+                                    <a href="{% url 'profile' listing_detail.user.id %}" style="height: 30px;margin-top: 11px;">Visit Profile</a>
 
-                           </div>
-                           <div class="camera">
-                            <i class="fa-solid fa-bars"></i>27
-                            <i class="fa-solid fa-camera"></i>109
-                            <i class="fa-solid fa-star"></i>7
+                                </div>
+                                <div class="camera">
+                                    <i class="fa-solid fa-bars"></i>27
+                                    <i class="fa-solid fa-camera"></i>109
+                                    <i class="fa-solid fa-star"></i>7
 
-                           </div>
-                          
+                                </div>
 
 
-                          </div>
-                         
+
+                            </div>
+
                         </div>
-                      <form action="">
-                        <input class="form-control" type="text" placeholder="Name">
-                        <input class="form-control" type="email" placeholder="Email">
-                        <input class="form-control" type="number" placeholder="Phone">
-                        <input class="form-control" type="text" style="height: 100px; position: relative;top :0px;" placeholder="Message"><br>
-                        <button>Send</button>
-                      </form>
-                     
+                        <form action="{% url 'listing_details' listing_id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="form_type" value="form_b">
+                            <input class="form-control" type="text" placeholder="Name" name="name">
+                            <input class="form-control" type="email" placeholder="Email">
+                            <input class="form-control" type="number" placeholder="Phone">
+                            <input class="form-control" type="text" style="height: 100px; position: relative;top :0px;"
+                                placeholder="Message"><br>
+                            <button type="submit">Send</button>
+                        </form>
+
                     </div>
-                  </div>
+                </div>
 
 
             </div>
+
         </div>
-       
-       
+        <footer class="f">
+            <div class="home">
+                <a href="#">Home</a>
+                <a href="#">Contact</a>
+                <a href="#">Services</a>
+                <a href="#">About</a>
+            </div>
+
+            <div class="social-media">
+
+                <p>&copy; 2024 ListingProW. All rights reserved.</p>
+                <p>Developed by Harshita Mahajan</p>
+                <div>
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin-in"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                </div>
+
+            </div>
+        </footer>
     </div>
-     
-    <footer class="f" >
-        <div class="home">
-            <a href="#">Home</a>
-            <a href="#">Contact</a>
-            <a href="#">Services</a>
-            <a href="#">About</a>
-        </div>
-        
-        <div class="social-media">
-            
-            <p>&copy; 2024 ListingProW. All rights reserved.</p>
-            <p>Developed by Harshita Mahajan</p>
-            <div>
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin-in"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            </div>
-            
-        </div>
-    </footer>
- <script src="{% static 'js/listing_details.js' %}"></script>
+
+
+
+
+    <script src="{% static 'js/listing_details.js' %}"></script>
 </body>
 
 

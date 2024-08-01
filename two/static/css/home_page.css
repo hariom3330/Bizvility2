@@ -12,16 +12,16 @@ body{
     color: #0d0c0c;
     background-size: cover;
     background-repeat: no-repeat;
-  
-  
 
+    /* overflow-x: hidden; */
 }
 .hero{
     width: 100%;
     height: 100vh;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: linear-gradient(rgba(4, 4, 5, 0.541),rgba(1, 4, 1, 0.081));
+    /* overflow-x: hidden; */
+    background-image: linear-gradient(rgba(4, 4, 5, 0.79),rgba(1, 4, 1, 0.484));
 
 }
 
@@ -94,6 +94,9 @@ nav li:first-child{
 
     }
 }
+.toggle{
+    display: none;
+}
 
 .content{
     padding: 180px 0.5px;
@@ -123,8 +126,7 @@ nav li:first-child{
 }
 
 .search input{
-    margin-top: 20px;
-    align-items: center;
+    margin-left: 10%;
     height: 52px;
     width: 510px;
     text-indent: 20px;
@@ -141,25 +143,13 @@ nav li:first-child{
 
 .search .fa-search{
     position: relative;
-    right: 18.7rem;
-    top: 3.4rem;
+    right: 16.5%;
+    top: 4.7vh;
+    display: none;
 }
 
-.search button{
-    /* margin-top: 20px;
-    margin-right: 520px;
-    position: absolute;
+.search button{ 
     top: 0px;
-    right: 5px;
-    height: 50px;
-    width: 110px;
-    background: rgb(46, 100, 119);
-    border-radius: 8px; */
-
-    
-    position: relative;
-    top: 0px;
-    right: -4px;
     height: 50px;
     width: 110px;
     background: rgb(46, 100, 119);
@@ -252,19 +242,13 @@ nav li:first-child{
     border-radius: 0 0 30% 30%;
 }
 
-/* .btn5::before, .btn4::before{
-    height: 180%;
-} */
 
 .btn1:hover::before, .btn2:hover::before, .btn5:hover::before, .btn4:hover::before, .btn3:hover::before{
     height: 180%;
 }
 
 .element{
-    margin-top: 8px;
-
 background: #dcdbdb;
-
 padding: 20px 0;
 text-align: center;
 width: auto;
@@ -322,6 +306,18 @@ max-width: 200px;
 border-radius: 1px;
 }
 
+
+.video-container
+{
+    background-color: #efefef;
+}
+
+.card-seemore{
+    text-decoration: none;
+    color: #151160;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
 
 
 .counter{
@@ -556,34 +552,81 @@ position: relative;
 padding: 0 10%;
 align-items: center;
 justify-content: center;
+transition: background0.3s, border-radius 0.3s, opacity 0.3s;
 
+}
+.last img{
+    background-image: linear-gradient(102deg, #000000aa 38%, #ffffff7c 94%);
 }
 
 .li{
-display: block;
-margin-top: 150px;
-width: 100%;
-height: 350px;
+margin-top: 50px;
+margin-left: 2%;
+width: 95%;
 border-radius: 8px;
+
+background-repeat: no-repeat;
+background-position: center;
 }
 
 .lasttext{
+    color: white;
+    position: absolute;
+    top: 35%;
+    left: 19%;
+    justify-content: center;
+    font-size: 26px;
 
-        position: absolute;
-        top: 120px;
-        left: 220px;
-        right: 0;
-        bottom: 0;
-        justify-content: center;
-        font-size: 24px;
+}
+.flex_button{
+    position: relative;
+    top: 25px;
+}
+
+.get-start{
+    color: white;
+    width: 16%;
+    padding: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #2440FF;
+    font-weight: bold;
+}
+
+.claim{
+    width: 30%;
+    padding: 14px;
+    border-radius: 5px;
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+.footer-upperbar{
+    margin-top: 3%;
+    width: 100%;
+    height: 98px;
+    background-color: #f9f9fb;
+}
+
+.upper{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    list-style: none;
+    font-size: 19px;
+    font-family: Sans-serif;
+} 
+
+.upper li{
+    margin-top: 40px;
+    margin-left: 11vw;
 }
 
 footer {
-
-margin-top: 5px;
 width: auto;
-background: #333;
-color: #fff;
+background: #f4f4f5;
+color: black;
 text-align: center;
 padding: 15px 0;
 }
@@ -596,7 +639,7 @@ margin: 0;
 {
 margin-top: 20px;
 margin-bottom: 20px;
-margin-left: 43%;
+margin-left: 41.5%;
 display: flex;
 gap: 40px;
 }
@@ -611,12 +654,12 @@ margin-top: 20px;
 
 .action_button{
 
-    margin-right: 5px;
-    padding: 7px 20px;
-    border-radius: 5px;
-    font-size: 15px;
-    border: none;
-    cursor: pointer;
+margin-right: 5px;
+padding: 7px 20px;
+border-radius: 5px;
+font-size: 15px;
+border: none;
+cursor: pointer;
 }
 
 .listing{
@@ -641,19 +684,83 @@ margin-top: 20px;
        border: 1px solid white;
 }
 
+.float{
+    margin-top: 21px;
+    color: #3c3c3c;
+}
+
+.icon{
+    margin-left: 40.5%;
+    font-size: 25px;
+}
+
+.icon a{
+    color: #3c3c3c;
+    text-decoration: none;
+}
 
 /* Responsive css */
 
+@media(max-width:1260px){
+    body{
+        width: 123vw;
+    }
+    .li{
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+    .upper li{
+        margin-left: 13vw;
+    }
+}
+
+@media (max-width:960px){
+        body{
+            width: 132vw;
+        }
+}
+@media(max-width:820px){
+    .hero{
+        width: 117%;
+    }
+    .element{
+        width: 117%;
+    }
+    .container{
+        width: 117%;
+    }
+    .video-container{
+        width: 117%;
+    }
+    .learnmore{
+        width: 117%;
+    }
+    .exclusive{
+        width: 117%;
+    }
+    .news{
+        width: 117%;
+    }
+}
+@media(max-width:769px){
+    body{
+        width: 164vw;
+    }
+}
+
+
 @media (max-width: 768px) {
 
+    .toggle{
+        display: block;
+    }
 
+    .footer-upperbar{
+        width: 105%;
+    }
     .hero{
-        background-image: linear-gradient(rgba(4, 4, 5, 0.652),rgba(1, 4, 1, 0.623));
-
-        display:grid;
-        width: 740px;
-        height: 700px;
-       
+        background-image: linear-gradient(rgba(4, 4, 5, 0.652), rgba(1, 4, 1, 0.623));
+        width: 172vw;
     }
     nav ul {
         flex-direction: row;
@@ -664,11 +771,15 @@ margin-top: 20px;
     nav li {
         margin: 10px 1px;
     }
+    .element{
+        width: 105%;
+    }
 
-
+/* 
     .content{
         margin-bottom: 250px;
-    }
+
+    } */
 
     .content h2{
         font-size: 50px;
@@ -696,10 +807,8 @@ margin-top: 20px;
     }
     
     .search button {
-        margin-top: 20px;
-        margin-right: 50px;
-        height: 50px;
-        width: 110px;
+        position: relative;
+        right: 2.5%;
     
     }
     
@@ -711,14 +820,21 @@ margin-top: 20px;
         color: #0d0c0c;
         display: flex;
         position: absolute;
-        padding-top: 35px;
-        margin-left: 10px;
-    
-    
+        right: 76.3%;
+        top: 26%;
+
+     
+    }
+
+    .video-container{
+        width: 105%;
+    }
+    .learnmore{
+        width: 105%;
     }
     
     .container{
-        width: 730px;
+        width: 105%;
     }
     
     .image{
@@ -748,18 +864,22 @@ margin-top: 20px;
     .exclusive{
         flex-direction: column;
         gap: 20px;
+        width: 105%;
     }
     
     .news{
         flex-direction: column;
         gap: 30px;
+        width: 105%;
     }
     
     .trip{
         flex-basis: 100%;
     }
+
     
     .trip .road{
+        margin-left: 3%;
         width: 500px;
     }
     
@@ -773,12 +893,22 @@ margin-top: 20px;
     
     .last{
         flex-direction: column;
+        margin-left: 15%;
     }
     .li{
-        width: 560px;
-        height: 300px;
+        width: 126vw;
+        /* height: 300px; */
     }
-    
+    .claim{
+        width: 50%;
+    }
+    .get-start{
+        width: 24%;
+    }
+    .upper li{
+        margin-left: 21vw;
+    }
+   
     .lasttext{
         margin-right: 150px;
     }
@@ -793,11 +923,181 @@ margin-top: 20px;
     .float {
         flex-direction: column;
     }
+    footer{
+        width: 105%;
+    }
     
     .icon {
-        margin-left: 260px;
+        margin-left: 40.5%;
         
     }
     
 }
 
+@media(max-width:555px){
+    .hero{
+        width: 201vw;
+
+    }
+    .search{
+        margin-left: 11%;
+    }
+    .search input{
+        width: 45%;
+        margin-right: 2.5%;
+    }
+    .search .fa-search{
+        right: 79.5%;
+    }
+    .element{
+        width: 122.5%;
+    }
+    .container{
+        width: 122.5%;
+    }
+    .video-container{
+        width:122.5%;
+    }
+    .card_videos{
+        margin-left: 1px;
+    }
+    .learnmore{
+        background-color: white;
+        border: none;
+    }
+    .exclusive{
+        width: 122.5%;
+    }
+    .news{
+        width: 122.5%;
+    }
+    .li{
+        width:122.5%;
+    }
+    footer{
+        width:122.5%;
+    }
+    .icon{
+        margin-left: 34.5%;
+    }
+
+    .upper li{
+        margin-left: 18vw;
+    }
+    .lasttext h1{
+        font-size: 29px;
+    }
+    .lasttext{
+        margin-top: -45px;
+    }
+    .flex_button{
+        top: 14px;
+    }
+    .get-start a{
+        font-size: 8px;
+    }
+    .claim a{
+        font-size: 9px;
+    }
+}
+@media(max-width:415px){
+    .hero{
+        width:  211vw;
+    }
+
+    .search .fa-search{
+        width: 80.5%;
+    }
+    .btn2{
+        display: none;
+    }
+    .element{
+        width: 128.5%;
+    }
+    .container{
+        width:128.5%;
+    }
+    .video-container{
+        width:128.5%;
+    }
+    .exclusive{
+        width:128.5%;
+    }
+    .news{
+        width:128.5%;
+    }
+    .li{
+        width: 120%;
+    }
+    .last img{
+        height: 45vh;
+    }
+    .lasttext{
+        margin-left: 0%;
+    }
+    .flex_button{
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+    .get-start{
+        width: 30%;
+    }
+    .lasttext h1{
+        font-size: 21px;
+    }
+    .lasttext p{
+        font-size: 14px;
+    }
+    .footer-upperbar{
+        width: 128.5%;
+    }
+    footer{
+        width: 128.5%;
+    }
+    .icon{
+        margin-left: 33.5%;
+    }
+}
+@media(max-width:365px){
+
+    .hero{
+        width:225vw;
+    }
+    .content h2{
+        font-size: 45px;
+    }
+    .content p{
+        font-size: 18px;
+    }
+    .btn4{
+        display: none;
+    }
+    .element{
+        width: 137%;
+    }
+    .container{
+        width: 137%;
+    }
+    .video-container{
+        width: 137%;
+    }
+    .exclusive{
+        width: 137%;
+    }
+    .news{
+        width: 137%;
+    }
+    .li{
+        width: 137%;
+    }
+    .lasttext{
+        margin-right: 0;
+    }
+    .footer-upperbar{
+        width: 137%;
+    }
+    footer{
+        width:137%;
+    }
+}

@@ -33,10 +33,12 @@
                 <button type="button" id="ser_btn"><i class='bx bx-search-alt-2' id="searchicon"></i></button>
             </div>
             <div class="actions">
+                {% if user.id == profile_user.id %}
                 {% if user.is_superuser %}
                 <button onclick="addListing()" class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
                 {%endif%}
                 <button onclick="logout()" class="sign-in">Log Out</button>
+                {%endif%}
             </div>
             <li onclick=showSidebar() style="list-style: none; margin-right: 11px;" class="toggle"><a href="#"><svg
                         xmlns="http://www.w3.org/2000/svg" height="4rem" viewBox="0 -960 960 960" width="24px"
@@ -52,27 +54,25 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-header-headshot"></div>
+                                <div class="card-header-headshot" style="height: 6em;
+                                width: 6em;
+                                border-radius: 50%;
+                                border: 2px solid #009688;
+                                background-image: url('{{profile_user.image.url}}');
+                                background-size: cover;
+                                background-position: center center;
+                                box-shadow: 1px 3px 3px #3E4142;">
+                                    <!-- <img src="" alt=""> -->
+                                </div>
                             </div>
                             <div class="card-content">
                                 <div class="card-content-member text-center">
-                                    <h4 class="m-t-0">{{user.signup.full_name}}</h4>
-                                    <p class="m-t-0">Agra</p>
+                                    <h4 class="m-t-0">{{profile_user.full_name}}</h4>
+                                    <p class="m-t-0">{{profile_user.address}}</p>
                                 </div>
                                 <div class="card-content-languages">
-                                    <div class="card-content-languages-group">
-                                        <div>
-                                            <h4>Speaks:</h4>
-                                        </div>
-                                        <div>
-                                            <ul>
-                                                <li>
-                                                    English, Hindi
-                                                    <div class="fluency fluency-4"></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <!-- <div class="card-content-languages-group">
+                                    </div> -->
                                 </div>
                                 <div class="card-content-summary">
                                     <p>Specialties are Creative UI, HTML5, CSS3, Semantic Web, Responsive Layouts, Web
@@ -218,9 +218,9 @@
                             <div class="row" style="margin-top: 0;">
                                 <div class="col-sm-3">
                                     <div class="review-block-img">
-                                        <img src="/media/{{listing.main_img}}" class="img-rounded" alt="">
+                                        <img src="{{listing.thumbnail.url}}" class="img-rounded" alt="">
                                     </div>
-                                    <div class="review-block-name"><a href="#">{{listing.name_service}}</a></div>
+                                    <div class="review-block-name"><a href="#">{{listing.title}}</a></div>
                                     <div class="review-block-date">{{listing.created_at}}<br>{{ listing.created_at | timesince }}</div>
                                 </div>
                                 <div class="col-sm-9">
@@ -246,8 +246,8 @@
                                                     class="fa fa-star" aria-hidden="true"></i></span>
                                         </button>
                                     </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">{{listing.about_business}}
+                                    <div class="review-block-title">{{listing.tagline}}</div>
+                                    <div class="review-block-description">{{listing.description}}
                                     </div>
                                 </div>
                             </div>
