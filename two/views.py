@@ -1,29 +1,30 @@
-from django.contrib.auth import authenticate, login  as auth_login,logout
+from django.core.exceptions import ValidationError
+from django.shortcuts import render, get_object_or_404
+import uuid
+from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.shortcuts import render,redirect,HttpResponseRedirect
+from django.shortcuts import render, redirect
 from .models import *
-from django.contrib.auth import get_user_model
-from .models import CustomUser, Signup,Video
-from .backends import EmailBackend 
 from django.contrib.auth.decorators import login_required
 from .helpers import send_forget_password_mail
-from django.views import View
 from django.http import JsonResponse
 from django.http import HttpResponseForbidden
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 def simplify_timesince(value):
     now = timezone.now()
     difference = now - value
-    
+
     years = difference.days // 365
     months = difference.days % 365 // 30
     days = difference.days % 30
     hours = difference.seconds // 3600
     minutes = (difference.seconds % 3600) // 60
     seconds = difference.seconds % 60
-    
+
     if years > 0:
         return f"{years} {'year' if years == 1 else 'years'} ago"
     elif months > 0:
@@ -37,12 +38,14 @@ def simplify_timesince(value):
     else:
         return f"{seconds} {'second' if seconds == 1 else 'seconds'} ago"
 
+
 def index(request):
     videos = Video.objects.all()[0:4]
-    return render(request,'index3.html', {'videos':videos  })
+    return render(request, 'homePage.html', {'videos': videos})
 
-def index2(request):
-    return render(request,'index.html')
+
+# def index2(request):
+#     return render(request, 'index.html')
 
 
 def reels(request):
@@ -84,12 +87,12 @@ def reels(request):
             comments_list = []
             for comment in data:
                 comments_list.append({
-                    'full_name': comment.user.signup.full_name,  
+                    'full_name': comment.user.full_name,
                     'comment': comment.comment,
                     'created_at': comment.created_at,
                     'timesince': simplify_timesince(comment.created_at)
                 })
-            return JsonResponse(comments_list,safe=False)
+            return JsonResponse(comments_list, safe=False)
         elif action == 'add_comment':
             content = request.POST.get('comment')
             video_id = request.POST.get('video_id')
@@ -102,207 +105,170 @@ def reels(request):
                 comment=content
             )
 
-            commentuser = CustomUser.objects.get(id=comment.user.id)
-            
+            commentuser = Users.objects.get(id=comment.user.id)
+
             value = simplify_timesince(comment.created_at)
             if value == '0 seconds ago':
                 value = 'Just now'
             return JsonResponse({
-                'username': comment.user.signup.full_name,  
+                'username': comment.user.full_name,
                 'timesince': value,
-                'profile': commentuser.signup.image.url if commentuser.signup.image else None   
+                'profile': commentuser.image.url if commentuser.image else None
             })
-        return JsonResponse({"like":video.likes.count(),"dislike":video.dislikes.count()})
-    return render(request,'reels_city.html',context)
+        return JsonResponse({"like": video.likes.count(), "dislike": video.dislikes.count()})
+    return render(request, 'reels_city.html', context)
 
 
 def add(request):
-    return render(request,'index4.html')
-# def detail(request):
-#     return render(request,'detail.html')
-class ProductDetailView(View):
-    def get(self,request,pk):
-        listings = Listing.objects.get(id=pk)
-        print(listings)
-        return render(request, 'detail.html', {'Listing':listings}) 
+    return render(request, 'index4.html')
 
 
 def result(request):
     one = request.GET.get('search_value')
-    all =Business.objects.filter(title__icontains=one) 
-    print(all)
-    param ={'listings':all}
-    return render(request,'index5.html',param)  
+    all = Business.objects.filter(title__icontains=one)
+    print(one)
+    param = {'listings': all, 'search_value': one}
+    return render(request, 'index5.html', param)
 
-def searchByCategory(request,category):
-    listings =Business.objects.filter(category__category=category) 
+
+def searchByCategory(request, category):
+    listings = Business.objects.filter(category__category=category)
     print(listings)
-    param ={'listings':listings,'category':category}
-    return render(request,'searchbycategory.html',param)
+    param = {'listings': listings, 'category': category}
+    return render(request, 'searchbycategory.html', param)
 
-def listing_details(request,listing_id):
+
+def listing_details(request, listing_id):
     listing_detail = Business.objects.get(pk=listing_id)
     faqs = listing_detail.faqs.all()
-    context = {'listing_detail':listing_detail,'faqs':faqs,'listing_id':listing_id}
+    context = {'listing_detail': listing_detail,
+               'faqs': faqs, 'listing_id': listing_id}
     if request.method == 'POST':
         form_type = request.POST.get('form_type')
         if form_type == 'form_a':
             user_review = request.POST.get('review')
             rating = request.POST.get('rating')
             review_data = Review.objects.create(
-                user = request.user,
-                rating = rating,
-                comment = user_review,
-                business = listing_detail
+                user=request.user,
+                rating=rating,
+                comment=user_review,
+                business=listing_detail
             )
         elif form_type == 'form_b':
             name = request.POST.get('name')
             print(name)
     if listing_detail.category.category == 'Restaurant':
-        businessDetails = Restaurant.objects.get(title = listing_detail.title)
+        businessDetails = Restaurant.objects.get(title=listing_detail.title)
         context['restaurant'] = businessDetails
     elif listing_detail.category.category == 'Automotive':
-        businessDetails = Automotive.objects.get(title = listing_detail.title)
+        businessDetails = Automotive.objects.get(title=listing_detail.title)
         context['automotive'] = businessDetails
     elif listing_detail.category.category == 'Beauty':
-        businessDetails = BeautySpa.objects.get(title = listing_detail.title)
+        businessDetails = BeautySpa.objects.get(title=listing_detail.title)
         context['beauty_spa'] = businessDetails
     elif listing_detail.category.category == 'Hotel':
-        businessDetails = Hotel.objects.get(title = listing_detail.title)
+        businessDetails = Hotel.objects.get(title=listing_detail.title)
         context['hotel'] = businessDetails
     elif listing_detail.category.category == 'Doctor':
-        businessDetails = Doctor.objects.get(title = listing_detail.title)
+        businessDetails = Doctor.objects.get(title=listing_detail.title)
         context['doctor'] = businessDetails
     elif listing_detail.category.category == 'Shopping':
-        businessDetails = Shopping.objects.get(title = listing_detail.title)
+        businessDetails = Shopping.objects.get(title=listing_detail.title)
         context['shopping'] = businessDetails
-    return render(request,'listing_details.html',context)
+    return render(request, 'listing_details.html', context)
+
 
 @login_required
 def Listing_form(request):
-    if not request.user.is_superuser:
+    if not request.user.is_authenticated:
         return HttpResponseForbidden("You are not authorized to access this page.")
-    
+    if not request.user.isAdmin:
+        return HttpResponseForbidden("You are not authorized to access this page.")
+
     if request.method == 'POST':
         title = request.POST.get('listing-title')
         return redirect('select_plan')
-    return render(request,'listing_form1.html')
+    return render(request, 'listing_form1.html')
+
 
 def select_plan(request):
-    return render(request,'select_plan.html')
+    return render(request, 'select_plan.html')
 
-def listing(request):
-    return render(request,'listing.html')
 
-def add_listing(request):
-    return render(request,'add_listing.html')
-    
+# def listing(request):
+#     return render(request, 'listing.html')
+
+
+# def add_listing(request):
+#     return render(request, 'add_listing.html')
+
 
 def regi(request):
-    if request.method == "POST":
-        try:
-            user_type = request.POST.get('user_type')
-            username = request.POST['username']
-            email = request.POST['email']    
-            password1 = request.POST['password1']
-            password2 = request.POST['password2']
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        contact = request.POST.get('contact')
+        address = request.POST.get('address')
+        state = request.POST.get('state')
+        city = request.POST.get('city')
+        bio = request.POST.get('bio', '')
+        dob = request.POST.get('dob')
+        isAdmin = request.POST.get('user_type')
 
-            # # Check if username or email already exists
-            # if CustomUser.objects.filter(email=email).exists():
-            #     messages.info(request, 'Username already taken')
-            #     return render(request, 'regi.html')
-            
-            if CustomUser.objects.filter(email=email).exists():
-                messages.warning(request, 'Email already taken')
-                return render(request, 'regi.html')
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email is already taken.")
+            return redirect('register')
 
-            # Check if passwords match
-            if password1 != password2:
-                messages.warning(request, 'Passwords do not match. Please try again.')
-                return render(request, 'regi.html')
-
-            # Create user object
-            if user_type == 'admin':
-                user = CustomUser.objects.create_superuser(email=email, password=password1)
-            else:
-                user = CustomUser.objects.create_user(email=email, password=password1)
-
-            # Create Signup object and associate it with the user
-            signup = Signup.objects.create(user=user, full_name=username)
-            signup.save()
-
-            messages.success(request, 'Account created successfully')
-            return redirect('login')  # Redirect to login page after successful registration
-
-        except Exception as e:
-            messages.error(request, f'An error occurred: {e}')
-            return render(request, 'regi.html')
-            
+        user = User.objects.create_user(
+            email=email, password=password, full_name=full_name, contact=contact, address=address, state=state, city=city,bio=bio,dob=dob) # type: ignore
+        auth_login(request, user)
+        messages.success(
+            request, "Registration successful. You can now login.")
+        return redirect('index')
     return render(request, 'regi.html')
+
 
 def login(request):
     if request.method == "POST":
         email = request.POST.get('email')
         # username = request.POST.get('uname')
         password = request.POST.get('password')
-        user_type = request.POST.get('login_option')  # Get the selected user type
+        # Get the selected user type
 
         user = authenticate(request, email=email, password=password)
         # user = authenticate(request, username=username, password=password)
         if user is not None:
-            if user.is_active:
-                auth_login(request, user)
-                if user_type == 'admin' and user.is_staff:
-                    # Redirect admin users to admin panel
-                    return redirect('/')
-                    # return redirect('admin_panel')  # Replace 'admin_panel' with the URL name of your admin panel
-                elif user_type == 'guest' and not user.is_staff:
-                    # Redirect regular users to index page
-                    print('User login successful')
-                    return redirect('index')  # Replace 'index' with the URL name of your index page
-                else:
-                    messages.error(request, "You are not authorized to access this page.")
-            else:
-                messages.error(request, "Your account is inactive.")
+            auth_login(request, user)
+            return redirect('index')
         else:
             messages.error(request, "Invalid username or password.")
-    
+
     # Render the login page if it's a GET request or login failed
     return render(request, 'login.html')
+
 
 def user_logout(request):
     logout(request)
     messages.success(request, "Logout Successfully")
     return redirect('index')
 
-from django.shortcuts import render, get_object_or_404
-# profile
-# @login_required
-# def profile(request):
-#     signup = Signup.objects.get(user=request.user)
-#     custom_user = signup.user
-#     full_name = signup.full_name
-#     email = custom_user.email
-    
-#     return render(request, 'profile.html', {'username': full_name, 'email': email})
 
 @login_required
-def profile(request,user_id):
+def profile(request, user_id):
     user = request.user
-    profile_user = Signup.objects.get(user=user_id)
-    listings = Business.objects.filter(user = user_id)
-    print(user.id,profile_user.id)
-    return render(request, 'profile.html', {'profile_user': profile_user,'listings':listings})
+    profile_user = Users.objects.get(pk=user_id)
+    listings = Business.objects.filter(user=user_id)
+    return render(request, 'profile.html', {'profile_user': profile_user, 'listings': listings})
 
-from django.core.exceptions import ValidationError
-import uuid
+
 # def forget(request):
 #     try:
 #         if request.method == 'POST':
 #             email = request.POST.get('email')
 #             if CustomUser.objects.filter(email=email).exists():
 #                 messages.success(request, "Password reset instructions have been sent to your email.")
-                
+
 #                 user_obj= CustomUser.objects.get(email=email)
 #                 token = str(uuid.uuid4())
 #                 signup_obj=Signup.objects.get(user = user_obj)
@@ -355,7 +321,7 @@ import uuid
 #             Profile = Signup.objects.get(user = user)
 #             Profile.forget_password_token = token
 #             Profile.save()
-            
+
 #             send_forget_password_mail(CustomUser.email, token)
 #             messages.error(request,'An Email is sent..')
 #             return redirect('/forget/')
@@ -370,79 +336,51 @@ import uuid
 def ChangePassword(request, token):
     context = {}
     try:
-        signup_obj = Signup.objects.filter(forget_password_token=token)
+        signup_obj = Users.objects.filter(forget_password_token=token)
         # Assuming you want to retrieve the associated user from Signup object
-        user = signup_obj.user
+        user = signup_obj.id
         context['user'] = user
-    except Signup.DoesNotExist:
+    except Users.DoesNotExist:
         messages.error(request, 'Invalid or expired token')
         return redirect('/forget/')
     return render(request, 'change-password.html', context)
 
+
 def forget(request):
     if request.method == 'POST':
         email = request.POST.get('email')
-        user = CustomUser.objects.filter(email=email).first()
-   
+        user = Users.objects.filter(email=email).first()
+
         if not user:
             messages.error(request, 'No user found with this email')
             return redirect('/forget/')
-        
+
         token = str(uuid.uuid4())
-        profile, created = Signup.objects.get_or_create(user=user)
-   
+        profile, created = Users.objects.get_or_create(user=user)
+
         profile.forget_password_token = token
-   
+
         profile.save()
-        send_result=send_forget_password_mail(user, token)
+        send_result = send_forget_password_mail(user, token)
         if send_result:
-            messages.success(request, 'An email has been sent with instructions to reset your password')
+            messages.success(
+                request, 'An email has been sent with instructions to reset your password')
         else:
-            messages.error(request, 'Failed to send reset password email. Please try again later.')
-            
+            messages.error(
+                request, 'Failed to send reset password email. Please try again later.')
+
         # messages.success(request, 'An email has been sent with instructions to reset your password')
         return redirect('/forget/')
     return render(request, 'forget.html')
 
-# def update_profile(request,pid):
-#     data = Signup.objects.get(id=pid)
-#     cat = Signup.objects.all()
-#     if request.method == 'POST':
-#         f = request.POST['fname']
-#         l = request.POST['lname']
-#         e = request.POST['email']
-#         con = request.POST['contact']
-#         add = request.POST['add']
-#         cat = request.POST['group']
-#         try:
-#             im = request.FILES['image']
-#             data.image=im
-#             data.save()
-#         except:
-#             pass
-#         data.user.first_name = f
-#         data.user.last_name = l
-#         data.user.email = e
-#         data.contact = con
-#         bl = Signup.objects.get(id=cat)
-#         data.blood_group = bl
-#         data.address = add
-#         data.user.save()
-#         data.save()
-#         messages.success(request, "User Profile updated")
-#         if request.user.is_staff:
-#             return redirect('view_user')
-#         else:
-#             return redirect('profile')
-#     d = {'data':data, 'cat':cat}
-#     return render(request,'edit_profile.html',d)
+
 
 
 
 @login_required
 def update_profile(request):
     user = request.user
-    signup_instance = Signup.objects.get(user=user)
+    signup_instance = Users.objects.get(user=user)
 
     if request.method == 'POST':
         user.first_name = request.POST.get('first_name')
@@ -457,6 +395,7 @@ def update_profile(request):
         signup_instance.image = request.FILES.get('image')
         signup_instance.save()
 
-        return redirect('profile')  # Redirect to profile page after successful update
+        # Redirect to profile page after successful update
+        return redirect('profile')
 
     return render(request, 'update_profile.html', {'user': user, 'signup': signup_instance})

@@ -89,7 +89,7 @@ DATABASES = {
 }
 
 # in settings.py
-AUTH_USER_MODEL = 'two.CustomUser'
+AUTH_USER_MODEL = 'two.Users'
 
 AUTHENTICATION_BACKENDS = [
     'two.backends.EmailBackend',

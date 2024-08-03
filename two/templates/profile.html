@@ -40,7 +40,7 @@
             </div>
             <div class="actions">
                 {% if user.id == profile_user.id %}
-                {% if user.is_superuser %}
+                {% if user.isAdmin %}
                 <button onclick="addListing()" class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
                 {%endif%}
                 <button onclick="logout()" class="sign-in">Log Out</button>
@@ -73,8 +73,7 @@
                                     </div> -->
                                 </div>
                                 <div class="card-content-summary">
-                                    <p>Specialties are Creative UI, HTML5, CSS3, Semantic Web, Responsive Layouts, Web
-                                        Standards Compliance, Performance Optimization, Cross Device Troubleshooting.
+                                    <p>{{profile_user.bio}}
                                     </p>
                                 </div>
                             </div>
@@ -290,7 +289,7 @@
             }
         }
         function addListing(){
-            window.location.href= '/'
+            window.location.href= '/Listing_form/'
         }
     </script>
 </body>

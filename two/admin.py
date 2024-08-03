@@ -1,21 +1,32 @@
 from django.contrib import admin
-from .models import *
+from django.contrib.auth.admin import UserAdmin
+from .models import Users, Video, Comments, PlanPrices, Categories, Business, Restaurant, Hotel, Automotive, BeautySpa, Doctor, Shopping, BusinessHours, FAQ, SocialMedia
 
-# class SignupAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'user','email')
+class CustomUserAdmin(UserAdmin):
+    model = Users
+    list_display = ('email', 'full_name', 'is_staff', 'is_superuser')
+    list_filter = ('is_staff', 'is_superuser', 'is_active')
+    search_fields = ('email', 'full_name')
+    ordering = ('email',)
 
-# admin.site.register(Signup, SignupAdmin)
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('full_name', 'contact', 'address', 'state', 'city', 'bio', 'dob', 'image','isAdmin')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+        ('Important dates', {'fields': ('last_login',)}),
+    )
 
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'full_name', 'password1', 'password2'),
+        }),
+    )
 
+    # Remove filter_horizontal attributes since they are not applicable
+    filter_horizontal = ()
 
-admin.site.register(CustomUser)
-
-
-class SignupAdmin(admin.ModelAdmin):
-    list_display = ['id','full_name', 'user','forget_password_token','contact','address','dob','image']
-
-admin.site.register(Signup, SignupAdmin)
-admin.site.register(Listing)
+admin.site.register(Users, CustomUserAdmin)
 
 admin.site.register(Video)
 admin.site.register(Comments)

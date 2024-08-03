@@ -420,7 +420,7 @@ Google Fonts -->
             </div>
             <div class="actions">
                 {% if user.is_authenticated %}
-                {% if user.is_superuser %}
+                {% if user.isAdmin %}
                 <button class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</button>
                 {%endif%}
                 <button class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.customuser.full_name}}</button>

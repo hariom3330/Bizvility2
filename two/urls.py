@@ -17,9 +17,7 @@ urlpatterns = [
     # path('add/',add, name="add"),
     path('Listing_form/',Listing_form, name="Listing_form"),
     path('select_plan/',select_plan, name="select_plan"),
-    path('listing/',listing, name="listing"),
     path('reels/',reels, name="reels"),
-    path('index2/',index2,name='index2'),
 
     
     path('forget/',forget, name="forget"),
@@ -27,8 +25,6 @@ urlpatterns = [
     path('profile/update/', update_profile, name='update_profile'),
     path('result/', result, name='result'),
     # path('detail/', detail, name='detail'),
-    path('add_listing/', add_listing, name='add_listing'),
-    path('productdetail/<int:pk>', views.ProductDetailView.as_view(), name="productdetail"),
     path('searchByCategory/<str:category>',searchByCategory,name='searchByCategory'),
     path('listing_details/<int:listing_id>',listing_details,name='listing_details')
   

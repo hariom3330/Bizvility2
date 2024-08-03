@@ -144,12 +144,6 @@ form .text h3 a:hover{
     {% endif %}
     <form action="" method="POST" >
       {% csrf_token %}
-      <div id="login-options">
-        <input type="radio" id="guest-option" name="login_option" value="guest" checked>
-        <label for="guest-option">Guest</label>
-        <input type="radio" id="admin-option" name="login_option" value="admin">
-        <label for="admin-option">Admin</label>
-    </div>
 
       <div class="input-box">
         {% comment %} <input type="text" placeholder="Enter your Username" name="uname" required> {% endcomment %}

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result for {{category}}</title>
+    <title>Result for {{search_value}}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/searchByCategory.css' %}">
 </head>
@@ -14,7 +14,7 @@
     <div class="full">
         <div class="head">
             <div class="head-left">
-               <div class="text">Results for <a href="#">{{category}}</a> </div>
+               <div class="text">Results for <a href="#">'{{search_value}}'</a> </div>
             </div>
             <div class="head-right">
                     <div class="dropdown">
@@ -101,9 +101,9 @@
          <div class="card-row">
             {% for listing in listings%}
             <div class="card">
-                <img src="{{listing.thumbnail.url}}" alt="">
+                <a href="{% url 'listing_details' listing.id %}" target="_blank" ><img src="{{listing.thumbnail.url}}" alt=""></a>
                 <div class="card-text">
-                    <h3>{{listing.title}}</h3>
+                    <a href="{% url 'listing_details' listing.id %}" target="_blank" rel="noopener noreferrer"><h3>{{listing.title}}</h3></a>
                      <div class="rating">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>

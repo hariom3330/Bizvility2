@@ -1,8 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from django.core.exceptions import ValidationError
-
-
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -15,28 +12,37 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('isAdmin', True)
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
+        if extra_fields.get('isAdmin') is not True:
+            raise ValueError('Superuser must have isAdmin=True.')
 
         return self.create_user(email, password, **extra_fields)
 
-
-class CustomUser(AbstractBaseUser):
-    email = models.EmailField(unique=True)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
+class Users(AbstractBaseUser):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100,unique=True)
+    password = models.CharField(max_length=200)
+    is_staff = models.BooleanField(default=False)  
+    is_active = models.BooleanField(default=True)  
+    is_superuser = models.BooleanField(default=False)  
+    isAdmin = models.BooleanField(default=False)
+    contact = models.CharField(max_length=100, null=True, blank=True)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+    bio = models.CharField(max_length=150,default='')
+    dob = models.DateField(null=True, blank=True)
+    image = models.ImageField(upload_to='profile_images/', default='profile_images/defaultpfpsvg.png')
+    forget_password_token = models.CharField(max_length=150, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-
-    # Add this line if is_superuser is not defined in your CustomUser model
-    is_superuser = models.BooleanField(default=False)
+    REQUIRED_FIELDS = []
 
     class Meta:
         # Add this line to define permissions if needed
@@ -47,60 +53,16 @@ class CustomUser(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_superuser
-
-
-class Signup(models.Model):
-    user = models.OneToOneField('CustomUser', on_delete=models.CASCADE,related_name='customuser')
-    forget_password_token = models.CharField(max_length=150, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    full_name = models.CharField(max_length=100)
-    contact = models.CharField(max_length=100, null=True, blank=True)
-    address = models.CharField(max_length=100, null=True, blank=True)
-    dob = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='profile_images/', default='profile_images/defaultpfpsvg.png')
+    
     def __str__(self):
-        return self.full_name
-
-
-class Listing(models.Model):
-    CATEGORY_CHOICES = [
-        ('Automotive', 'Automotive'),
-        ('Beauty', 'Beauty'),
-        ('Hotel', 'Hotel'),
-        ('Doctor', 'Doctor'),
-        ('Restaurant', 'Restaurant'),
-        ('Shopping', 'Shopping'),
-    ]
-
-    name_service = models.CharField(max_length=250)
-    about_business = models.TextField()
-    category = models.CharField(max_length=15, choices=CATEGORY_CHOICES)
-    Business_number = models.CharField(max_length=12)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    business_address = models.CharField(max_length=250)
-    state = models.CharField(max_length=250)
-    city = models.CharField(max_length=250)
-    business_owner_number = models.IntegerField()
-    pincode = models.IntegerField()
-    rating = models.IntegerField()
-    main_img = models.ImageField()
-    img1 = models.ImageField()
-    img2 = models.ImageField()
-    img3 = models.ImageField()
-    img4 = models.ImageField()
-    img5 = models.ImageField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name_service
-
+        return self.email
 
 class Video(models.Model):
     video_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256)
     Video = models.FileField(upload_to='video/')
-    likes = models.ManyToManyField(CustomUser, related_name='likes')
-    dislikes = models.ManyToManyField(CustomUser, related_name='dislikes')
+    likes = models.ManyToManyField(Users, related_name='likes')
+    dislikes = models.ManyToManyField(Users, related_name='dislikes')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -110,7 +72,7 @@ class Video(models.Model):
 class Comments(models.Model):
     comment_id = models.AutoField(primary_key=True)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -125,7 +87,7 @@ class PlanPrices(models.Model):
     ("Google business profile, Whatsapp business account, Sub domain website, Current month festive post, Managing google business page, Managing social media handle's, 4 marketing post for facebook instagram and google business page, 1 cover for facebook instagram and google business page, 4 social media marketing post boast on facebook or instagram, Website static website, Domain, Hosting, Website maintenance, Website static website, dynamic website, Ecom, Domain, Hosting, Website maintenance, 1 time 10 product listing(in case of ecom), Billing portal, Hrm portal, Inventory portal", "19,999rs")
 ]
     plan_data = models.CharField(max_length=600, choices=PLAN_DATA_LIST)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
 
 class Categories(models.Model):
     CATEGORY_CHOICES = [
@@ -138,9 +100,12 @@ class Categories(models.Model):
     ]
     category = models.CharField(max_length=15, choices=CATEGORY_CHOICES)
 
+    def __str__(self):
+        return self.category
+
 
 class Business(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='businesses')
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='businesses')
     title = models.CharField(max_length=100, unique=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='businesses')  
     tagline = models.CharField(max_length=50, null=True)
@@ -160,6 +125,9 @@ class Business(models.Model):
     pincode = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
     def get_google_maps_link(self):
         address_data = f"{self.address}, {self.city}, {self.state}, {self.pincode}, {self.country}"
@@ -245,7 +213,7 @@ class FAQ(models.Model):
 
 
 class Review(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -253,7 +221,7 @@ class Review(models.Model):
 
 
 class SocialMedia(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='social_media')
+    user = models.OneToOneField(Users, on_delete=models.CASCADE, related_name='social_media')
     facebook = models.CharField(max_length=100, null=True)
     twitter = models.CharField(max_length=100, null=True)
     instagram = models.CharField(max_length=100, null=True)

@@ -48,10 +48,10 @@
                 <li><a href="#">Explore Services</a></li>
                 <div class="actions">
                     {% if user.is_authenticated %}
-                    {% if user.is_superuser %}
+                    {% if user.isAdmin %}
                     <a href="{% url 'Listing_form' %}" class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</a>
                     {%endif%}
-                    <a href="{% url 'profile' user.id %}" class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.signup.full_name}}</a>
+                    <a href="{% url 'profile' user.id %}" class="sign-in"><i class='bx bxs-user' id="user2"></i>{{user.full_name}}</a>
                     {% else %}
                     <a class="add-listing"><i class='bx bxs-plus-circle' id="user1"></i> Add Listing</a>
                     <a class="sign-in"><i class='bx bxs-user' id="user2"></i> Sign In</a>
@@ -60,20 +60,20 @@
             </ul>
 
             <ul>
-                <li><a href="#"><img src="{% static 'images/logo_bi.png' %}" alt="ListingPro Logo" class="logo"></a></li>
+                <li><a href="#"><img src="{% static 'images/Logo_bi.png' %}" alt="ListingPro Logo" class="logo"></a></li>
                 <li class="hideOnMoblie"><a href="#">Explore Categories</a></li>
                 <li class="hideOnMoblie"><a href="#">Explore Location</a></li>
                 <li class="hideOnMoblie"><a href="#">Explore Services</a></li>
                 <div class="hideOnMoblie listing">
                     {% if user.is_authenticated %}
-                    {% if user.is_superuser %}
+                    {% if user.isAdmin %}
                     <a href="{% url 'Listing_form' %}" class="action_button listing btn-blue"><i class='bx bxs-plus-circle'
                             id="user1"></i>Add Listing</a>
                     {%endif%}
                     <a href="{% url 'profile' user.id %}" id="signIn" class="action_button"><i class='bx bxs-user'
-                            id="user2"></i>{{user.customuser.full_name}}</a>
+                            id="user2"></i>{{user.full_name}}</a>
                     {% else %}
-                    <a  class="action_button btn-blue"><i class='bx bxs-plus-circle'
+                    <a href="{%url 'login' %}" class="action_button btn-blue"><i class='bx bxs-plus-circle'
                             id="user1"></i> Add Listing</a>
                     <a href="{%url 'login' %}" class="action_button sign-of"><i class='bx bxs-user' id="user2"></i> Sign
                         In</a>

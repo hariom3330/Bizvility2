@@ -62,13 +62,13 @@
                 </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
                     {% if user.is_authenticated %}
-                    {% if user.is_superuser %}
+                    {% if user.isAdmin %}
                     <li class="nav-item">
                         <a href="{% url 'Listing_form' %}" class="btn btn-outline-light me-2">Add Listing</a>
                     </li>
                     {%endif%}
                     <li class="nav-item">
-                        <a href="{% url 'profile' user.id %}" class="btn btn-outline-light">{{user.customuser.full_name}}</a>
+                        <a href="{% url 'profile' user.id %}" class="btn btn-outline-light">{{user.full_name}}</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
