@@ -176,7 +176,7 @@ def listing_details(request, listing_id):
     elif listing_detail.category.category == 'Shopping':
         businessDetails = Shopping.objects.get(title=listing_detail.title)
         context['shopping'] = businessDetails
-    return render(request, 'listing_details.html', context)
+    return render(request, 'listing_details1.html', context)
 
 
 @login_required

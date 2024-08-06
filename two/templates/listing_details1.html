@@ -1,0 +1,364 @@
+{% include 'header.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{listing_detail.title}}</title>
+    <link rel="stylesheet" href="{% static 'css/listing_details.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        .answer{
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.75s ease-in-out;
+
+    margin: 0;
+    padding: 0px;
+}
+
+.answer p{
+   margin-top: 5px;
+  line-height: 1.6;
+  
+}
+
+.faq.active .answer
+{
+
+ /* font-size: 15px; */
+  max-height: 300px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gallery">
+            <img src="{{listing_detail.image1.url}}" alt="Sushi">
+            <div class="grid-container">
+                <img class="full-width" src="{{listing_detail.image2.url}}" alt="Chef">
+            <div class="two-columns">
+                <img src="{{listing_detail.image3.url}}" alt="Dessert">
+                <img src="{{listing_detail.image4.url}}" alt="Sushi">
+            </div>
+            </div>
+            <img src="{{listing_detail.image5.url}}" alt="Restaurant" id="five">
+        </div>
+        <div class="info">
+            <nav>
+                <a href="#">Home</a> / 
+                <a href="#">{{listing_detail.category.category}}</a> / 
+                <a href="#">{{listing_detail.title}}</a>
+            </nav>
+            <h1>{{listing_detail.title}}</h1>
+            <p>{{listing_detail.tagline}}</p>
+            <div class="rating">
+                <span class="rating-value">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </span>
+                <span class="rating-count">({{listing_detail.rating}} Ratings)</span>
+            </div>
+            <div class="actions">
+                <button class="book-now">Book Now</button>
+                <a href="#" class="share">Share</a>
+                <a href="#" class="save">Save</a>
+            </div>
+        </div>
+    </div>
+    <div class="details-container">
+        <div class="details-left">
+            <button class="video-btn"> 
+                <span>▶ Checkout {{listing_detail.title}}</span> 
+            </button>
+            <p>{{listing_detail.description}}</p>
+            <div class="services">
+                {% if restaurant %}
+                <div class="icons">
+                    {% if restaurant.delivery %}
+                    <div class="icon">
+                        <i class="fas fa-credit-card"></i>
+                        Delivery Available
+                    </div>
+                    {% endif %}
+                    {% if restaurant.take_out %}
+                    <div class="icon">
+                        <i class="fas fa-car"></i> Take Out
+                    </div>
+                    {% endif %}
+                    {% if restaurant.AirConditioning %}
+                    <div class="icon">
+                        <i class="fas fa-car"></i> Air Conditioning
+                    </div>
+                    {% endif %}
+                    {% if restaurant.wifi %}
+                    <div class="icon">
+                        <i class="fas fa-car"></i> WiFi Available
+                    </div>
+                    {% endif %}
+                    {% if restaurant.pureVeg %}
+                    <div class="icon">
+                        <i class="fa-solid fa-salad"></i> Pure Vegetarian
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if automotive %}
+                <div class="icons">
+                    {% if automotive.repair_services %}
+                    <div class="icon">
+                        <i class="fas fa-tools"></i> Repair Services
+                    </div>
+                    {% endif %}
+                    {% if automotive.parts_sales %}
+                    <div class="icon">
+                        <i class="fas fa-car"></i> Parts Sales
+                    </div>
+                    {% endif %}
+                    {% if automotive.towing_service %}
+                    <div class="icon">
+                        <i class="fas fa-truck"></i> Towing Service
+                    </div>
+                    {% endif %}
+                    {% if automotive.car_wash %}
+                    <div class="icon">
+                        <i class="fas fa-broom"></i> Car Wash
+                    </div>
+                    {% endif %}
+                    {% if automotive.appointment_required %}
+                    <div class="icon">
+                        <i class="fas fa-calendar-alt"></i> Appointment Required
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if beauty_spa %}
+                <div class="icons">
+                    {% if beauty_spa.massage_services %}
+                    <div class="icon">
+                        <i class="fas fa-massage"></i> Massage Services
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.facial_treatments %}
+                    <div class="icon">
+                        <i class="fas fa-spa"></i> Facial Treatments
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.nail_services %}
+                    <div class="icon">
+                        <i class="fas fa-paint-brush"></i> Nail Services
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.hair_styling %}
+                    <div class="icon">
+                        <i class="fas fa-scissors"></i> Hair Styling
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.makeup_services %}
+                    <div class="icon">
+                        <i class="fas fa-makeup"></i> Makeup Services
+                    </div>
+                    {% endif %}
+                    {% if beauty_spa.waxing %}
+                    <div class="icon">
+                        <i class="fas fa-waxing"></i> Waxing
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if doctor %}
+                <div class="icons">
+                    {% if doctor.accepts_insurance %}
+                    <div class="icon">
+                        <i class="fas fa-credit-card"></i> Accepts Insurance
+                    </div>
+                    {% endif %}
+                    {% if doctor.emergency_services %}
+                    <div class="icon">
+                        <i class="fas fa-ambulance"></i> Emergency Services
+                    </div>
+                    {% endif %}
+                    {% if doctor.appointment_required %}
+                    <div class="icon">
+                        <i class="fas fa-calendar-alt"></i> Appointment Required
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if shopping %}
+                <div class="icons">
+                    {% if shopping.clothing %}
+                    <div class="icon">
+                        <i class="fas fa-tshirt"></i> Clothing
+                    </div>
+                    {% endif %}
+                    {% if shopping.electronics %}
+                    <div class="icon">
+                        <i class="fas fa-tv"></i> Electronics
+                    </div>
+                    {% endif %}
+                    {% if shopping.groceries %}
+                    <div class="icon">
+                        <i class="fas fa-apple-alt"></i> Groceries
+                    </div>
+                    {% endif %}
+                    {% if shopping.home_goods %}
+                    <div class="icon">
+                        <i class="fas fa-couch"></i> Home Goods
+                    </div>
+                    {% endif %}
+                    {% if shopping.personal_care %}
+                    <div class="icon">
+                        <i class="fas fa-toothbrush"></i> Personal Care
+                    </div>
+                    {% endif %}
+                    {% if shopping.discounts_available %}
+                    <div class="icon">
+                        <i class="fas fa-tags"></i> Discounts Available
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if hotel %}
+                <div class="icons">
+                    {% if hotel.room_service %}
+                    <div class="icon">
+                        <i class="fas fa-concierge-bell"></i> Room Service
+                    </div>
+                    {% endif %} 
+                    {% if hotel.gym %}
+                    <div class="icon">
+                        <i class="fas fa-dumbbell"></i> Gym
+                    </div>
+                    {% endif %}
+                    {% if hotel.pool %}
+                    <div class="icon">
+                        <i class="fas fa-swimmer"></i> Pool
+                    </div>
+                    {% endif %}
+                    {% if hotel.spa %}
+                    <div class="icon">
+                        <i class="fas fa-spa"></i> Spa
+                    </div>
+                    {% endif %}
+                    {% if hotel.pet_friendly %}
+                    <div class="icon">
+                        <i class="fas fa-paw"></i> Pet Friendly
+                    </div>
+                    {% endif %}
+                    {% if hotel.wifi %}
+                    <div class="icon">
+                        <i class="fas fa-wifi"></i> WiFi Available
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            <h2>Frequently Asked Questions</h2>
+            {% for faq in faqs %}
+                    <div class="faq">
+                        <div class="question">
+                            <p class="q" style="margin-bottom: 0px;
+                    ">Q.{{faq.question}}?
+                                <i class="fa fa-chevron-circle-down arrowDown" aria-hidden="true"></i>
+                            </p>
+                        </div>
+
+                        <div class="answer" style="background-color: white;padding: 10px;">
+                            <p>A.{{faq.answer}}.</p>
+                        </div>
+                    </div>
+                    {% endfor%}
+        </div>
+        <div class="details-right">
+            <div class="map-container">
+                <img src="./assets/map.png" alt="Map" class="map">
+                <img src="./assets/Icon.png" alt="Icon" class="map-icon">
+            </div>
+            <div class="address">
+                <p><img src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000" alt="location" id="location"> {{listing_detail.address}},{{listing_detail.city}},{{listing_detail.state}},{{listing_detail.country}}</p>
+                <button class="directions-btn">Get Directions</button>
+            </div>
+            <div class="contact">
+                <p>📞 {{listing_detail.phone_number}}</p>
+                <p> 🌐<a href="http://www.eurocoli.com">{{listing_detail.website}}</a></p>
+            </div>
+            <div class="social">
+                <img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="Facebook"> 
+                <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram">
+                <img src="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000" alt="LinkedIn">
+                <img src="https://img.icons8.com/?size=100&id=13963&format=png&color=000000" alt="Twitter">
+            </div>
+        </div>
+    </div>
+    <div class="reviews-container">
+        <h2>2 Reviews for Euro Collision</h2>
+        <div class="review-card">
+            <!-- <h2>2 Reviews for Euro Collision</h2> -->
+            <div class="review-left">
+                <!-- <h2>2 Reviews for Euro Collision</h2> -->
+                <img src="./assets/sushi 7.jpg" alt="Reviewer">
+                <div class="reviewer-info">
+                    <p>Kidsgks...</p>
+                    <p>1 Reviews</p>
+                </div>
+            </div>
+            <div class="review-right">
+                <div class="review-header">
+                    <p>Good</p>
+                    <p>July 30, 2024 4:40 Am</p>
+                </div>
+                <p>very good</p>
+                <div class="review-footer">
+                    <p>Was This Review ...?</p>
+                    <div class="review-reactions">
+                        <p>👍 Interesting 1</p>
+                        <p>😂 Lol</p>
+                        <p>❤️ Love</p>
+                    </div>
+                </div>
+            </div>
+                <div class="review-corner">
+                        <span class="rating-value">5.0
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </span>
+                        <span class="rating-count">(2 Ratings)</span>
+                </div>
+        
+            </div>
+        <!-- <div class="review-write">
+            <h3>Rate us and Write a Review</h3>
+            Add your review form here
+        </div> -->
+        <div class="contact-card">
+            <img src="{{listing_detail.user.image.url}}" alt="Reviewer">
+            <h3>{{listing_detail.user.full_name}}</h3>
+            <a href="{% url 'profile' listing_detail.user.id %}" class="visit-profile">Visit Profile</a>
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Phone">
+                <textarea placeholder="Message"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+
+
+    <script src="{% static 'js/listing_details.js' %}"></script>
+</body>
+</html>
