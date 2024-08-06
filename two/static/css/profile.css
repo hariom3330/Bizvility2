@@ -121,6 +121,18 @@ body {
     text-decoration: none;
 }
 
+.sign-in{
+    background-color: transparent;
+    border-radius: 10%;
+    width: 90px;
+    color: white;
+    border: 1px solid white;
+}
+
+.sign-in:hover{
+    background-color: white;
+    color: black
+}
 
 .sidebar{
     position: fixed;
@@ -145,7 +157,7 @@ body {
 .sidebar a{
     width: 100%;
 }
-.modal {
+.modallogout {
     display: none;
     position: fixed;
     z-index: 11010;
@@ -157,7 +169,7 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
   }
   
-  .modal-content {
+  .modal-contentlogout {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -172,6 +184,7 @@ body {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    margin-top: -22px;
   }
   
   .close:hover,
@@ -450,7 +463,6 @@ a:hover {
 
 .navbar {
     min-height: 50px;
-    margin-bottom: 20px;
     border: 1px solid transparent;
 }
 
@@ -531,6 +543,9 @@ a.sidebar-toggle .nav-left-circle {
     margin-left: -95px;
     z-index: 9999;
 }
+.btn{
+    padding: 0px;
+}
 
 .btn-add {
     background: #009688;
@@ -563,11 +578,9 @@ a.sidebar-toggle .nav-left-circle {
 }
 
 .navbar-nav li a {
-    padding: 10px 25px;
     position: relative;
     color: white;
     word-spacing: 2px;
-    font-size: 34px;
 }
 
 .navbar-nav li a i {
@@ -700,7 +713,6 @@ li>a>.pull-right-container {
 }
 
 .content-wrapper {
-    min-height: 1276px;
     background-color: #ecedef;
     z-index: 800;
     position: relative;

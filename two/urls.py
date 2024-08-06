@@ -9,22 +9,18 @@ from two import views
 
 urlpatterns = [
     path('',index,name='index'),
-    path('regi',regi,name='regi'),
-    path('login',login,name='login'),    
+    path('registration/',regi,name='regi'),
+    path('login/',login,name='login'),    
     path('user_logout/',user_logout, name="user_logout"),
     path('admin/',user_logout, name="user_logout"),
     path('profile/<int:user_id>',profile, name="profile"),
-    # path('add/',add, name="add"),
     path('Listing_form/',Listing_form, name="Listing_form"),
     path('select_plan/',select_plan, name="select_plan"),
-    path('reels/',reels, name="reels"),
-
-    
+    path('reels/',reels, name="reels"),  
     path('forget/',forget, name="forget"),
     path('change-password/<token>/',ChangePassword,name='change_password'),
     path('profile/update/', update_profile, name='update_profile'),
     path('result/', result, name='result'),
-    # path('detail/', detail, name='detail'),
     path('searchByCategory/<str:category>',searchByCategory,name='searchByCategory'),
     path('listing_details/<int:listing_id>',listing_details,name='listing_details')
   

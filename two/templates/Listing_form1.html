@@ -56,12 +56,216 @@
             border-radius: 10px;
             object-fit: cover;
         }
+
+        .se1 p {
+            margin-top: 7px;
+            margin-left: 20px;
+        }
+
+        .se1 {
+            display: flex;
+            width: 68.0;
+            height: 48px;
+            background-color: #white;
+        }
+
+        .seen {
+            width: 21%;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .seen1 {
+            text-align: center;
+            border: 1px solid #ddd;
+            width: 21%;
+            height: 30px;
+        }
+
+        .col1 {
+            width: 100%;
+            height: 54vh;
+            background-color: #white;
+            border: 0.1px solid #ddd9d9;
+            border-radius: 1px;
+        }
+
+        .btnaa {
+            width: 8%;
+            height: 30px;
+            color: white;
+            border: 2px solid #0d6efd;
+            border-radius: 6px;
+            background-color: #0d6efd;
+            float: right;
+            margin-top: -5px;
+        }
+
+        .tat {
+            width: 100%;
+            height: 48px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .tat::placeholder {
+            text-align: initial;
+        }
+
+        .tot {
+            width: 100%;
+            height: 125px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .tot::placeholder {
+            text-align: initial;
+        }
+
+        .un-line {
+            display: inline-block;
+            background-color: #cfc4c4;
+            width: 81.1%;
+            height: 1px;
+            position: absolute;
+            top: 172%%
+        }
+
+        .fir {
+            margin-top: 32px;
+        }
+
+        .see {
+            display: flex;
+            position: relative;
+            margin-top: 10px;
+            left: 30%;
+            gap: 20px;
+        }
+
+        .tick {
+            margin-top: 16px;
+            margin-left: 595px;
+            size: 40px;
+        }
+
+        .see1 {
+            display: flex;
+            position: relative;
+            margin-top: 10px;
+            left: 26.2%;
+            gap: 20px;
+        }
+
+        .seen2 {
+            width: 24%;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .seen3 {
+            text-align: center;
+            border: 1px solid #ddd;
+            width: 24%;
+            height: 30px;
+        }
+
+        .see2 {
+            display: flex;
+            position: relative;
+            margin-top: 10px;
+            left: 28.6%;
+            gap: 20px;
+        }
+
+        .seen4 {
+            width: 22%;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .seen5 {
+            text-align: center;
+            border: 1px solid #ddd;
+            width: 22%;
+            height: 30px;
+        }
+
+        .see3 {
+            display: flex;
+            position: relative;
+            margin-top: 10px;
+            left: 32%;
+            gap: 20px;
+        }
+
+        .seen6 {
+            width: 20%;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .seen7 {
+            text-align: center;
+            border: 1px solid #ddd;
+            width: 20%;
+            height: 30px;
+        }
+
+        .see4 {
+            display: flex;
+            position: relative;
+            margin-top: 10px;
+            left: 29.2%;
+            gap: 20px;
+        }
+
+        .seen8 {
+            width: 22%;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .seen9 {
+            text-align: center;
+            border: 1px solid #ddd;
+            width: 22%;
+            height: 30px;
+        }
+
+        .see5 {
+            display: flex;
+            position: relative;
+            margin-top: 10px;
+            left: 31%;
+            gap: 20px;
+        }
+
+        .seen10 {
+            width: 21%;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .seen11 {
+            text-align: center;
+            border: 1px solid #ddd;
+            width: 21%;
+            height: 30px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container mt-5">
-        
+
         <form id="categoryForm" class="mb-5">
             <h1 class="mb-4">Business Registration</h1>
             <div class="mb-3">
@@ -129,6 +333,113 @@
                 <input type="file" class="form-control" id="images" multiple>
                 <small class="form-text text-muted">Please upload at least 5 images.</small>
             </div>
+
+
+            {% comment %} faqs section {% endcomment %}
+
+            <div class="faq-form">
+                <div class="hea"><b>Frequently Asked Questions</b><textarea type="text" class="tat"
+                        placeholder="Questions..."></textarea>
+                </div>
+                <div><textarea type="text" class="tot" placeholder="Answers"></textarea>
+                </div>
+                <button id="addmore" class="btnaa">Add more</button>
+
+
+                <p class="fir">BUSINESS HOURS</p>
+                <div class="col1">
+                    <div class="se1">
+                        <p><b>Monday</b></p>
+                        <div class="see">
+                            <input type="text" class="seen" placeholder="09:00AM">
+                            <input type="text" class="seen1" placeholder="05:00PM">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="tick" type="checkbox" id="inlineCheckbox1" checked>
+                            <label class="form-check-label" for="inlineCheckbox1"></label>
+                        </div>
+                    </div>
+                    <span class="un-line"></span>
+
+                    <div class="se1">
+                        <p><b>Tuesday</b></p>
+                        <div class="see">
+                            <input type="text" class="seen" placeholder="09:00AM">
+                            <input type="text" class="seen1" placeholder="05:00PM">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="tick" type="checkbox" id="inlineCheckbox1" checked>
+                            <label class="form-check-label" for="inlineCheckbox1"></label>
+                        </div>
+                    </div>
+                    <span class="un-line"></span>
+
+                    <div class="se1">
+                        <p><b>Wednesday</b></p>
+                        <div class="see1">
+                            <input type="text" class="seen2" placeholder="09:00AM">
+                            <input type="text" class="seen3" placeholder="05:00PM">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="tick" type="checkbox" id="inlineCheckbox1" checked>
+                            <label class="form-check-label" for="inlineCheckbox1"></label>
+                        </div>
+                    </div>
+                    <span class="un-line"></span>
+
+                    <div class="se1">
+                        <p><b>Thursday</b></p>
+                        <div class="see2">
+                            <input type="text" class="seen4" placeholder="09:00AM">
+                            <input type="text" class="seen5" placeholder="05:00PM">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="tick" type="checkbox" id="inlineCheckbox1" checked>
+                            <label class="form-check-label" for="inlineCheckbox1"></label>
+                        </div>
+                    </div>
+                    <span class="un-line"></span>
+
+                    <div class="se1">
+                        <p><b>Friday</b></p>
+                        <div class="see3">
+                            <input type="text" class="seen6" placeholder="09:00AM">
+                            <input type="text" class="seen7" placeholder="05:00PM">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="tick" type="checkbox" id="inlineCheckbox1" checked>
+                            <label class="form-check-label" for="inlineCheckbox1"></label>
+                        </div>
+                    </div>
+                    <span class="un-line"></span>
+
+                    <div class="se1">
+                        <p><b>Saturday</b></p>
+                        <div class="see4">
+                            <input type="text" class="seen8" placeholder="09:00AM">
+                            <input type="text" class="seen9" placeholder="05:00PM">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="tick" type="checkbox" id="inlineCheckbox1">
+                            <label class="form-check-label" for="inlineCheckbox1"></label>
+                        </div>
+                    </div>
+                    <span class="un-line"></span>
+
+                    <div class="se1">
+                        <p><b>Sunday</b></p>
+                        <div class="see5">
+                            <input type="text" class="seen10" placeholder="09:00AM">
+                            <input type="text" class="seen11" placeholder="05:00PM">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="tick" type="checkbox" id="inlineCheckbox1">
+                            <label class="form-check-label" for="inlineCheckbox1"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="images-preview mt-2" id="images-preview"></div>
             <div id="categorySpecificFields"></div>
 
@@ -136,8 +447,9 @@
                 <button type="button" class="btn btn-secondary" id="backButton">Back</button>
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
+
         </form>
-        
+
     </div>
     {% include 'footer.html' %}
 

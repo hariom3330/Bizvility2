@@ -220,6 +220,13 @@ document.getElementById('businessForm').addEventListener('submit', function (e) 
     e.preventDefault();
 });
 
+
+document.getElementById('addmore').addEventListener('click', function(e){
+    e.preventDefault();
+
+})
+
+
 const thumbnailInput = document.getElementById('thumbnail');
 const imagesInput = document.getElementById('images');
 const imagesContainer = document.getElementById('imagesContainer');

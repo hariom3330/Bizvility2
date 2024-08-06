@@ -1,0 +1,464 @@
+{% include 'header.html' %}
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <style>
+        /* ===== Google Font Import - Poppins ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .x {
+            min-height: 100vh;
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+            background: #4070f4;
+        }
+
+        .container4 {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 6px;
+            padding: 30px;
+            margin: 0 15px;
+            background-color: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            /* left: 21rem; */
+            /* margin-top: 2rem; */
+        }
+
+        .container4 header {
+            position: relative;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .container4 header::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            height: 3px;
+            width: 27px;
+            border-radius: 8px;
+            background-color: #4070f4;
+        }
+
+        .container4 form {
+            position: relative;
+            margin-top: 16px;
+            min-height: 490px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .container4 form .form {
+            position: absolute;
+            background-color: #fff;
+            transition: 0.3s ease;
+        }
+
+        .container4 form .form.second {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(100%);
+        }
+
+        form.secActive .form.second {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+
+        form.secActive .form.first {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-100%);
+        }
+
+        .container4 form .title {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 6px 0;
+            color: #333;
+        }
+
+        .container4 form .fields {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        form .fields .input-field {
+            display: flex;
+            width: calc(100% / 3 - 15px);
+            flex-direction: column;
+            margin: 4px 0;
+        }
+
+        .input-field label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #2e2e2e;
+        }
+
+        .input-field input,
+        select {
+            outline: none;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            padding: 0 15px;
+            height: 42px;
+            margin: 8px 0;
+        }
+
+        .input-field input :focus,
+        .input-field select:focus {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+        }
+
+        .input-field select,
+        .input-field input[type="date"] {
+            color: #707070;
+        }
+
+        .input-field input[type="date"]:valid {
+            color: #333;
+        }
+
+        .container4 form button,
+        .backBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            max-width: 200px;
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #fff;
+            border-radius: 5px;
+            margin: 25px 0;
+            background-color: #4070f4;
+            transition: all 0.3s linear;
+            cursor: pointer;
+        }
+
+        .container4 form .btnText {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        form button:hover {
+            background-color: #265df2;
+        }
+
+        form button i,
+        form .backBtn i {
+            margin: 0 6px;
+        }
+
+        form .backBtn i {
+            transform: rotate(180deg);
+        }
+
+        form .buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        form .buttons button,
+        .backBtn {
+            margin-right: 14px;
+        }
+
+        @media (max-width: 750px) {
+            .container4 form {
+                overflow-y: scroll;
+            }
+
+            .container4 form::-webkit-scrollbar {
+                display: none;
+            }
+
+            form .fields .input-field {
+                width: calc(100% / 2 - 15px);
+            }
+        }
+
+        @media (max-width: 550px) {
+            form .fields .input-field {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Responsive Regisration Form </title>
+</head>
+
+<body>
+    <div class="x">
+        <div class="container4">
+            <header>Registration</header>
+            {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">        
+          {{message}}
+        </div>
+        {% endfor %}        
+    {% endif %}
+
+            <form action="{% url 'regi' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="radio" name="user_type" value="False" checked> Guest
+                <input type="radio" name="user_type" value="True"> Admin
+                <div class="form first">
+                    <div class="details personal">
+                        <span class="title">Personal Details</span>
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="Enter your name" name="full_name" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Date of Birth</label>
+                                <input type="date" placeholder="Enter birth date" name="dob" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Email</label>
+                                <input type="text" placeholder="Enter your email" name="email" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Mobile Number</label>
+                                <input type="number" placeholder="Enter mobile number" name="contact" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="state-dropdown">State:</label>
+                                <select id="state-dropdown" onchange="populateCities()" name="state">
+                                    <option value="">Select State</option>
+                                </select>
+                            </div>
+
+
+                            <div class="input-field">
+                                <label for="city-dropdown">City:</label>
+                                <select id="city-dropdown" name="city">
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="details ID">
+                        <!-- <span class="title">Identity Details</span> -->
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Address</label>
+                                <input type="text" placeholder="Address" name="address" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Bio</label>
+                                <input type="text" placeholder="bio" name="bio" >
+                            </div>
+                            <div class="input-field">
+                                <label for="city-dropdown"> Gender:</label>
+                                <select id="city-dropdown">
+                                    <option value="">Gender</option>
+                                    <option value="">Male</option>
+                                    <option value="">Female</option>
+
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Image</label>
+                                <input type="file" placeholder="Image" name="image">
+                            </div>
+
+                            <div class="input-field">
+                                <label>password</label>
+                                <input type="password" placeholder="password" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Confirm-password</label>
+                                <input type="password1" placeholder="password-confirm" required>
+                            </div>
+
+
+                            <button type="submit" class="nextBtn">
+                                <span class="btnText">Submit</span>
+                                <i class="uil uil-navigator"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+    <script>
+        const stateCityData = {
+            "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Tirupati"],
+            "Arunachal Pradesh": ["Itanagar", "Naharlagun", "Pasighat", "Tawang"],
+            "Assam": ["Guwahati", "Silchar", "Dibrugarh", "Jorhat", "Nagaon"],
+            "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Purnia"],
+            "Chhattisgarh": ["Raipur", "Bhilai", "Bilaspur", "Korba", "Durg"],
+            "Goa": ["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda"],
+            "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar"],
+            "Haryana": ["Gurgaon", "Faridabad", "Panipat", "Ambala", "Hisar"],
+            "Himachal Pradesh": ["Shimla", "Manali", "Dharamshala", "Solan", "Mandi"],
+            "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Deoghar"],
+            "Karnataka": ["Bangalore", "Mysore", "Mangalore", "Hubli", "Belgaum"],
+            "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kollam"],
+            "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain"],
+            "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane"],
+            "Manipur": ["Imphal", "Thoubal", "Bishnupur", "Churachandpur"],
+            "Meghalaya": ["Shillong", "Tura", "Nongpoh", "Jowai"],
+            "Mizoram": ["Aizawl", "Lunglei", "Serchhip", "Champhai"],
+            "Nagaland": ["Kohima", "Dimapur", "Mokokchung", "Tuensang"],
+            "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela", "Sambalpur", "Puri"],
+            "Punjab": ["Chandigarh", "Ludhiana", "Amritsar", "Jalandhar", "Patiala"],
+            "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer"],
+            "Sikkim": ["Gangtok", "Namchi", "Gyalshing", "Mangan"],
+            "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"],
+            "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Khammam"],
+            "Tripura": ["Agartala", "Udaipur", "Dharmanagar", "Kailasahar"],
+            "Uttar Pradesh": [
+                "Agra",
+                "Aligarh",
+                "Allahabad (Prayagraj)",
+                "Amroha",
+                "Auraiya",
+                "Azamgarh",
+                "Bahraich",
+                "Ballia",
+                "Balrampur",
+                "Banda",
+                "Barabanki",
+                "Bareilly",
+                "Basti",
+                "Bhadohi",
+                "Bijnor",
+                "Budaun",
+                "Bulandshahr",
+                "Chandauli",
+                "Chitrakoot",
+                "Deoria",
+                "Etah",
+                "Etawah",
+                "Faizabad (Ayodhya)",
+                "Farrukhabad",
+                "Fatehpur",
+                "Firozabad",
+                "Gautam Buddha Nagar (Noida, Greater Noida)",
+                "Ghaziabad",
+                "Ghazipur",
+                "Gonda",
+                "Gorakhpur",
+                "Hamirpur",
+                "Hapur",
+                "Hardoi",
+                "Hathras",
+                "Jaunpur",
+                "Jhansi",
+                "Kannauj",
+                "Kanpur",
+                "Kasganj",
+                "Kaushambi",
+                "Kushinagar",
+                "Lakhimpur Kheri",
+                "Lalitpur",
+                "Lucknow",
+                "Mainpuri",
+                "Mathura",
+                "Mau",
+                "Meerut",
+                "Mirzapur",
+                "Moradabad",
+                "Muzaffarnagar",
+                "Pilibhit",
+                "Pratapgarh",
+                "Raebareli",
+                "Rampur",
+                "Saharanpur",
+                "Sambhal",
+                "Sant Kabir Nagar",
+                "Shahjahanpur",
+                "Shamli",
+                "Shrawasti",
+                "Sitapur",
+                "Sonbhadra",
+                "Sultanpur",
+                "Unnao",
+                "Varanasi"
+            ],
+
+            "Uttarakhand": ["Dehradun", "Haridwar", "Roorkee", "Nainital", "Almora"],
+            "West Bengal": ["Kolkata", "Howrah", "Durgapur", "Siliguri", "Asansol"],
+
+        }
+        const stateDropdown = document.getElementById("state-dropdown");
+
+        for (let state in stateCityData) {
+            let option = document.createElement("option");
+            option.text = state;
+            option.value = state;
+            stateDropdown.add(option);
+        }
+
+        function populateCities() {
+            const cityDropdown = document.getElementById("city-dropdown");
+            const selectedState = stateDropdown.value;
+
+            cityDropdown.length = 1;
+
+            if (selectedState) {
+                const cities = stateCityData[selectedState];
+                cities.forEach(city => {
+                    let option = document.createElement("option");
+                    option.text = city;
+                    option.value = city;
+                    cityDropdown.add(option);
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

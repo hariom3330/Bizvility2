@@ -14,6 +14,7 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+
 def simplify_timesince(value):
     now = timezone.now()
     difference = now - value
@@ -105,7 +106,7 @@ def reels(request):
                 comment=content
             )
 
-            commentuser = Users.objects.get(id=comment.user.id)
+            commentuser = Users.objects.get(id=comment.user.id)  # type: ignore
 
             value = simplify_timesince(comment.created_at)
             if value == '0 seconds ago':
@@ -140,7 +141,7 @@ def searchByCategory(request, category):
 
 def listing_details(request, listing_id):
     listing_detail = Business.objects.get(pk=listing_id)
-    faqs = listing_detail.faqs.all()
+    faqs = listing_detail.faqs.all()  # type: ignore
     context = {'listing_detail': listing_detail,
                'faqs': faqs, 'listing_id': listing_id}
     if request.method == 'POST':
@@ -214,19 +215,36 @@ def regi(request):
         city = request.POST.get('city')
         bio = request.POST.get('bio', '')
         dob = request.POST.get('dob')
-        isAdmin = request.POST.get('user_type')
-
+        image = request.FILES['image']
+        user_type = request.POST.get('user_type')
+        if 'image' in request.FILES:
+            image = request.FILES['image']
+        else:
+            image = 'profile_images/defaultpfpsvg.png'
+        if user_type == "True":
+            isAdmin = True
+        else:
+            isAdmin = False
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email is already taken.")
-            return redirect('register')
+            return redirect('regi')
 
         user = User.objects.create_user(
-            email=email, password=password, full_name=full_name, contact=contact, address=address, state=state, city=city,bio=bio,dob=dob) # type: ignore
+            email=email,
+            password=password,
+            full_name=full_name,
+            contact=contact,
+            address=address,
+            state=state,
+            city=city,
+            bio=bio,
+            dob=dob,
+            isAdmin=isAdmin,
+            image=image)  # type: ignore
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
         auth_login(request, user)
-        messages.success(
-            request, "Registration successful. You can now login.")
         return redirect('index')
-    return render(request, 'regi.html')
+    return render(request, 'registration.html')
 
 
 def login(request):
@@ -334,12 +352,14 @@ def profile(request, user_id):
 
 
 def ChangePassword(request, token):
-    context = {}
+    context = {'token':token}
     try:
-        signup_obj = Users.objects.filter(forget_password_token=token)
-        # Assuming you want to retrieve the associated user from Signup object
-        user = signup_obj.id
-        context['user'] = user
+        user = Users.objects.get(forget_password_token=token)
+        if request.method == 'POST':
+            print('Hello')
+            password = request.POST.get('password')
+            user.set_password(password)
+            user.save()
     except Users.DoesNotExist:
         messages.error(request, 'Invalid or expired token')
         return redirect('/forget/')
@@ -356,7 +376,7 @@ def forget(request):
             return redirect('/forget/')
 
         token = str(uuid.uuid4())
-        profile, created = Users.objects.get_or_create(user=user)
+        profile, created = Users.objects.get_or_create(email=user)
 
         profile.forget_password_token = token
 
@@ -372,9 +392,6 @@ def forget(request):
         # messages.success(request, 'An email has been sent with instructions to reset your password')
         return redirect('/forget/')
     return render(request, 'forget.html')
-
-
-
 
 
 @login_required

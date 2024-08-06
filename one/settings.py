@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -131,7 +131,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -140,15 +140,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-# settings.py
+# forgot password setting
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.example.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'hariomparmar330@gmail.com'
-EMAIL_HOST_PASSWORD = 'bfqjzxxfihzzvcfx'
-# EMAIL_HOST_USER = 'hs8112002@example.com'
-# EMAIL_HOST_PASSWORD = 'uhczjhlhmwvtbind'
+EMAIL_HOST_PASSWORD = 'vgfo wdgc wkrl mbdj'
 
 
 
