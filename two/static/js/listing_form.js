@@ -1,7 +1,25 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
 let title;
 let tagline;
 let description;
 let businessCategory;
+
 document.getElementById('categoryForm').addEventListener('submit', function (e) {
     e.preventDefault();
     title = document.getElementById('title').value;
@@ -9,10 +27,12 @@ document.getElementById('categoryForm').addEventListener('submit', function (e) 
     description = document.getElementById('description').value;
     businessCategory = document.getElementById('category').value;
     const category = document.getElementById('category').value;
+    
     if (category) {
         showBusinessForm(category);
     }
 });
+
 
 function showBusinessForm(category) {
     document.getElementById('categoryForm').style.display = 'none';
@@ -216,24 +236,220 @@ document.getElementById('backButton').addEventListener('click', function () {
 });
 
 document.getElementById('businessForm').addEventListener('submit', function (e) {
-    console.log(title)
     e.preventDefault();
+
+    if (!validateBusinessForm()) {
+        return;
+    }
+
+    // Submit form data
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('tagline', tagline);
+    formData.append('description', description);
+    formData.append('businessCategory', businessCategory);
+    formData.append('website', document.getElementById('website').value);
+    formData.append('phone', document.getElementById('phone').value);
+    formData.append('address', document.getElementById('address').value);
+    formData.append('city', document.getElementById('city').value);
+    formData.append('state', document.getElementById('state').value);
+    formData.append('pincode', document.getElementById('pincode').value);
+    formData.append('thumbnail', document.getElementById('thumbnail').files[0]);
+
+    const images = document.getElementById('images').files;
+    for (let i = 0; i < images.length; i++) {
+        formData.append('images', images[i]);
+    }
+
+    // Append category-specific fields based on businessCategory
+    switch (businessCategory) {
+        case 'Restaurant':
+            formData.append('minPrice', document.getElementById('minPrice').value);
+            formData.append('maxPrice', document.getElementById('maxPrice').value);
+            formData.append('delivery', document.getElementById('delivery').checked);
+            formData.append('takeOut', document.getElementById('takeOut').checked);
+            formData.append('airConditioning', document.getElementById('airConditioning').checked);
+            formData.append('wifi', document.getElementById('wifi').checked);
+            formData.append('pureVeg', document.getElementById('pureVeg').checked);
+            break;
+        case 'Hotel':
+            formData.append('minPrice', document.getElementById('minPrice').value);
+            formData.append('maxPrice', document.getElementById('maxPrice').value);
+            formData.append('roomService', document.getElementById('roomService').checked);
+            formData.append('gym', document.getElementById('gym').checked);
+            formData.append('pool', document.getElementById('pool').checked);
+            formData.append('spa', document.getElementById('spa').checked);
+            formData.append('petFriendly', document.getElementById('petFriendly').checked);
+            break;
+        case 'Automotive':
+            formData.append('minPrice', document.getElementById('minPrice').value);
+            formData.append('maxPrice', document.getElementById('maxPrice').value);
+            formData.append('repairServices', document.getElementById('repairServices').checked);
+            formData.append('partsSales', document.getElementById('partsSales').checked);
+            formData.append('towingService', document.getElementById('towingService').checked);
+            formData.append('carWash', document.getElementById('carWash').checked);
+            formData.append('appointmentRequired', document.getElementById('appointmentRequired').checked);
+            break;
+        case 'BeautySpa':
+            formData.append('minPrice', document.getElementById('minPrice').value);
+            formData.append('maxPrice', document.getElementById('maxPrice').value);
+            formData.append('massageServices', document.getElementById('massageServices').checked);
+            formData.append('facialTreatments', document.getElementById('facialTreatments').checked);
+            formData.append('nailServices', document.getElementById('nailServices').checked);
+            formData.append('hairStyling', document.getElementById('hairStyling').checked);
+            formData.append('makeupServices', document.getElementById('makeupServices').checked);
+            formData.append('waxing', document.getElementById('waxing').checked);
+            break;
+        case 'Doctor':
+            formData.append('specialty', document.getElementById('specialty').value);
+            formData.append('consultationFee', document.getElementById('consultationFee').value);
+            formData.append('acceptsInsurance', document.getElementById('acceptsInsurance').checked);
+            formData.append('emergencyServices', document.getElementById('emergencyServices').checked);
+            formData.append('appointmentRequired', document.getElementById('appointmentRequired').checked);
+            break;
+        case 'Shopping':
+            formData.append('clothing', document.getElementById('clothing').checked);
+            formData.append('electronics', document.getElementById('electronics').checked);
+            formData.append('groceries', document.getElementById('groceries').checked);
+            formData.append('homeGoods', document.getElementById('homeGoods').checked);
+            formData.append('personalCare', document.getElementById('personalCare').checked);
+            formData.append('discountsAvailable', document.getElementById('discountsAvailable').checked);
+            break;
+    }
+
+    // Append FAQ data
+    for (let i = 1; i <= faqCounter; i++) {
+        const question = document.querySelector(`[name="que${i}"]`).value;
+        const answer = document.querySelector(`[name="ans${i}"]`).value;
+        formData.append(`faq[${i}][question]`, question);
+        formData.append(`faq[${i}][answer]`, answer);
+    }
+
+    
+    // Append business hours
+    const businessHours = {
+        monday: {
+            open: document.getElementById('monAm').value,
+            close: document.getElementById('monPm').value,
+            openClosed: document.getElementById('inlineCheckbox1').checked
+        },
+        tuesday: {
+            open: document.getElementById('tueAm').value,
+            close: document.getElementById('tuePm').value,
+            openClosed: document.getElementById('inlineCheckbox2').checked
+        },
+        wednesday: {
+            open: document.getElementById('wedAm').value,
+            close: document.getElementById('wedPm').value,
+            openClosed: document.getElementById('inlineCheckbox3').checked
+        },
+        thursday: {
+            open: document.getElementById('thuAm').value,
+            close: document.getElementById('thuPm').value,
+            openClosed: document.getElementById('inlineCheckbox4').checked
+        },
+        friday: {
+            open: document.getElementById('friAm').value,
+            close: document.getElementById('friPm').value,
+            openClosed: document.getElementById('inlineCheckbox5').checked
+        },
+        saturday: {
+            open: document.getElementById('satAm').value,
+            close: document.getElementById('satPm').value,
+            openClosed: document.getElementById('inlineCheckbox6').checked
+        },
+        sunday: {
+            open: document.getElementById('sunAm').value,
+            close: document.getElementById('sunPm').value,
+            openClosed: document.getElementById('inlineCheckbox7').checked
+        }
+    };
+
+    formData.append('businessHours', JSON.stringify(businessHours));
+
+    // Submit the form data using fetch
+    const totalFiles = (thumbnailFile ? 1 : 0) + imagesFiles.length;
+
+    if (totalFiles < 5) {
+        
+    }
+    fetch('/Listing_form/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': csrftoken,
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Business registered successfully!');
+        } else {
+            alert('Error registering business: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 });
 
-
-document.getElementById('addmore').addEventListener('click', function(e){
+document.getElementById('addmore').addEventListener('click', function (e) {
     e.preventDefault();
+    addFAQ();
+});
 
-})
+let faqCounter = 1;
 
+function addFAQ() {
+    faqCounter++;
+
+    const faqContainer = document.getElementById('faqContainer');
+
+    const faqItem = document.createElement('div');
+    faqItem.className = 'faqItem';
+
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'hea';
+    const questionLabel = document.createElement('b');
+    questionLabel.textContent = `Question ${faqCounter}`;
+    const questionTextarea = document.createElement('textarea');
+    questionTextarea.type = 'text';
+    questionTextarea.className = 'tat';
+    questionTextarea.name = 'que' + faqCounter;
+    questionTextarea.placeholder = 'Questions...';
+
+    questionDiv.appendChild(questionLabel);
+    questionDiv.appendChild(questionTextarea);
+
+    const answerDiv = document.createElement('div');
+    const answerTextarea = document.createElement('textarea');
+    answerTextarea.type = 'text';
+    answerTextarea.className = 'tot';
+    answerTextarea.name = 'ans' + faqCounter;
+    answerTextarea.placeholder = 'Answers';
+
+    answerDiv.appendChild(answerTextarea);
+
+    faqItem.appendChild(questionDiv);
+    faqItem.appendChild(answerDiv);
+
+    faqContainer.appendChild(faqItem);
+}
 
 const thumbnailInput = document.getElementById('thumbnail');
 const imagesInput = document.getElementById('images');
 const imagesContainer = document.getElementById('imagesContainer');
 const submitButton = document.getElementById('businessForm').querySelector('button[type="submit"]');
 
+const thumbnailPreview = document.getElementById('thumbnail-preview');
+const imagesPreview = document.getElementById('images-preview');
+
 thumbnailInput.addEventListener('change', checkImageCount);
 imagesInput.addEventListener('change', checkImageCount);
+
+
+thumbnailInput.addEventListener('change', previewThumbnail);
+imagesInput.addEventListener('change', previewImages);
 
 function checkImageCount() {
     const thumbnailFile = thumbnailInput.files[0];
@@ -249,15 +465,23 @@ function checkImageCount() {
     }
 }
 
-checkImageCount();
+function validateBusinessForm() {
+    const requiredFields = ['phone', 'address', 'city', 'state', 'pincode'];
 
-const thumbnailPreview = document.getElementById('thumbnail-preview');
-const imagesPreview = document.getElementById('images-preview');
+    for (let i = 0; i < requiredFields.length; i++) {
+        const field = document.getElementById(requiredFields[i]);
+        if (!field.value) {
+            alert(`Please fill out the ${field.id} field.`);
+            field.focus();
+            return false;
+        }
+    }
 
-thumbnailInput.addEventListener('change', previewThumbnail);
-imagesInput.addEventListener('change', previewImages);
+    return true;
+}
 
-function previewThumbnail() {
+
+function previewThumbnail() {    
     const file = thumbnailInput.files[0];
     const reader = new FileReader();
     reader.onload = function() {
@@ -267,6 +491,7 @@ function previewThumbnail() {
     };
     reader.readAsDataURL(file);
 }
+
 
 function previewImages() {
     const files = imagesInput.files;

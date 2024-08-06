@@ -42,7 +42,7 @@ def simplify_timesince(value):
 
 def index(request):
     videos = Video.objects.all()[0:4]
-    return render(request, 'homePage.html', {'videos': videos})
+    return render(request, 'homePage1.html', {'videos': videos})
 
 
 # def index2(request):
@@ -185,9 +185,22 @@ def Listing_form(request):
         return HttpResponseForbidden("You are not authorized to access this page.")
     if not request.user.isAdmin:
         return HttpResponseForbidden("You are not authorized to access this page.")
+    
 
     if request.method == 'POST':
-        title = request.POST.get('listing-title')
+        title = request.POST.get('title')
+        tagline = request.POST.get('tagline')
+        description = request.POST.get('description')
+        business_category = request.POST.get('businessCategory')
+        website = request.POST.get('website')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        pincode = request.POST.get('pincode')
+        thumbnail = request.FILES.get('thumbnail')
+        images = request.FILES.getlist('images')
+        print(images[3])
         return redirect('select_plan')
     return render(request, 'listing_form1.html')
 

@@ -1,0 +1,444 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bizvility</title>
+    <link rel="stylesheet" href="{% static 'css/homePage2.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="full">
+        <div class="main-sec">
+            <div class="header">
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="#"><img src="{% static 'images/Logo_bi.png' %}" alt="ListingPro Logo" class="logo"></a>
+                    </div>
+                </div>
+                <div class="hamburger" onclick="slider()">
+                    <i class="fa fa-bars" aria-hidden="true" id="hamburger-icon"></i>
+                </div>
+                <div class="slider" id="slider">
+                    <div class="slider-content">
+                        <div class="slider-top">
+                            <div class="slider-logo">
+                                <a href="#"><img src="{% static 'images/Logo_bi.png' %}" alt="ListingPro Logo"
+                                        class="logo"></a>
+                            </div>
+                            <div class="buttons">
+                                {% if user.is_authenticated %}
+                                {% if user.isAdmin %}
+                                <a href="{% url 'Listing_form' %}"><button class="btn"
+                                        >
+                                         Add Listing</button></a>
+                                {%endif%}
+                                <a href="{% url 'profile' user.id %}"><button class="btn"
+                                        > {{user.full_name}}</button></a>
+                                {% else %}
+                                <a href="{% url 'login' %}"><button class="btn" style="background-color: #2458FF;">  Add Listing</button></a>
+                                <a href="{% url 'login' %}"><button class="btn" style="background-color: #2458FF;">
+                                         Sign In</button></a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="slider-bottom">
+                        <ul class="drop-list-slider">
+                            <li>
+                                <select name="" id="">
+                                    <option value="0">Explore Categories</option>
+                                    <option value="1">Automotive</option>
+                                    <option value="2">Beauty & Spa</option>
+                                    <option value="3">Hotels</option>
+                                    <option value="4">Real Estate</option>
+                                    <option value="5">Restaurant</option>
+                                    <option value="6">Services</option>
+                                    <option value="7">Shopping</option>
+                                </select>
+                            </li>
+                            <li>
+                                <select name="" id="">
+                                    <option value="0">Explore Locations</option>
+                                    <option value="1">California</option>
+                                    <option value="2">Chicago</option>
+                                    <option value="3">Georgia</option>
+                                    <option value="4">New York</option>
+                                    <option value="5">Utah</option>
+                                    <option value="6">Washington</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+
+                <div class="header-right-bottom">
+                    <ul class="drop-list">
+                        <li>
+                            <select name="" id="">
+                                <option value="0">Explore Categories</option>
+                                <option value="1">Automotive</option>
+                                <option value="2">Beauty & Spa</option>
+                                <option value="3">Hotels</option>
+                                <option value="4">Real Estate</option>
+                                <option value="5">Restaurant</option>
+                                <option value="6">Services</option>
+                                <option value="7">Shopping</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select name="" id="">
+                                <option value="0">Explore Locations</option>
+                                <option value="1">California</option>
+                                <option value="2">Chicago</option>
+                                <option value="3">Georgia</option>
+                                <option value="4">New York</option>
+                                <option value="5">Utah</option>
+                                <option value="6">Washington</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header-right-top">
+                    <div class="header-buttons">
+                        {% if user.is_authenticated %}
+                                {% if user.isAdmin %}
+                                <a href="{% url 'Listing_form' %}"><button class="btn"
+                                        style="background-color: #2458FF; color: white">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Listing</button></a>
+                                {%endif%}
+                                <a href="{% url 'profile' user.id %}"><button class="btn"
+                                        style="background-color:transparent; color:white"><i
+                                            class="fa fa-user" aria-hidden="true"></i> {{user.full_name}}</button></a>
+                                {% else %}
+                                <a href="{% url 'login' %}"><button class="btn" style="background-color: #2458FF;"> <i
+                                            class="fa fa-plus-circle" aria-hidden="true"></i> Add Listing</button></a>
+                                <a href="{% url 'login' %}"><button class="btn" style="background-color: #2458FF;">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Sign In</button></a>
+                            </div>
+                            {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="head-banner">
+            <div class="heading">
+                <h1>Explore your city</h1>
+                <p>Let's uncover the best places to eat, drink and shop nearest you.</p>
+            </div>
+
+        </div>
+        <div class="search-box">
+            <div class="what">
+                What<input type="text" placeholder="Ex:food, service,barber, hotel">
+            </div>
+            <div class="what">
+                What<i class="fa fa-crosshairs"></i><input type="text" placeholder="Your City...">
+            </div>
+            <div class="search-button">
+                <button> <i class="fa fa-search" aria-hidden="true"></i> Search </button>
+            </div>
+
+
+        </div>
+        <div class="icon-box">
+            <ul class="round-list">
+                <li><a href="{% url 'searchByCategory' 'Automotive' %}">
+                        <div class="icon"><i class="fa fa-car" aria-hidden="true"></i></div>
+                        <div class="text">Automotive</div>
+                    </a></li>
+                <li><a href="{% url 'searchByCategory' 'Beauty' %}">
+                        <div class="icon"><i class="fa-solid fa-spa"></i></div>
+                        <div class="text">Beauty & Spa</div>
+                    </a></li>
+                <li><a href="{% url 'searchByCategory' 'Hotels' %}">
+                        <div class="icon"><i class="icon icons-banner-cat fa-solid fa-hotel"></i></div>
+                        <div class="text">Hotels</div>
+                    </a></li>
+                <li><a href="{% url 'searchByCategory' 'Restaurant' %}">
+                        <div class="icon"><i class="icon icons-banner-cat fa-solid fa-burger"></i></div>
+                        <div class="text">Restaurant</div>
+                    </a></li>
+                <li><a href="{% url 'searchByCategory' 'Shopping' %}">
+                        <div class="icon"><i class="icon icons-banner-cat fa-solid fa-bag-shopping"></i></div>
+                        <div class="text">Shopping</div>
+                    </a></li>
+            </ul>
+        </div>
+    </div>
+    <section class="sec">
+        <h1>Must Watch</h1>
+        <p>Discover What's Captivating Audiences Right Now</p>
+        <div class="reel-row">
+            {% for video in videos%}
+                    <div class="video">
+                        <video width="100%" height="500px" controls >
+                            <source src="{{video.Video.url}}" type="video/mp4">
+                            <button type="button">play</button>
+                        </video>
+                    </div>
+                    {% endfor%}
+                    <button class="next-button"><a href="{% url 'reels' %}" target="_blank" style="text-decoration: none; color: black">See More</a> <i class="fa fa-arrow-circle-right"
+                            aria-hidden="true"></i></button>
+
+
+        </div>
+    </section>
+    <section class="sec">
+        <h1>What's Happening</h1>
+        <p>Discover What's Captivating Audiences Right Now</p>
+
+        <div class="gallery">
+            <figure class="gallery_item gallery_item_1">
+                <img src="{% static 'images/image1.jpg' %}" alt="Image1" class="gallery_img">
+            </figure>
+            <figure class="gallery_item gallery_item_2">
+                <img src="{% static 'images/image2.jpg' %}" alt="Image2" class="gallery_img">
+            </figure>
+            <figure class="gallery_item gallery_item_3">
+                <img src="{% static 'images/image3.jpg' %}" alt="Image3" class="gallery_img">
+            </figure>
+            <figure class="gallery_item gallery_item_4">
+                <img src="{% static 'images/image4.jpg' %}" alt="Image4" class="gallery_img">
+            </figure>
+            <figure class="gallery_item gallery_item_5">
+                <img src="{% static 'images/image5.jpg' %}" alt="Image5" class="gallery_img">
+            </figure>
+            <figure class="gallery_item gallery_item_6">
+                <img src="{% static 'images/image6.png' %}" alt="Image6" class="gallery_img">
+            </figure>
+        </div>
+    </section>
+    <section class="sec">
+        <h1>Claim & Get Started Today</h1>
+        <p>Nearly 80% Of Consumers Turn To Directories With Reviews To Find A Local Business.</p>
+        <div class="card-row">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'images/bar1.png' %}" alt="">
+                    <h1>1</h1>
+                </div>
+                <div class="card-text">
+                    <h3>Claim</h3>
+                    <p>Best way to start managing your business listing is by claiming it so you can update</p>
+                    <a class="learn" href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'images/bar2.png' %}" alt="">
+                    <h1>2</h1>
+                </div>
+                <div class="card-text">
+                    <h3>Promote</h3>
+                    <p>Promote your business to target customers who need your services or products.</p>
+                    <a class="learn" href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'images/bar3.png' %}" alt="">
+                    <h1>3</h1>
+                </div>
+                <div class="card-text">
+                    <h3>Convert</h3>
+                    <p>Promote your business to target customers who need your services or products.</p>
+                    <a class="learn" href="#">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <h1>Exclusive & Popular</h1>
+        <p>Popular Exclusive Listings In Our Directory</p>
+        <div class="ex-sec">
+            <div class="ex-row">
+                <div class="ex">
+                    <img src="{% static 'images/popular1.jpg' %}" alt="">
+                    <div class="ex-text">
+                        <h3>Shoreline Village</h3>
+                        <div class="rating">1.7
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(197, 222, 53) !important;;"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            (2)
+                        </div>
+                        <div class="car"><i class="icon icons-search-cat fa-solid fa-building-columns"></i> Real Estate
+                            .$$ </div>
+                        <div class="left-right">
+                            <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Austin</div>
+                            <div id="open">Open Now</div>
+                        </div>
+                        <div class="white-border"></div>
+                        <div class="left-right">
+                            <div class="location"><i class="fa fa-phone-square" aria-hidden="true"></i> Call Now</div>
+                            <div><i class="fa-solid fa-diamond-turn-right"></i> Get Direction</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ex">
+                    <img src="{% static 'images/popular2.jpg' %}" alt="">
+                    <div class="ex-text">
+                        <h3>Sushi Kashiba</h3>
+                        <div class="rating">
+                            4.7
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(197, 222, 53) !important;"></i>
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(197, 222, 53) !important;"></i>
+                            <i class="fa fa-star" aria-hidden="true" style="color:  rgb(197, 222, 53) !important;"></i>
+                            <i class="fa fa-star" aria-hidden="true" style="color:  rgb(197, 222, 53) !important;"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            (3)
+                        </div>
+                        <div class="car"><i class="icon icons-banner-cat fa-solid fa-burger"></i> Restaurant . $$$$
+                        </div>
+                        <div class="left-right">
+                            <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Los Angeles</div>
+                            <div id="closed">Closed Now</div>
+                        </div>
+                        <div class="white-border"></div>
+                        <div class="left-right">
+                            <div class="location"><i class="fa fa-phone-square" aria-hidden="true"></i> Call Now</div>
+                            <div><i class="fa-solid fa-diamond-turn-right"></i> Get Direction</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ex">
+                    <img src="{% static 'images/popular3.jpg' %}" alt="">
+                    <div class="ex-text">
+                        <h3>The Mark Hotel</h3>
+                        <div class="rating">5.0
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(115, 207, 66);"></i>
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(115, 207, 66);"></i>
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(115, 207, 66);"></i>
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(115, 207, 66);"></i>
+                            <i class="fa fa-star" aria-hidden="true" style="color: rgb(115, 207, 66);"></i>
+                            (1)
+                        </div>
+                        <div class="car"><i class="icon icons-banner-cat fa-solid fa-burger"></i> Restaurant . $$$$
+                        </div>
+                        <div class="left-right">
+                            <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> New York</div>
+                            <div id="closed">Day Off</div>
+                        </div>
+                        <div class="white-border"></div>
+                        <div class="left-right">
+                            <div class="location"><i class="fa fa-phone-square" aria-hidden="true"></i> Call Now</div>
+                            <div><i class="fa-solid fa-diamond-turn-right"></i> Get Direction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <h1>News & Tips</h1>
+        <p>Checkout latest news and articles from our blog</p>
+        <div class="news-row">
+            <div class="news">
+                <div class="img">
+                    <img src="{% static 'images/news1.jpeg' %}" alt="">
+
+                </div>
+                <div class="profile">
+                    <img src="{% static 'images/profile.jpg' %}" alt="">
+                </div>
+                <div class="news-text">
+
+                    <h5>John Doe</h5>
+                    <h3>Excited news about arrival fashion.</h3>
+                    <div class="white-border"></div>
+                    <div class="left-right">
+                        <div> News</div>
+                        <div class="date"><i class="fa fa-calendar" aria-hidden="true"></i> January 1,2020</div>
+                    </div>
+                </div>
+            </div>
+            <div class="news">
+                <div class="img">
+                    <img src="{% static 'images/news2.jpeg' %}" alt="">
+
+                </div>
+                <div class="profile">
+                    <img src="{% static 'images/profile.jpg' %}" alt="">
+                </div>
+                <div class="news-text">
+
+                    <h5>John Doe</h5>
+                    <h3>Excited news about arrival fashion.</h3>
+                    <div class="white-border"></div>
+                    <div class="left-right">
+                        <div> News</div>
+                        <div class="date"><i class="fa fa-calendar" aria-hidden="true"></i> January 1,2020</div>
+                    </div>
+                </div>
+            </div>
+            <div class="news">
+                <div class="img">
+                    <img src="{% static 'images/news3.jpeg' %}" alt="">
+
+                </div>
+                <div class="profile">
+                    <img src="{% static 'images/profile.jpg' %}" alt="">
+                </div>
+                <div class="news-text">
+
+                    <h5>John Doe</h5>
+                    <h3>Excited news about arrival fashion.</h3>
+                    <div class="white-border"></div>
+                    <div class="left-right">
+                        <div> News</div>
+                        <div class="date"><i class="fa fa-calendar" aria-hidden="true"></i> January 1,2020</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <div class="last-sec">
+            <div class="last-sec-text">
+                <h1>Are you a local Bussiness?</h1>
+                <p>Join the community of hundreds of flourishing local business in your city.</p>
+                <div class="last-sec-buttons">
+                    <button class="btn" style="background-color: #2458FF;"> Get Started</button>
+                    <button class="btn" style="background-color:transparent; border: 1px solid #fff;"> Claim your
+                        Business</button>
+                </div>
+            </div>
+    </section>
+    </div>
+    {% include 'footer.html' %}
+    <script>
+        function slider() {
+            var slider = document.getElementById('slider');
+            var hamburgerIcon = document.getElementById('hamburger-icon');
+            slider.classList.toggle('active');
+            if (slider.classList.contains('active')) {
+                hamburgerIcon.style.color = 'black';
+
+            } else {
+                hamburgerIcon.style.color = 'white';
+            }
+        }
+
+
+        window.onclick = function (event) {
+            var slider = document.getElementById('slider');
+            var hamburger = document.querySelector('.hamburger i');
+            if (event.target !== slider && event.target !== hamburger && !slider.contains(event.target)) {
+                slider.classList.remove('active');
+                hamburger.style.color = 'white'; // Reset color when clicking outside
+            }
+        }
+    </script>
+</body>
+
+</html>
